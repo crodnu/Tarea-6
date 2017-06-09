@@ -4,17 +4,17 @@
 using namespace std;
 #include "Usuario.h"
 #include "DataContacto.h"
-#include "enumIniciarSesion.h" 
+#include "enumIniciarSesion.h"
 
 class ControladorUsuarios {
 private:
-    ControladorUsuarios * instancia = NULL;  
+    ControladorUsuarios * instancia = NULL;
     Usuario * usuarioIniciado = NULL;
-    ControladorUsuarios(); 
+    ControladorUsuarios();
     set<Usuario> usuariosDelSistema;
     void iniciarSesionUsuario();/*no tengo idea que se supone que haga*/
 public:
-    ControladorUsuarios getControladorUsuarios();
+    static ControladorUsuarios getControladorUsuarios();
     void agregarContacto(string cel);
     Usuario getUsuario(string cel);
     Usuario getUsuarioSesionActual();

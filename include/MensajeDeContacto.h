@@ -1,13 +1,17 @@
 #ifndef MENSAJEDECONTACTO_H
 #define	MENSAJEDECONTACTO_H
 
+#include "DataMensajeDeContacto.h"
 #include "Mensaje.h"
+#include "Usuario.h"
 
 class MensajeDeContacto: Mensaje {
 public:
-    MensajeDeContacto();
+    MensajeDeContacto(Usuario* contacto);
+    virtual DataMensaje* getDataMensaje();
 
 private:
+    Usuario* contacto;
 };
 
 #endif	/* MENSAJEDECONTACTO_H */

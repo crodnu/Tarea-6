@@ -4,15 +4,15 @@
 #include <string>
 using namespace std;
 class ControladorMensajes {
-private: 
-    ControladorMensajes instancia;  
+private:
+    ControladorMensajes instancia;
     Conversacion * conversacionSeleccionada;
     set<Conversacion> conversacionesDelSistema;
     ControladorMensajes();
     void enviarMensaje(Mensaje mensaje);
     void seleccionarConversacion(int identificador);
 public:
-    ControladorMensajes getControladorMensajes();
+    static ControladorMensajes getControladorMensajes();
     void crearConversacionSimple(string telefonoContacto);
     set<DataConversacion> darConversaciones();
     set<DataConversacion> darConversacionesActivas();
@@ -25,7 +25,7 @@ public:
     set<DataMensaje> obtenerMensajesDeConversacion();
     void seleccionarConversacionActiva(int identificador);
     void seleccionarConversacionArchivada(int identificador);
-    set<DataReceptor> obtenerInformacionAdicional(int identificador); 
+    set<DataReceptor> obtenerInformacionAdicional(int identificador);
 };
 
 #endif	/* CONTROLADORMENSAJES_H */
