@@ -12,9 +12,9 @@ private:
     static ControladorUsuarios * instancia = NULL;
     Usuario * usuarioIniciado = NULL;
     enumIniciarSesion enumerado;
-    ControladorUsuarios();
     map<string,Usuario *> usuariosDelSistema;
-    void iniciarSesionUsuario();/*no tengo idea que se supone que haga*/
+    ControladorUsuarios();
+    enumIniciarSesion iniciarSesionUsuario();
 public:
     ControladorUsuarios getControladorUsuarios();
     void agregarContacto(string cel);
