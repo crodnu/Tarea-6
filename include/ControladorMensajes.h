@@ -2,12 +2,18 @@
 #define	CONTROLADORMENSAJES_H
 
 #include <string>
+#include "Conversacion.h"
+#include "Mensaje.h"
+#include "DataConversacion.h"
+#include "DataMensaje.h"
+#include "DataContacto.h"
+#include "DataReceptor.h"
 using namespace std;
 class ControladorMensajes {
 private:
-    ControladorMensajes instancia;
-    Conversacion * conversacionSeleccionada;
-    set<Conversacion> conversacionesDelSistema;
+    static ControladorMensajes * instancia = NULL;
+    Conversacion * conversacionSeleccionada = NULL;
+    std::map<int, Conversacion *> conversacionesDelSistema;
     ControladorMensajes();
     void enviarMensaje(Mensaje mensaje);
     void seleccionarConversacion(int identificador);
