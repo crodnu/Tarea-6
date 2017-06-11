@@ -12,7 +12,7 @@ private:
     static ControladorUsuarios * instancia = NULL;
     Usuario * usuarioIniciado = NULL;
     enumIniciarSesion enumerado;
-    map<string,Usuario *> usuariosDelSistema;
+    std::map<string, Usuario *> usuariosDelSistema;
     ControladorUsuarios();
     enumIniciarSesion iniciarSesionUsuario();
 public:
