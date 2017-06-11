@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 
+#include "ControladorFecha.h"
 #include "Conversacion.h"
 #include "DataContacto.h"
 #include "DataConversacion.h"
@@ -14,10 +15,10 @@ typedef std::string TelefonoUsuario;
 
 class Usuario {
 public:
-    Usuario();
+    Usuario(TelefonoUsuario telefono, std::string nombre, std::string descripcion, std::string urlAvatar);
     DataContacto getDataContacto();
     list<DataContacto> getContactos();
-    void agregarContacto(Usuario contacto);
+    void agregarContacto(Usuario* contacto);
     list<DataConversacion> getSetDataConversacion();
 
 private:

@@ -16,11 +16,12 @@ public:
     Mensaje* getMensaje(IdMensaje identificador);
     DataConversacion* getDataConversacion();
     map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user);
+    void enviar(Mensaje* mensaje);
 
 private:
     IdConversacion id;
+    static IdConversacion idActual;
     std::map<IdMensaje, Mensaje*> mensajes;
-    void enviar(Mensaje* mensaje);
 };
 
 #endif	/* CONVERSACION_H */

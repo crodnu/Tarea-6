@@ -4,6 +4,8 @@
 #include <map>
 #include <list>
 
+#include "ControladorFecha.h"
+#include "ControladorUsuarios.h"
 #include "DataMensaje.h"
 #include "DataReceptor.h"
 #include "Fecha.h"
@@ -20,6 +22,7 @@ public:
 
 private:
     idMensaje codigo;
+    static idMensaje codigoActual;
     bool visto;
     Fecha fechaDeEnviado;
     Usuario* emisor;
