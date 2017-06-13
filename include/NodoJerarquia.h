@@ -6,22 +6,24 @@
 
 #include "DataMensaje.h"
 #include "Mensaje.h"
-#include "NodoCompuesto.h"
+#include "typedefs.h"
 #include "Usuario.h"
 
-typedef int IdJerarquia;
+class Mensaje;
+class Usuario;
 
 class NodoJerarquia {
 public:
-    NodoJerarquia(NodoCompuesto* padre);
+    NodoJerarquia();
     void enviar(Mensaje* mensaje);
     virtual std::list<DataMensaje*> obtenerMensajes();
     IdJerarquia getId();
 
 private:
-    static idJerarquia idActual = 0;
+    static IdJerarquia idActual;
     IdJerarquia id;
     std::map<IdMensaje, Mensaje*> mensajes;
 };
+
 
 #endif	/* NODOJERARQUIA_H */

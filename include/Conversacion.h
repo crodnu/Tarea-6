@@ -5,22 +5,24 @@
 
 #include "DataConversacion.h"
 #include "Mensaje.h"
+#include "typedefs.h"
 #include "Usuario.h"
 
-typedef int IdConversacion;
+class Mensaje;
+class Usuario;
 
 class Conversacion {
 public:
     Conversacion();
-    map<IdMensaje, Mensaje*> getSetMensajes();
+    std::map<IdMensaje, Mensaje*> getSetMensajes();
     Mensaje* getMensaje(IdMensaje identificador);
     DataConversacion* getDataConversacion();
-    map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user);
+    std::map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user);
     void enviar(Mensaje* mensaje);
 
 private:
     IdConversacion id;
-    static IdConversacion idActual = 0;
+    static IdConversacion idActual;
     std::map<IdMensaje, Mensaje*> mensajes;
 };
 

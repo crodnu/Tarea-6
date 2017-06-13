@@ -2,12 +2,9 @@
 
 using namespace std;
 
-NodoJerarquia::NodoJerarquia(NodoCompuesto* padre) {
+NodoJerarquia::NodoJerarquia() {
     NodoJerarquia::idActual++;
     this->id = NodoJerarquia::idActual;
-
-    if(padre != NULL) // Overloading?
-        padre->agregarHijo(this);
 }
 
 void NodoJerarquia::enviar(Mensaje* mensaje) {

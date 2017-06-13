@@ -7,7 +7,7 @@
 
 class NodoCompuesto: NodoJerarquia {
 public:
-    NodoCompuesto(NodoCompuesto* padre);
+    NodoCompuesto();
     virtual std::list<DataMensaje*> obtenerMensajes();
     void agregarHijo(NodoJerarquia* hijo);
 

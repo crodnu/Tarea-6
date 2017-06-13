@@ -3,6 +3,7 @@
 
 class Fecha {
     public:
+        Fecha();
         Fecha(unsigned dia, unsigned mes, unsigned anio);
         Fecha(const Fecha &unaFecha);
 

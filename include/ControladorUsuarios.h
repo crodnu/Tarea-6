@@ -3,31 +3,34 @@
 #include <string>
 
 #include <map>
+#include <list>
 
-#include "Usuario.h"
 #include "DataContacto.h"
 #include "enumIniciarSesion.h"
+#include "Mensaje.h"
+#include "typedefs.h"
+#include "Usuario.h"
 
 using namespace std;
 
 class ControladorUsuarios {
 private:
-    static ControladorUsuarios * instancia = NULL;
+    static ControladorUsuarios* instancia;
     Usuario * usuarioIniciado = NULL;
-    enumIniciarSesion enumerado;
+    enumIniciarSesion enumerado; // Necesario?
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     ControladorUsuarios();
-    enumIniciarSesion iniciarSesionUsuario();
+    void iniciarSesionUsuario();
 
 public:
-    ControladorUsuarios getControladorUsuarios();
+    ControladorUsuarios* getControladorUsuarios();
     void agregarContacto(TelefonoUsuario cel);
-    Usuario getUsuario(TelefonoUsuario cel);
-    Usuario getUsuarioSesionActual();
+    Usuario* getUsuario(TelefonoUsuario cel);
+    Usuario* getUsuarioSesionActual();
     DataContacto getDatos(TelefonoUsuario cel);
     void darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion);
     enumIniciarSesion iniciarSesion(TelefonoUsuario cel);
-    set<dataContacto> listarContactos();
+    std::list<DataContacto> listarContactos();
     void archivarConversacion(int identificadorConv);
 };
 

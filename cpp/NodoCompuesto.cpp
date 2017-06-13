@@ -2,8 +2,6 @@
 
 using namespace std;
 
-NodoCompuesto::NodoCompuesto(NodoCompuesto* padre): NodoJerarquia(padre) {}
-
 list<DataMensaje*> NodoCompuesto::obtenerMensajes() {
     list<DataMensaje*> result = NodoJerarquia::obtenerMensajes();
 

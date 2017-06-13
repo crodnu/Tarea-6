@@ -1,0 +1,89 @@
+# depslib dependency file v1.0
+1497374889 source:c:\users\eduardo gonzalez\documents\github\tarea-6\cpp\controladorfecha.cpp
+	<cstddef>
+	"../include/ControladorFecha.h"
+
+1497203089 c:\users\eduardo gonzalez\documents\github\tarea-6\include\controladorfecha.h
+	"Fecha.h"
+
+1497374849 c:\users\eduardo gonzalez\documents\github\tarea-6\include\fecha.h
+
+1497376366 source:c:\users\eduardo gonzalez\documents\github\tarea-6\cpp\controladormensajes.cpp
+	"../include/ControladorMensajes.h"
+
+1497376469 c:\users\eduardo gonzalez\documents\github\tarea-6\include\controladormensajes.h
+	<string>
+	"Conversacion.h"
+	"Mensaje.h"
+	"DataConversacion.h"
+	"DataMensaje.h"
+	"DataContacto.h"
+	"DataReceptor.h"
+
+1497376512 c:\users\eduardo gonzalez\documents\github\tarea-6\include\conversacion.h
+	<map>
+	"DataConversacion.h"
+	"Mensaje.h"
+	"typedefs.h"
+	"Usuario.h"
+
+1496249398 c:\users\eduardo gonzalez\documents\github\tarea-6\include\dataconversacion.h
+	<list>
+	"DataMensaje.h"
+
+1496249396 c:\users\eduardo gonzalez\documents\github\tarea-6\include\datamensaje.h
+	"Fecha.h"
+
+1497376636 c:\users\eduardo gonzalez\documents\github\tarea-6\include\mensaje.h
+	<map>
+	<list>
+	"ControladorFecha.h"
+	"ControladorUsuarios.h"
+	"DataMensaje.h"
+	"DataReceptor.h"
+	"Fecha.h"
+	"typedefs.h"
+	"Usuario.h"
+
+1497377654 c:\users\eduardo gonzalez\documents\github\tarea-6\include\controladorusuarios.h
+	<string>
+	<map>
+	<list>
+	"DataContacto.h"
+	"enumIniciarSesion.h"
+	"Mensaje.h"
+	"typedefs.h"
+	"Usuario.h"
+
+1496249398 c:\users\eduardo gonzalez\documents\github\tarea-6\include\datacontacto.h
+	<string>
+
+1497377599 c:\users\eduardo gonzalez\documents\github\tarea-6\include\enuminiciarsesion.h
+
+1497376141 c:\users\eduardo gonzalez\documents\github\tarea-6\include\usuario.h
+	<list>
+	<map>
+	<string>
+	"ControladorFecha.h"
+	"Conversacion.h"
+	"DataContacto.h"
+	"DataConversacion.h"
+	"Fecha.h"
+	"NodoJerarquia.h"
+	"typedefs.h"
+
+1497376103 c:\users\eduardo gonzalez\documents\github\tarea-6\include\nodojerarquia.h
+	<list>
+	<map>
+	"DataMensaje.h"
+	"Mensaje.h"
+	"typedefs.h"
+	"Usuario.h"
+
+1497376024 c:\users\eduardo gonzalez\documents\github\tarea-6\include\typedefs.h
+	<string>
+
+1496249398 c:\users\eduardo gonzalez\documents\github\tarea-6\include\datareceptor.h
+	"Fecha.h"
+	"DataContacto.h"
+
