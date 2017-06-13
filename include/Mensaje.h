@@ -19,6 +19,7 @@ public:
     virtual DataMensaje* getDataMensaje();
     bool esReceptor(Usuario* user);
     list<DataReceptor> getDataReceptor();
+    Fecha getFechaEnviado();
 
 private:
     idMensaje codigo;

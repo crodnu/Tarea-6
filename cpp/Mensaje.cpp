@@ -16,3 +16,7 @@ bool Mensaje::esReceptor(Usuario* user) {
 
     return false;
 }
+
+Fecha Mensaje::getFechaEnviado() {
+    return this->fechaDeEnviado;
+}

@@ -1,4 +1,9 @@
 #include "../include/MensajeDeContacto.h"
 
-MensajeDeContacto::MensajeDeContacto() {
+MensajeDeContacto::MensajeDeContacto(Usuario* contacto) {
+    this->contacto = cotacto;
+}
+
+DataMensaje* MensajeDeContacto::getDataMensaje() {
+    return DataMensajeDeContacto(this->getFechaEnviado(), this->contacto->getDataContacto());
 }

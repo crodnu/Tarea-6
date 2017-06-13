@@ -1,28 +1,32 @@
 #ifndef CONTROLADORUSUARIOS_H
 #define CONTROLADORUSUARIOS_H
 #include <string>
-using namespace std;
+
+#include <map>
+
 #include "Usuario.h"
 #include "DataContacto.h"
 #include "enumIniciarSesion.h"
-#include <map>
+
+using namespace std;
 
 class ControladorUsuarios {
 private:
     static ControladorUsuarios * instancia = NULL;
     Usuario * usuarioIniciado = NULL;
     enumIniciarSesion enumerado;
-    std::map<string, Usuario *> usuariosDelSistema;
+    std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     ControladorUsuarios();
     enumIniciarSesion iniciarSesionUsuario();
+
 public:
     ControladorUsuarios getControladorUsuarios();
-    void agregarContacto(string cel);
-    Usuario getUsuario(string cel);
+    void agregarContacto(TelefonoUsuario cel);
+    Usuario getUsuario(TelefonoUsuario cel);
     Usuario getUsuarioSesionActual();
-    DataContacto getDatos(string cel);
-    void darseDeAlta(string nombre, string cel, string urlImagen, string descripcion);
-    enumIniciarSesion iniciarSesion(string cel);
+    DataContacto getDatos(TelefonoUsuario cel);
+    void darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion);
+    enumIniciarSesion iniciarSesion(TelefonoUsuario cel);
     set<dataContacto> listarContactos();
     void archivarConversacion(int identificadorConv);
 };
