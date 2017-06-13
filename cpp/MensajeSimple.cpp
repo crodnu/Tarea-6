@@ -7,5 +7,5 @@ MensajeSimple::MensajeSimple(string texto) {
 }
 
 DataMensaje* MensajeSimple::getDataMensaje() {
-    return DataMensajeSimple(this->getFechaEnviado(), this->texto);
+    return new DataMensajeSimple(this->getFechaEnviado(), this->texto);
 }

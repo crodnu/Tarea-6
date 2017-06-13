@@ -5,9 +5,7 @@
 
 class NodoSimple: NodoJerarquia {
 public:
-    NodoSimple();
-
-private:
+    NodoSimple(NodoJerarquia* padre);
 };
 
 #endif	/* NODOSIMPLE_H */

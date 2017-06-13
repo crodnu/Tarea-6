@@ -20,7 +20,7 @@ public:
 
 private:
     IdConversacion id;
-    static IdConversacion idActual;
+    static IdConversacion idActual = 0;
     std::map<IdMensaje, Mensaje*> mensajes;
 };
 

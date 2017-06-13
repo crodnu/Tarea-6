@@ -11,6 +11,6 @@ MensajeConImagen::MensajeConImagen(string formato, string texto,
 }
 
 DataMensaje* MensajeConImagen::getDataMensaje() {
-    return DataMensajeConImagen(this->getFechaEnviado(),
+    return new DataMensajeConImagen(this->getFechaEnviado(),
         this->formato, this->texto, this->urlImagen, this->tamanio);
 }

@@ -1,4 +1,4 @@
 #include "../include/NodoSimple.h"
 
-NodoSimple::NodoSimple() {
-}
+// Que clase mas emocionante.
+NodoSimple::NodoSimple(NodoJerarquia* padre): NodoJerarquia(padre) {}

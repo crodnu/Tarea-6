@@ -20,3 +20,7 @@ bool Mensaje::esReceptor(Usuario* user) {
 Fecha Mensaje::getFechaEnviado() {
     return this->fechaDeEnviado;
 }
+
+IdMensaje Mensaje::getId() {
+    return this->codigo;
+}

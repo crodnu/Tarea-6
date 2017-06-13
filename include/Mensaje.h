@@ -20,10 +20,11 @@ public:
     bool esReceptor(Usuario* user);
     list<DataReceptor> getDataReceptor();
     Fecha getFechaEnviado();
+    IdMensaje getId();
 
 private:
-    idMensaje codigo;
-    static idMensaje codigoActual;
+    IdMensaje codigo;
+    static idMensaje codigoActual = 0;
     bool visto;
     Fecha fechaDeEnviado;
     Usuario* emisor;
