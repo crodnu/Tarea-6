@@ -53,7 +53,6 @@ enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
 
     else {
         this->usuarioIniciado = entrante;
-        this->iniciarSesionUsuario();
         return SESION_INICIADA_CORRECTAMENTE;
     }
 }
