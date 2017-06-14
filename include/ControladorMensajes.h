@@ -15,25 +15,25 @@ class ControladorMensajes {
 private:
     static ControladorMensajes* instancia;
     Conversacion* conversacionSeleccionada = NULL;
-    std::map<int, Conversacion *> conversacionesDelSistema;
+    std::map<idConversacion, Conversacion *> conversacionesDelSistema;
     ControladorMensajes();
     void enviarMensaje(Mensaje mensaje);
-    void seleccionarConversacion(int identificador);
+    void seleccionarConversacion(IdConversacion identificador);
 
 public:
     static ControladorMensajes getControladorMensajes();
-    void crearConversacionSimple(string telefonoContacto);
+    void crearConversacionSimple(TelefonoUsuario telefonoContacto);
     set<DataConversacion> darConversaciones();
     set<DataConversacion> darConversacionesActivas();
     set<DataConversacion> darConversacionesArchivadas();
-    void enviarMensajeContacto(string numeroContacto);
+    void enviarMensajeContacto(TelefonoUsuario numeroContacto);
     void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
     void enviarMensajeSimple(string texto);
     void enviarMensajeVideo(string urmVideo, int duracion);
     set<DataContacto> listarContactos();
     set<DataMensaje> obtenerMensajesDeConversacion();
-    void seleccionarConversacionActiva(int identificador);
-    void seleccionarConversacionArchivada(int identificador);
+    void seleccionarConversacionActiva(IdConversacion identificador);
+    void seleccionarConversacionArchivada(IdConversacion identificador);
     set<DataReceptor> obtenerInformacionAdicional(int identificador);
 };
 
