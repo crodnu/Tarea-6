@@ -8,15 +8,18 @@
 #include "DataMensaje.h"
 #include "DataContacto.h"
 #include "DataReceptor.h"
+
 using namespace std;
+
 class ControladorMensajes {
 private:
-    static ControladorMensajes * instancia = NULL;
-    Conversacion * conversacionSeleccionada = NULL;
+    static ControladorMensajes* instancia;
+    Conversacion* conversacionSeleccionada = NULL;
     std::map<int, Conversacion *> conversacionesDelSistema;
     ControladorMensajes();
     void enviarMensaje(Mensaje mensaje);
     void seleccionarConversacion(int identificador);
+
 public:
     static ControladorMensajes getControladorMensajes();
     void crearConversacionSimple(string telefonoContacto);

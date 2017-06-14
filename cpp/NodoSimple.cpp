@@ -1,4 +1,2 @@
 #include "../include/NodoSimple.h"
-
-NodoSimple::NodoSimple() {
-}
+// Que clase mas interesante :/

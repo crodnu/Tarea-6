@@ -1,6 +1,7 @@
 #ifndef MENSAJEDECONTACTO_H
 #define	MENSAJEDECONTACTO_H
 
+#include "DataContacto.h" // Necesario?
 #include "DataMensajeDeContacto.h"
 #include "Mensaje.h"
 #include "Usuario.h"

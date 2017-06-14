@@ -6,8 +6,6 @@
 class NodoSimple: NodoJerarquia {
 public:
     NodoSimple();
-
-private:
 };
 
 #endif	/* NODOSIMPLE_H */

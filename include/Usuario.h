@@ -5,20 +5,25 @@
 #include <map>
 #include <string>
 
+#include "ControladorFecha.h"
 #include "Conversacion.h"
 #include "DataContacto.h"
 #include "DataConversacion.h"
 #include "Fecha.h"
+#include "NodoJerarquia.h"
+#include "typedefs.h"
 
-typedef std::string TelefonoUsuario;
+class Conversacion;
+class Mensaje;
+class NodoJerarquia;
 
 class Usuario {
 public:
-    Usuario();
+    Usuario(TelefonoUsuario telefono, std::string nombre, std::string descripcion, std::string urlAvatar);
     DataContacto getDataContacto();
-    list<DataContacto> getContactos();
-    void agregarContacto(Usuario contacto);
-    list<DataConversacion> getSetDataConversacion();
+    std::list<DataContacto> getContactos();
+    void agregarContacto(Usuario* contacto);
+    std::list<DataConversacion> getSetDataConversacion();
 
 private:
     TelefonoUsuario telefono;
@@ -27,10 +32,10 @@ private:
     std::string descripcion;
     Fecha fechaDeRegistro;
     Fecha ultimaConexion;
-    map<TelefonoUsuario, Usuario*> contactos;
-    map<IdConversacion, Conversacion*> conversacionesIntegradas;
-    map<IdConversacion, Conversacion*> conversacionesArchivadas;
-    map<???, NodoJerarquia*> jerarquias;
+    std::map<TelefonoUsuario, Usuario*> contactos;
+    std::map<IdConversacion, Conversacion*> conversacionesIntegradas;
+    std::map<IdConversacion, Conversacion*> conversacionesArchivadas;
+    std::map<IdJerarquia, NodoJerarquia*> jerarquias;
 };
 
 #endif	/* USUARIO_H */
