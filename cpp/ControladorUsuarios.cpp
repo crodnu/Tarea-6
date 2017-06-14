@@ -67,7 +67,7 @@ list<DataContacto> ControladorUsuarios::listarContactos(){
     return iniciado->getContactos();
 }
 
-void ControladorUsuarios::archivarConversacion(int identificadorConv){
+void ControladorUsuarios::archivarConversacion(IdConversacion identificadorConv){
     Usuario* iniciado = this->usuarioIniciado;
     iniciado.archivarConversacion(identificadorConv);
 }
