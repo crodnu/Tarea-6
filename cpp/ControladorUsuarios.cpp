@@ -1,12 +1,6 @@
 #include "../include/ControladorUsuarios.h"
 
 ControladorUsuarios::ControladorUsuarios(){
-    //this.instancia = new ControladorUsuarios();
-    //return this.instancia;
-}
-
-void ControladorUsuarios::iniciarSesionUsuario(){
-    //return SESION_INICIADA_CORRECTAMENTE;
 }
 
 ControladorUsuarios* ControladorUsuarios::getControladorUsuarios(){

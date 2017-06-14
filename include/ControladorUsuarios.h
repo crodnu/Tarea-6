@@ -17,7 +17,6 @@ class ControladorUsuarios {
 private:
     static ControladorUsuarios* instancia;
     Usuario * usuarioIniciado = NULL;
-    enumIniciarSesion enumerado; // Necesario?
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     ControladorUsuarios();
     void iniciarSesionUsuario();
