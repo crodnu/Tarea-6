@@ -19,7 +19,6 @@ private:
     Usuario * usuarioIniciado = NULL;
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     ControladorUsuarios();
-    void iniciarSesionUsuario();
 
 public:
     ControladorUsuarios* getControladorUsuarios();
