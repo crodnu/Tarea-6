@@ -33,3 +33,7 @@ map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user) {
 
     return setMensajes;
 }
+
+IdConversacion Conversacion::getId(){
+    return this->id;
+}

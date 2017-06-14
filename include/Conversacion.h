@@ -19,6 +19,7 @@ public:
     DataConversacion* getDataConversacion();
     std::map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user);
     void enviar(Mensaje* mensaje);
+    IdConversacion getId();
 
 private:
     IdConversacion id;
