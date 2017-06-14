@@ -3,6 +3,10 @@
 ControladorUsuarios::ControladorUsuarios(){
 }
 
+void ControladorUsuarios::iniciarSesionUsuario(){
+    return SESION_INICIADA_CORRECTAMENTE;
+}
+
 ControladorUsuarios* ControladorUsuarios::getControladorUsuarios(){
     if(ControladorUsuarios::instancia == NULL)
         ControladorUsuarios::instancia = new ControladorUsuarios();
@@ -53,6 +57,7 @@ enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
 
     else {
         this->usuarioIniciado = entrante;
+        this->iniciarSesionUsuario();
         return SESION_INICIADA_CORRECTAMENTE;
     }
 }
