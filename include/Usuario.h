@@ -35,7 +35,6 @@ private:
     std::map<TelefonoUsuario, Usuario*> contactos;
     std::map<IdConversacion, Conversacion*> conversacionesIntegradas;
     std::map<IdConversacion, Conversacion*> conversacionesArchivadas;
-    std::map<IdJerarquia, NodoJerarquia*> jerarquias;
 };
 
 #endif	/* USUARIO_H */
