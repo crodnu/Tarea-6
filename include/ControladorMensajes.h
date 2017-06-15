@@ -3,13 +3,8 @@
 
 #include <map>
 #include <string>
-<<<<<<< HEAD
-#include map;
-#include list;
-=======
-#include <set>
+#include <list>
 
->>>>>>> f973b184afab18ea865de7a8bb0e45216ff77330
 #include "Conversacion.h"
 #include "Mensaje.h"
 #include "MensajeConImagen.h"
@@ -43,13 +38,8 @@ public:
     void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
     void enviarMensajeSimple(string texto);
     void enviarMensajeVideo(string urmVideo, int duracion);
-<<<<<<< HEAD
     std::list<DataContacto> listarContactos();
     std::list<DataMensaje> obtenerMensajesDeConversacion();
-=======
-    set<DataContacto> listarContactos();
-    set<DataMensaje*> obtenerMensajesDeConversacion();
->>>>>>> f973b184afab18ea865de7a8bb0e45216ff77330
     void seleccionarConversacionActiva(IdConversacion identificador);
     void seleccionarConversacionArchivada(IdConversacion identificador);
     set<DataReceptor> obtenerInformacionAdicional(int identificador);
