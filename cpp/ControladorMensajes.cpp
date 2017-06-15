@@ -3,26 +3,24 @@
 ControladorMensajes::ControladorMensajes() {
 }
 
-void ControladorMensajes::enviarMensaje(Mensaje mensaje,Usuario * actual){
-  (this->conversacionSeleccionada)->enviar(Mensaje mensaje, Usuario actual);
+void ControladorMensajes::enviarMensaje(Mensaje * mensaje){
+  (ControladorMensajes::instancia->conversacionSeleccionada)->enviar(mensaje);
 }
 
 void ControladorMensajes::seleccionarConversacion(IdConversacion identificador){
-  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
+  ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
 }
 
 ControladorMensajes ControladorMensajes::getControladorMensajes(){
-  if (this->instancia == NULL)
-    this->instancia = new ControladorMensajes();
+  if (ControladorMensajes::instancia == NULL)
+    ControladorMensajes::instancia = new ControladorMensajes();
 
-  return this->instancia;
+  return ControladorMensajes::instancia;
 }
 
-void ControladorMensajes::crearConversacionSimple(TelefonoUsuario telefonoContacto, ControladorUsuarios contUsuarios){
-  Usuario * iniciante = contUsuarios->getUsuarioSesionActual();
-  Usuario * receptor = contUsuarios->getUsuario(telefonoContacto);
-  Conversacion * nuevaConversacion = new Conversacion(iniciante, receptor);
-  this->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
+void ControladorMensajes::crearConversacionSimple(TelefonoUsuario telefonoContacto){
+  Conversacion * nuevaConversacion = new Conversacion();
+  ControladorMensajes::instancia->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
 }
 
 set<DataConversacion> ControladorMensajes::darConversaciones(){
@@ -41,32 +39,25 @@ set<DataConversacion> ControladorMensajes::darConversacionesActivas(){
 set<DataConversacion> ControladorMensajes::darConversacionesArchivadas(){
   //idem que conversaciones activas
 }
-void ControladorMensajes::enviarMensajeContacto(TelefonoUsuario numeroContacto, ControladorUsuarios contUsuarios){
-  Usuario* contacto = contUsuarios->usuariosDelSistema[numeroContacto];
-  Usuario * actual = contUsuarios->getUsuarioSesionActual();
-  MensajeDeContacto mensaje = new MensajeDeContacto(contacto);
-  this->enviarMensaje(mensaje, actual);
+void ControladorMensajes::enviarMensajeContacto(TelefonoUsuario numeroContacto){
+  Usuario* contacto = ControladorUsuarios::instancia->usuariosDelSistema[numeroContacto];
+  MensajeDeContacto * mensaje = new MensajeDeContacto(contacto);
+  ControladorMensajes::instancia->enviarMensaje(mensaje);
 }
 
-void ControladorMensajes::enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio, ControladorUsuarios contUsuarios){
-  Usuario* contacto = contUsuarios->usuariosDelSistema[numeroContacto];
-  Usuario * actual = contUsuarios->getUsuarioSesionActual();
-  MensajeConImagen mensaje = new MensajeConImagen(formato, texto, urlImagen, tamanio);
-  this->enviarMensaje(mensaje, actual);
+void ControladorMensajes::enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio){
+  MensajeConImagen * mensaje = new MensajeConImagen(formato, texto, urlImagen, tamanio);
+  ControladorMensajes::instancia->enviarMensaje(mensaje);
 }
 
-void ControladorMensajes::enviarMensajeSimple(string texto, ControladorUsuarios contUsuarios){
-  Usuario* contacto = contUsuarios->usuariosDelSistema[numeroContacto];
-  Usuario * actual = contUsuarios->getUsuarioSesionActual();
-  MensajeSimple mensaje = new MensajeSimple(texto);
-  this->enviarMensaje(mensaje, actual);
+void ControladorMensajes::enviarMensajeSimple(string texto){
+  MensajeSimple * mensaje = new MensajeSimple(texto);
+  ControladorMensajes::instancia->enviarMensaje(mensaje);
 }
 
-void ControladorMensajes::enviarMensajeVideo(string urmVideo, int duracion, ControladorUsuarios contUsuarios){
-  Usuario* contacto = contUsuarios->usuariosDelSistema[numeroContacto];
-  Usuario * actual = contUsuarios->getUsuarioSesionActual();
-  MensajeConVideo mensaje = new MensajeConVideo(urmVideo, duracion);
-  this->enviarMensaje(mensaje, actual);
+void ControladorMensajes::enviarMensajeVideo(string urmVideo, int duracion){
+  MensajeConVideo * mensaje = new MensajeConVideo(urmVideo, duracion);
+  ControladorMensajes::instancia->enviarMensaje(mensaje);
 }
 
 set<DataContacto> ControladorMensajes::listarContactos(){
@@ -76,11 +67,11 @@ set<DataContacto> ControladorMensajes::listarContactos(){
 set<DataMensaje> obtenerMensajesDeConversacion();
 
 void ControladorMensajes::seleccionarConversacionActiva(IdConversacion identificador){
-  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
+  ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
 }
 
 void ControladorMensajes::seleccionarConversacionArchivada(IdConversacion identificador){
-  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
+  ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
 }
 
 set<DataReceptor> obtenerInformacionAdicional(int identificador);
