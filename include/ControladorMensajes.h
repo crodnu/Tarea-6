@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <set>
 #include <list>
 
 #include "Conversacion.h"
@@ -22,7 +23,7 @@ using namespace std;
 class ControladorMensajes {
 private:
     static ControladorMensajes* instancia;
-    Conversacion* conversacionSeleccionada = NULL;
+    Conversacion* conversacionSeleccionada;
     std::map<IdConversacion, Conversacion*> conversacionesDelSistema;
     ControladorMensajes();
     void enviarMensaje(Mensaje* mensaje);
@@ -39,7 +40,7 @@ public:
     void enviarMensajeSimple(string texto);
     void enviarMensajeVideo(string urmVideo, int duracion);
     std::list<DataContacto> listarContactos();
-    std::list<DataMensaje> obtenerMensajesDeConversacion();
+    std::list<DataMensaje*> obtenerMensajesDeConversacion();
     void seleccionarConversacionActiva(IdConversacion identificador);
     void seleccionarConversacionArchivada(IdConversacion identificador);
     set<DataReceptor> obtenerInformacionAdicional(int identificador);

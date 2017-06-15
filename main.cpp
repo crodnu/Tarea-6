@@ -25,7 +25,7 @@
 
 using namespace std;
 
-
+bool menu();
 
 int main(){
     bool salir;
@@ -43,7 +43,7 @@ int main(){
 bool menu(){
     cout << "Seleccione una de las siguientes opciones: \n ";
     cout << "0. Salir \n 1. Abrir GuasapFING  \n 2. Cerrar GuasapFING \n 3. Agregar contactos  \n 4. Alta grupo  \n 5. Enviar mensajes  \n ";
-    cout << "6. Ver mensajes  \n 7. Archivar conversaciones   \n 8. Modificar usuario  \n 9. Eliminar mensajes   \n 10. Suscripción para recibir los cambios en la información personal de un contacto\n;
+    cout << "6. Ver mensajes  \n 7. Archivar conversaciones   \n 8. Modificar usuario  \n 9. Eliminar mensajes   \n 10. Suscripción para recibir los cambios en la información personal de un contacto\n;";
     unsigned opcionSeleccionada;
     cin >> opcionSeleccionada;
 
@@ -51,12 +51,12 @@ bool menu(){
         case SALIR: {
             return true;
         }
-            
+
         case ABRIR_GUASAPFING : {
-            
-            string tel
-            
-            cout << "Ingrese TEL\n"; 
+
+            string tel;
+
+            cout << "Ingrese TEL\n";
             cin >> tel;
             iniciarSesion(tel);
             darseDeAlta(cel,url,descripcion)
@@ -66,17 +66,17 @@ bool menu(){
 
         case CERRAR_GuasapFING: {
 
-            
+
 
         }
 
         case Agregar_contactos: {
 
             string tel;
-                    
+
             cout << "Ingrese tel del socio\n";
             cin >> tel;
-            
+
             agregarContacto(tel);
             cout << "Contacto agregado." << endl;
             break;
@@ -84,15 +84,15 @@ bool menu(){
 
         case Alta_grupo: {
          // Lo hace el usuario
-            
+
             altaGrupo();
-           
-          
+
+
             break;
         }
 
         case Enviar_mensajes: {
-            
+
             string msj;
 
             cout << "Ingrese el mensaje." << endl;
@@ -101,45 +101,45 @@ bool menu(){
                 cout << "Mensaje enviado." << endl;
             break;
         }
-        
+
         case Ver_mensajes: {
-            
+
             verMensajes();
-             
+
             break;
         }
-        
+
         case Archivar_conversaciones: {
-            
+
             int id;
             cout << "Ingrese el id." << endl;
             cin >> id;
             archivarConversacion(id);
-             
+
             break;
         }
-        
+
         case Modificar_usuario: {
-            
+
             modificarUsuario();
-             
+
             break;
         }
-        
+
         case Eliminar_mensajes: {
-            
+
             eliminarMensajes();
-             
+
             break;
         }
-        
+
         case Suscripcion: {
-            
+
             suscribirse();
-             
+
             break;
         }
-        
+
         default: {
             cout << "Opcion no valida." <<endl;
         }

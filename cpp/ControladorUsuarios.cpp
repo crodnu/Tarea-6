@@ -59,12 +59,11 @@ enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
 }
 
 list<DataContacto> ControladorUsuarios::listarContactos(){
-    Usuario* iniciado = ControladorUsuarios::instancia->getUsuarioSesionActual;
+    Usuario* iniciado = ControladorUsuarios::instancia->getUsuarioSesionActual();
     return iniciado->getContactos();
 }
 
 void ControladorUsuarios::archivarConversacion(IdConversacion identificadorConv){
-    Usuario* iniciado = this->usuarioIniciado;
-    Conversacion* = iniciado->
-    iniciado->archivarConversacion(identificadorConv);
+    //Usuario* iniciado = this->usuarioIniciado;
+    //iniciado->archivarConversacion(identificadorConv);
 }

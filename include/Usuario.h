@@ -22,7 +22,7 @@ public:
     DataContacto getDataContacto();
     std::list<DataContacto> getContactos();
     void agregarContacto(Usuario* contacto);
-    std::list<DataConversacion> getSetDataConversacion();
+    std::list<DataConversacion*> getSetDataConversacion();
 
 private:
     TelefonoUsuario telefono;

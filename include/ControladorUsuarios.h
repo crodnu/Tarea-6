@@ -13,10 +13,12 @@
 
 using namespace std;
 
+class Usuario;
+
 class ControladorUsuarios {
 private:
     static ControladorUsuarios* instancia;
-    Usuario * usuarioIniciado = NULL;
+    Usuario* usuarioIniciado;
     enumIniciarSesion enumerado; // Necesario?
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     ControladorUsuarios();
