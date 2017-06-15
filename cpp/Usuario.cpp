@@ -47,3 +47,24 @@ list<DataConversacion*> Usuario::getSetDataConversacion() {
 
     return conversaciones;
 }
+
+void Usuario::suscribirse(Usuario* user) {
+    user->suscriptores[this->telefono] = this;
+}
+
+list<DataNotificacion> Usuario::getNotificaciones() {
+    list<DataNotificacion> result;
+
+    for(list<Notificacion*>::iterator it = this->notificacionesRecibidas.begin();
+        it != this->notificacionesRecibidas.end(); it++) {
+        result.push_front((*it)->getDataNotificacion());
+        delete *it;
+    }
+
+    this->notificacionesRecibidas.clear();
+    return result;
+}
+
+void Usuario::notificarSuscriptores(Notificacion notificacion) {
+
+}
