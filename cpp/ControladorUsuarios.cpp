@@ -3,7 +3,8 @@
 ControladorUsuarios::ControladorUsuarios(){
 }
 
-void ControladorUsuarios::iniciarSesionUsuario(){
+void ControladorUsuarios::iniciarSesionUsuario(Usuario * entrante){
+    ControladorUsuarios::instancia->usuarioIniciado = entrante;
     return SESION_INICIADA_CORRECTAMENTE;
 }
 
@@ -15,33 +16,33 @@ ControladorUsuarios* ControladorUsuarios::getControladorUsuarios(){
 }
 
 void ControladorUsuarios::agregarContacto(TelefonoUsuario cel){
-    Usuario* iniciado = this->getUsuarioSesionActual();
-    Usuario* contacto = this->usuariosDelSistema[cel];
+    Usuario* iniciado = ControladorUsuarios::instancia->getUsuarioSesionActual();
+    Usuario* contacto = ControladorUsuarios::instancia->usuariosDelSistema[cel];
     if(iniciado != NULL && contacto != NULL)
         iniciado->agregarContacto(contacto);
 }
 
 Usuario* ControladorUsuarios::getUsuario(TelefonoUsuario cel){
-    return this->usuariosDelSistema[cel];
+    return ControladorUsuarios::instancia->usuariosDelSistema[cel];
 }
 
 Usuario* ControladorUsuarios::getUsuarioSesionActual(){
-    return this->usuarioIniciado;
+    return ControladorUsuarios::instancia->usuarioIniciado;
 }
 
 DataContacto ControladorUsuarios::getDatos(TelefonoUsuario cel){
-    Usuario* iniciado = this->usuarioIniciado;
+    Usuario* iniciado = ControladorUsuarios::instancia->usuarioIniciado;
     return iniciado->getDataContacto();
 }
 
 void ControladorUsuarios::darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion){
     Usuario* uno = new Usuario(cel, nombre, descripcion, urlImagen);
-    this->usuariosDelSistema[cel] = uno;
+    ControladorUsuarios::instancia->usuariosDelSistema[cel] = uno;
 }
 
 enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
     Usuario* entrante = usuariosDelSistema[cel];
-    Usuario* enSesion = this->getUsuarioSesionActual();
+    Usuario* enSesion = ControladorUsuarios::instancia->getUsuarioSesionActual();
 
     if(entrante == NULL) {
         return NUMERO_NO_EXISTE;
@@ -56,18 +57,16 @@ enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
     }
 
     else {
-        this->usuarioIniciado = entrante;
-        this->iniciarSesionUsuario();
-        return SESION_INICIADA_CORRECTAMENTE;
+        return ControladorUsuarios::instancia->iniciarSesionUsuario(entrante);
     }
 }
 
 list<DataContacto> ControladorUsuarios::listarContactos(){
-    Usuario* iniciado = this->usuarioIniciado;
+    Usuario* iniciado = ControladorUsuarios::instancia->usuarioIniciado;
     return iniciado->getContactos();
 }
 
 void ControladorUsuarios::archivarConversacion(IdConversacion identificadorConv){
-    Usuario* iniciado = this->usuarioIniciado;
-    iniciado.archivarConversacion(identificadorConv);
+    Usuario* iniciado = ControladorUsuarios::instancia->usuarioIniciado;
+    iniciado->archivarConversacion(identificadorConv);
 }
