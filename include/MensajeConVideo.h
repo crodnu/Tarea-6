@@ -6,7 +6,7 @@
 #include <DataMensajeConVideo.h>
 #include "Mensaje.h"
 
-class MensajeConVideo: Mensaje {
+class MensajeConVideo: public Mensaje {
 public:
     MensajeConVideo(std::string urlVideo, unsigned duracion);
     virtual DataMensaje* getDataMensaje();

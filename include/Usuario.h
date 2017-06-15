@@ -10,7 +10,6 @@
 #include "DataContacto.h"
 #include "DataConversacion.h"
 #include "Fecha.h"
-#include "NodoJerarquia.h"
 #include "typedefs.h"
 
 class Conversacion;

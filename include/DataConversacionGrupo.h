@@ -5,7 +5,7 @@
 
 #include "DataConversacion.h"
 
-class DataConversacionGrupo: DataConversacion {
+class DataConversacionGrupo: public DataConversacion {
 public:
     DataConversacionGrupo(bool archivada, std::list<DataMensaje*> mensajes, std::string nombreGrupo);
 

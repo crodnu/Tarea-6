@@ -5,7 +5,7 @@
 
 #include "DataMensaje.h"
 
-class DataMensajeSimple: DataMensaje {
+class DataMensajeSimple: public DataMensaje {
 public:
     DataMensajeSimple(Fecha fechaDeEnviado, std::string texto);
 

@@ -6,7 +6,7 @@
 #include "DataMensajeSimple.h"
 #include "Mensaje.h"
 
-class MensajeSimple: Mensaje {
+class MensajeSimple: public Mensaje {
 public:
     MensajeSimple(std::string texto);
     virtual DataMensaje* getDataMensaje();

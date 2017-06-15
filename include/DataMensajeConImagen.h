@@ -5,7 +5,7 @@
 
 #include "DataMensaje.h"
 
-class DataMensajeConImagen:  DataMensaje {
+class DataMensajeConImagen: public DataMensaje {
 public:
     DataMensajeConImagen(Fecha fechaDeEnviado, std::string formato, std::string
         texto, std::string urlImagen, unsigned tamanio);

@@ -20,10 +20,9 @@ private:
     enumIniciarSesion enumerado; // Necesario?
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     ControladorUsuarios();
-    enumIniciarSesion iniciarSesionUsuario(Usuario * entrante);
 
 public:
-    ControladorUsuarios* getControladorUsuarios();
+    static ControladorUsuarios* getControladorUsuarios();
     void agregarContacto(TelefonoUsuario cel);
     Usuario* getUsuario(TelefonoUsuario cel);
     Usuario* getUsuarioSesionActual();
