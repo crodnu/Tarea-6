@@ -17,7 +17,7 @@ private:
     Conversacion* conversacionSeleccionada = NULL;
     std::map<idConversacion, Conversacion *> conversacionesDelSistema;
     ControladorMensajes();
-    void enviarMensaje(Mensaje mensaje);
+    void enviarMensaje(Mensaje mensaje, Usuario * actual);
     void seleccionarConversacion(IdConversacion identificador);
 
 public:
@@ -26,10 +26,10 @@ public:
     set<DataConversacion> darConversaciones();
     set<DataConversacion> darConversacionesActivas();
     set<DataConversacion> darConversacionesArchivadas();
-    void enviarMensajeContacto(TelefonoUsuario numeroContacto);
-    void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
-    void enviarMensajeSimple(string texto);
-    void enviarMensajeVideo(string urmVideo, int duracion);
+    void enviarMensajeContacto(TelefonoUsuario numeroContacto, ControladorUsuarios contUsuarios);
+    void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio, ControladorUsuarios contUsuarios);
+    void enviarMensajeSimple(string texto, ControladorUsuarios contUsuarios);
+    void enviarMensajeVideo(string urmVideo, int duracion, ControladorUsuarios contUsuarios);
     set<DataContacto> listarContactos();
     set<DataMensaje> obtenerMensajesDeConversacion();
     void seleccionarConversacionActiva(IdConversacion identificador);
