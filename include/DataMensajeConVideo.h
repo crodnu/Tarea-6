@@ -5,7 +5,7 @@
 
 #include "DataMensaje.h"
 
-class DataMensajeConVideo: DataMensaje {
+class DataMensajeConVideo: public DataMensaje {
 public:
     DataMensajeConVideo(Fecha fechaDeEnviado, std::string urlVideo, unsigned duracion);
 

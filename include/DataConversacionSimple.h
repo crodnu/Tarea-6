@@ -4,7 +4,7 @@
 #include "DataContacto.h"
 #include "DataConversacion.h"
 
-class DataConversacionSimple: DataConversacion {
+class DataConversacionSimple: public DataConversacion {
 public:
     DataConversacionSimple(bool archivada, std::list<DataMensaje*> mensajes, DataContacto contacto);
 

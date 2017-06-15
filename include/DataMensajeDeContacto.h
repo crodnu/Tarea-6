@@ -4,7 +4,7 @@
 #include "DataContacto.h"
 #include "DataMensaje.h"
 
-class DataMensajeDeContacto: DataMensaje {
+class DataMensajeDeContacto: public DataMensaje {
 public:
     DataMensajeDeContacto(Fecha fechaDeEnviado, DataContacto contacto);
 

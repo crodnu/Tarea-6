@@ -6,7 +6,7 @@
 #include "Mensaje.h"
 #include "Usuario.h"
 
-class MensajeDeContacto: Mensaje {
+class MensajeDeContacto: public Mensaje {
 public:
     MensajeDeContacto(Usuario* contacto);
     virtual DataMensaje* getDataMensaje();

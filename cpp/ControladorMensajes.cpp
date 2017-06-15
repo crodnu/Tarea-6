@@ -4,14 +4,14 @@ ControladorMensajes::ControladorMensajes() {
 }
 
 void ControladorMensajes::enviarMensaje(Mensaje * mensaje){
-  (ControladorMensajes::instancia->conversacionSeleccionada)->enviar(mensaje);
+  this->conversacionSeleccionada->enviar(mensaje);
 }
 
 void ControladorMensajes::seleccionarConversacion(IdConversacion identificador){
-  ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
+  this->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
 }
 
-ControladorMensajes ControladorMensajes::getControladorMensajes(){
+ControladorMensajes* ControladorMensajes::getControladorMensajes(){
   if (ControladorMensajes::instancia == NULL)
     ControladorMensajes::instancia = new ControladorMensajes();
 
@@ -20,44 +20,44 @@ ControladorMensajes ControladorMensajes::getControladorMensajes(){
 
 void ControladorMensajes::crearConversacionSimple(TelefonoUsuario telefonoContacto){
   Conversacion * nuevaConversacion = new Conversacion();
-  ControladorMensajes::instancia->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
+  this->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
 }
 
-set<DataConversacion> ControladorMensajes::darConversaciones(){
-  std::set<DataConversacion> retorno;
-  std::map<idConversacion, Conversacion *>::iterator it;
+set<DataConversacion*> ControladorMensajes::darConversaciones(){
+  std::set<DataConversacion*> retorno;
+  std::map<IdConversacion, Conversacion*>::iterator it;
   for(it=conversacionesDelSistema.begin(); it!= conversacionesDelSistema.end(); it++){
-    Conversacion * actual = it->second;
-    retorno.insert(actual.getDataConversacion());
+    Conversacion* actual = it->second;
+    retorno.insert(actual->getDataConversacion());
   }
   return retorno;
 }
 
-set<DataConversacion> ControladorMensajes::darConversacionesActivas(){
+set<DataConversacion*> ControladorMensajes::darConversacionesActivas(){
 //Pasar Usuario *?
 }
-set<DataConversacion> ControladorMensajes::darConversacionesArchivadas(){
+set<DataConversacion*> ControladorMensajes::darConversacionesArchivadas(){
   //idem que conversaciones activas
 }
 void ControladorMensajes::enviarMensajeContacto(TelefonoUsuario numeroContacto){
-  Usuario* contacto = ControladorUsuarios::instancia->usuariosDelSistema[numeroContacto];
-  MensajeDeContacto * mensaje = new MensajeDeContacto(contacto);
-  ControladorMensajes::instancia->enviarMensaje(mensaje);
+  Usuario* contacto = ControladorUsuarios::getControladorUsuarios()->getUsuario(numeroContacto);
+  MensajeDeContacto* mensaje = new MensajeDeContacto(contacto);
+  this->enviarMensaje(mensaje);
 }
 
 void ControladorMensajes::enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio){
   MensajeConImagen * mensaje = new MensajeConImagen(formato, texto, urlImagen, tamanio);
-  ControladorMensajes::instancia->enviarMensaje(mensaje);
+  this->enviarMensaje(mensaje);
 }
 
 void ControladorMensajes::enviarMensajeSimple(string texto){
   MensajeSimple * mensaje = new MensajeSimple(texto);
-  ControladorMensajes::instancia->enviarMensaje(mensaje);
+  this->enviarMensaje(mensaje);
 }
 
 void ControladorMensajes::enviarMensajeVideo(string urmVideo, int duracion){
   MensajeConVideo * mensaje = new MensajeConVideo(urmVideo, duracion);
-  ControladorMensajes::instancia->enviarMensaje(mensaje);
+  this->enviarMensaje(mensaje);
 }
 
 list<DataContacto> ControladorMensajes::listarContactos(){
@@ -70,11 +70,11 @@ list<DataMensaje> obtenerMensajesDeConversacion(){
 }
 
 void ControladorMensajes::seleccionarConversacionActiva(IdConversacion identificador){
-  ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
+  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
 }
 
 void ControladorMensajes::seleccionarConversacionArchivada(IdConversacion identificador){
-  ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
+  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
 }
 
 set<DataReceptor> obtenerInformacionAdicional(int identificador);

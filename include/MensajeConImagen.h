@@ -6,7 +6,7 @@
 #include "Mensaje.h"
 #include "DataMensajeConImagen.h"
 
-class MensajeConImagen: Mensaje {
+class MensajeConImagen: public Mensaje {
 public:
     MensajeConImagen(std::string formato, std::string
         texto, std::string urlImagen, unsigned tamanio);
