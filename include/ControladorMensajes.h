@@ -2,6 +2,8 @@
 #define	CONTROLADORMENSAJES_H
 
 #include <string>
+#include map;
+#include list;
 #include "Conversacion.h"
 #include "Mensaje.h"
 #include "DataConversacion.h"
@@ -30,8 +32,8 @@ public:
     void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
     void enviarMensajeSimple(string texto);
     void enviarMensajeVideo(string urmVideo, int duracion);
-    set<DataContacto> listarContactos();
-    set<DataMensaje> obtenerMensajesDeConversacion();
+    std::list<DataContacto> listarContactos();
+    std::list<DataMensaje> obtenerMensajesDeConversacion();
     void seleccionarConversacionActiva(IdConversacion identificador);
     void seleccionarConversacionArchivada(IdConversacion identificador);
     set<DataReceptor> obtenerInformacionAdicional(int identificador);

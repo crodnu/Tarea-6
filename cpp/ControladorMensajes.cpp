@@ -60,11 +60,14 @@ void ControladorMensajes::enviarMensajeVideo(string urmVideo, int duracion){
   ControladorMensajes::instancia->enviarMensaje(mensaje);
 }
 
-set<DataContacto> ControladorMensajes::listarContactos(){
-
+list<DataContacto> ControladorMensajes::listarContactos(){
+  return ControladorUsuarios::instancia->listarContactos();
 }
 
-set<DataMensaje> obtenerMensajesDeConversacion();
+list<DataMensaje> obtenerMensajesDeConversacion(){
+  getDataConversacion seleccionada = ControladorMensajes::conversacionSeleccionada->getDataConversacion();
+  return seleccionada.getMensajes();
+}
 
 void ControladorMensajes::seleccionarConversacionActiva(IdConversacion identificador){
   ControladorMensajes::instancia->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];

@@ -62,7 +62,7 @@ enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
 }
 
 list<DataContacto> ControladorUsuarios::listarContactos(){
-    Usuario* iniciado = ControladorUsuarios::instancia->usuarioIniciado;
+    Usuario* iniciado = ControladorUsuarios::instancia->getUsuarioSesionActual;
     return iniciado->getContactos();
 }
 
