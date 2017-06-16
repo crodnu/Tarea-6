@@ -14,8 +14,8 @@ Usuario::Usuario(TelefonoUsuario telefono, string nombre, string descripcion, st
 list<DataContacto> Usuario::getContactos() {
     list<DataContacto> contactosList;
 
-    for(const auto& par : this->contactos) {
-        Usuario* contacto = par.second;
+    for(map<TelefonoUsuario, Usuario*>::iterator it = this->contactos.begin(); it != this->contactos.end(); it++) {
+        Usuario* contacto = it->second;
         contactosList.push_front(contacto->getDataContacto());
     }
 
@@ -30,18 +30,41 @@ void Usuario::agregarContacto(Usuario* contacto) {
     this->contactos[contacto->telefono] = contacto;
 }
 
-list<DataConversacion> Usuario::getSetDataConversacion() {
-    list<DataContacto> conversaciones;
+list<DataConversacion*> Usuario::getSetDataConversacion() {
+    list<DataConversacion*> conversaciones;
 
-    for(const auto& par : this->conversacionesArchivadas) {
-        Conversacion* conversacion = par.second;
+    for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesArchivadas.begin();
+            it != this->conversacionesArchivadas.end(); it++) {
+        Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
 
-    for(const auto& par : this->conversacionesIntegradas) {
-        Conversacion* conversacion = par.second;
+    for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesIntegradas.begin();
+            it != this->conversacionesIntegradas.end(); it++) {
+        Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
 
     return conversaciones;
+}
+
+void Usuario::suscribirse(Usuario* user) {
+    user->suscriptores[this->telefono] = this;
+}
+
+list<DataNotificacion> Usuario::getNotificaciones() {
+    list<DataNotificacion> result;
+
+    for(list<Notificacion*>::iterator it = this->notificacionesRecibidas.begin();
+        it != this->notificacionesRecibidas.end(); it++) {
+        result.push_front((*it)->getDataNotificacion());
+        delete *it;
+    }
+
+    this->notificacionesRecibidas.clear();
+    return result;
+}
+
+void Usuario::notificarSuscriptores(Notificacion notificacion) {
+
 }

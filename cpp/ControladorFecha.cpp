@@ -2,9 +2,7 @@
 
 #include "../include/ControladorFecha.h"
 
-ControladorFecha::ControladorFecha() {
-    this->fechaActual = Fecha(1, 1, 2000);
-}
+ControladorFecha::ControladorFecha(): fechaActual(1, 1, 2000) { }
 
 ControladorFecha* ControladorFecha::getInstance() {
     if(ControladorFecha::instancia == NULL)

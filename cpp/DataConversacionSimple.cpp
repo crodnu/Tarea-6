@@ -3,9 +3,8 @@
 using namespace std;
 
 DataConversacionSimple::DataConversacionSimple(bool archivada,
-    list<DataMensaje*> mensajes, DataContacto contacto): DataConversacion(archivada, mensajes) {
-    this->contacto = contacto;
-}
+    list<DataMensaje*> mensajes, DataContacto contacto):
+    DataConversacion(archivada, mensajes), contacto(contacto) { }
 
 DataContacto DataConversacionSimple::getContacto() {
     return this->contacto;

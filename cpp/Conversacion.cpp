@@ -20,12 +20,12 @@ DataConversacion* getDataConversacion() {
 
 }
 
-map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user) {
+map<IdMensaje, Mensaje*> Conversacion::obtenerMensajes(Usuario* user) {
     map<IdMensaje, Mensaje*> setMensajes;
 
-    for(const auto& par : this->mensajes) {
-        IdMensaje idMensaje = par.first;
-        Mensaje* mensaje = par.second;
+    for(map<IdMensaje, Mensaje*>::iterator it = setMensajes.begin(); it != setMensajes.end(); it++) {
+        IdMensaje idMensaje = it->first;
+        Mensaje* mensaje = it->second;
 
         if(mensaje->esReceptor(user))
             setMensajes[idMensaje] = mensaje;
