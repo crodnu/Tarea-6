@@ -11,6 +11,10 @@ Usuario::Usuario(TelefonoUsuario telefono, string nombre, string descripcion, st
     this->ultimaConexion = ControladorFecha::getInstance()->getFechaActual();
 }
 
+TelefonoUsuario Usuario::getTelefono() {
+    return this->telefono;
+}
+
 list<DataContacto> Usuario::getContactos() {
     list<DataContacto> contactosList;
 
