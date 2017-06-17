@@ -32,9 +32,9 @@ private:
 public:
     static ControladorMensajes* getControladorMensajes();
     void crearConversacionSimple(TelefonoUsuario telefonoContacto);
-    set<DataConversacion*> darConversaciones();
-    set<DataConversacion*> darConversacionesActivas();
-    set<DataConversacion*> darConversacionesArchivadas();
+    std::list<DataConversacion*> darConversaciones();
+    std::list<DataConversacion*> darConversacionesActivas();
+    std::list<DataConversacion*> darConversacionesArchivadas();
     void enviarMensajeContacto(TelefonoUsuario numeroContacto);
     void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
     void enviarMensajeSimple(string texto);

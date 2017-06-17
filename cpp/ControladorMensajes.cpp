@@ -23,22 +23,21 @@ void ControladorMensajes::crearConversacionSimple(TelefonoUsuario telefonoContac
   this->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
 }
 
-set<DataConversacion*> ControladorMensajes::darConversaciones(){
-  std::set<DataConversacion*> retorno;
-  std::map<IdConversacion, Conversacion*>::iterator it;
-  for(it=conversacionesDelSistema.begin(); it!= conversacionesDelSistema.end(); it++){
-    Conversacion* actual = it->second;
-    retorno.insert(actual->getDataConversacion());
-  }
-  return retorno;
+list<DataConversacion*> ControladorMensajes::darConversaciones(){
+  Usuario * unUser = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
+  return unUser->getSetDataConversacion();
 }
 
-set<DataConversacion*> ControladorMensajes::darConversacionesActivas(){
-//Pasar Usuario *?
+list<DataConversacion*> ControladorMensajes::darConversacionesActivas(){
+  Usuario * unUser = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
+  return unUser->getSetDataConversacionesActivas();
 }
-set<DataConversacion*> ControladorMensajes::darConversacionesArchivadas(){
-  //idem que conversaciones activas
+
+list<DataConversacion*> ControladorMensajes::darConversacionesArchivadas(){
+  Usuario * unUser = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
+  return unUser->getSetDataConversacionesArchivadas();
 }
+
 void ControladorMensajes::enviarMensajeContacto(TelefonoUsuario numeroContacto){
   Usuario* contacto = ControladorUsuarios::getControladorUsuarios()->getUsuario(numeroContacto);
   MensajeDeContacto* mensaje = new MensajeDeContacto(contacto);
@@ -77,4 +76,8 @@ void ControladorMensajes::seleccionarConversacionArchivada(IdConversacion identi
   this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
 }
 
-set<DataReceptor> obtenerInformacionAdicional(int identificador);
+list<DataReceptor> obtenerInformacionAdicional(IdMensaje identificador){
+  list<DataReceptor> retorno;
+  Conversacion * conv = this->conversacionSeleccionada();
+  return conv->getMensaje(identificador)->getDataReceptor();
+}
