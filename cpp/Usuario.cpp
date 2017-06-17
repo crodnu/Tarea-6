@@ -35,6 +35,12 @@ void Usuario::agregarContacto(Usuario* contacto) {
 }
 
 list<DataConversacion*> Usuario::getSetDataConversacion() {
+    list<DataConversacion*> conversaciones = this->getSetDataConversacionesActivas();
+    conversaciones.splice(conversaciones.begin(), this->getSetDataConversacionesArchivadas());
+    return conversaciones;
+}
+
+list<DataConversacion*> Usuario::getSetDataConversacionesArchivadas(){
     list<DataConversacion*> conversaciones;
 
     for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesArchivadas.begin();
@@ -42,14 +48,18 @@ list<DataConversacion*> Usuario::getSetDataConversacion() {
         Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
+    return conversacion;
+}
+
+list<DataConversacion*> Usuario::getSetDataConversacionesActivas(){
+    list<DataConversacion*> conversaciones;
 
     for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesIntegradas.begin();
             it != this->conversacionesIntegradas.end(); it++) {
         Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
-
-    return conversaciones;
+    return conversacion;
 }
 
 void Usuario::suscribirse(Usuario* user) {

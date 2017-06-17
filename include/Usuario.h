@@ -30,7 +30,8 @@ public:
     std::list<DataConversacion*> getSetDataConversacion();
     void suscribirse(Usuario* user);
     std::list<DataNotificacion> getNotificaciones();
-
+    std::list<DataConversacion*> getSetDataConversacionesArchivadas();
+    std::list<DataConversacion*> getSetDataConversacionesActivas();
 private:
     TelefonoUsuario telefono;
     std::string nombre;
