@@ -6,6 +6,7 @@
 #include "../include/Fecha.h"
 #include "../include/UI.h"
 
+// Interfaces al sistema.
 #include "../include/IAbrirGuassapFing.h"
 #include "../include/IAgregarContactos.h"
 #include "../include/IAltaGrupo.h"

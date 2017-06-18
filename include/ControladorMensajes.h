@@ -17,9 +17,22 @@
 #include "DataReceptor.h"
 #include "typedefs.h"
 
+// Interfaces
+#include "IAbrirGuassapFing.h"
+#include "IAgregarContactos.h"
+#include "IAltaGrupo.h"
+#include "IArchivarConversaciones.h"
+#include "ICambiarFecha.h"
+#include "ICerrarGuassapFing.h"
+#include "IEliminarMensajes.h"
+#include "IEnviarMensaje.h"
+#include "IModificarUsuario.h"
+#include "ISuscribirse.h"
+#include "IVerMensajes.h"
+
 using namespace std;
 
-class ControladorMensajes {
+class ControladorMensajes: public IEliminarMensaje, public IArchivarConversaciones, public IEnviarMensaje {
 private:
     static ControladorMensajes* instancia;
     Conversacion* conversacionSeleccionada;
@@ -30,19 +43,21 @@ private:
 
 public:
     static ControladorMensajes* getControladorMensajes();
-    void crearConversacionSimple(TelefonoUsuario telefonoContacto);
-    std::list<DataConversacion*> darConversaciones();
-    std::list<DataConversacion*> darConversacionesActivas();
-    std::list<DataConversacion*> darConversacionesArchivadas();
-    void enviarMensajeContacto(TelefonoUsuario numeroContacto);
-    void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
-    void enviarMensajeSimple(string texto);
-    void enviarMensajeVideo(string urmVideo, int duracion);
-    std::list<DataContacto> listarContactos();
-    std::list<DataMensaje*> obtenerMensajesDeConversacion();
-    void seleccionarConversacionActiva(IdConversacion identificador);
-    void seleccionarConversacionArchivada(IdConversacion identificador);
-    std::list<DataReceptor> obtenerInformacionAdicional(int identificador);
+    virtual void crearConversacionSimple(TelefonoUsuario telefonoContacto);
+    virtual std::list<DataConversacion*> darConversaciones();
+    virtual std::list<DataConversacion*> darConversacionesActivas();
+    virtual std::list<DataConversacion*> darConversacionesArchivadas();
+    virtual void enviarMensajeContacto(TelefonoUsuario numeroContacto);
+    virtual void enviarMensajeImagen(string urlImagen, string formato, string texto, int tamanio);
+    virtual void enviarMensajeSimple(string texto);
+    virtual void enviarMensajeVideo(string urmVideo, int duracion);
+    virtual std::list<DataContacto> listarContactos();
+    virtual std::list<DataMensaje*> obtenerMensajesDeConversacion();
+    virtual void seleccionarConversacionActiva(IdConversacion identificador);
+    virtual void seleccionarConversacionArchivada(IdConversacion identificador);
+    virtual std::list<DataReceptor> obtenerInformacionAdicional(int identificador);
+    virtual void eliminarMensaje(IdMensaje id);
+    virtual void archivarConversacion(IdConversacion id);
 };
 
 #endif	/* CONTROLADORMENSAJES_H */

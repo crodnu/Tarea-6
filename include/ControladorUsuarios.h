@@ -12,11 +12,24 @@
 #include "typedefs.h"
 #include "Usuario.h"
 
+// Interfaces
+#include "IAbrirGuassapFing.h"
+#include "IAgregarContactos.h"
+#include "IAltaGrupo.h"
+#include "IArchivarConversaciones.h"
+#include "ICambiarFecha.h"
+#include "ICerrarGuassapFing.h"
+#include "IEliminarMensajes.h"
+#include "IEnviarMensaje.h"
+#include "IModificarUsuario.h"
+#include "ISuscribirse.h"
+#include "IVerMensajes.h"
+
 using namespace std;
 
 class Usuario;
 
-class ControladorUsuarios {
+class ControladorUsuarios: public IAbrirGuassapFing, public ICerrarGuassapFing, public IAgregarContactos {
 private:
     static ControladorUsuarios* instancia;
     Usuario* usuarioIniciado;
@@ -25,19 +38,19 @@ private:
 
 public:
     static ControladorUsuarios* getControladorUsuarios();
-    void agregarContacto(TelefonoUsuario cel);
-    void cerrarSesion();
-    Usuario* getUsuario(TelefonoUsuario cel);
+    virtual void agregarContacto(TelefonoUsuario cel);
+    virtual void cerrarSesion();
+    virtual Usuario* getUsuario(TelefonoUsuario cel);
     Usuario* getUsuarioSesionActual();
-    DataContacto getDatos(TelefonoUsuario cel);
-    void darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion);
-    enumIniciarSesion iniciarSesion(TelefonoUsuario cel);
-    std::list<DataContacto> listarContactos();
-    void archivarConversacion(int identificadorConv);
-    void actualizarNombreUsuario(string nombre);
-    void actualizarImagenUsuario(string urlImagen);
-    void actualizarDescripcionUsuario(string descripcion);
-    std::list<DataNotificacion> getNotificaciones();
+    virtual DataContacto getDatos(TelefonoUsuario cel);
+    virtual void darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion);
+    virtual enumIniciarSesion iniciarSesion(TelefonoUsuario cel);
+    virtual std::list<DataContacto> listarContactos();
+    virtual void archivarConversacion(int identificadorConv);
+    virtual void actualizarNombreUsuario(string nombre);
+    virtual void actualizarImagenUsuario(string urlImagen);
+    virtual void actualizarDescripcionUsuario(string descripcion);
+    virtual std::list<DataNotificacion> getNotificaciones();
 };
 
 #endif  /* CONTROLADORUSUARIOS_H */

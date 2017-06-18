@@ -83,3 +83,11 @@ list<DataReceptor> ControladorMensajes::obtenerInformacionAdicional(IdMensaje id
   Conversacion* conv = this->conversacionSeleccionada;
   return conv->getMensaje(identificador)->getDataReceptor();
 }
+
+void ControladorMensajes::eliminarMensaje(IdMensaje id) {
+
+}
+
+void ControladorMensajes::archivarConversacion(IdConversacion id) {
+
+}
