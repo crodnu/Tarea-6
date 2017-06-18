@@ -2,6 +2,8 @@
 
 #include "../include/ControladorFecha.h"
 
+ControladorFecha* ControladorFecha::instancia = NULL;
+
 ControladorFecha::ControladorFecha(): fechaActual(1, 1, 2000) { }
 
 ControladorFecha* ControladorFecha::getInstance() {

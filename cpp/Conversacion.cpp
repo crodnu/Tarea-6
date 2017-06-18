@@ -1,6 +1,8 @@
 #include "../include/ControladorUsuarios.h"
 #include "../include/Conversacion.h"
 
+IdConversacion Conversacion::idActual = 0;
+
 Conversacion::Conversacion() {
     Conversacion::idActual++;
     this->id = Conversacion::idActual;
@@ -19,7 +21,7 @@ Mensaje* Conversacion::getMensaje(IdMensaje identificador) {
     return this->mensajes[identificador];
 }
 
-DataConversacion* getDataConversacion() {
+DataConversacion* Conversacion::getDataConversacion() {
 
 }
 

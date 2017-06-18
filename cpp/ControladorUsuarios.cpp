@@ -1,7 +1,10 @@
 #include "../include/ControladorUsuarios.h"
 #include "../include/ControladorUsuarios.h"
 
-ControladorUsuarios::ControladorUsuarios(){
+ControladorUsuarios* ControladorUsuarios::instancia = NULL;
+
+ControladorUsuarios::ControladorUsuarios() {
+    this->usuarioIniciado = NULL;
 }
 
 ControladorUsuarios* ControladorUsuarios::getControladorUsuarios(){

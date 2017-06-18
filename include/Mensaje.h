@@ -18,7 +18,7 @@ class Usuario;
 class Mensaje {
 public:
     Mensaje();
-    virtual DataMensaje* getDataMensaje();
+    virtual DataMensaje* getDataMensaje() = 0;
     bool esReceptor(Usuario* user);
     std::list<DataReceptor> getDataReceptor();
     Fecha getFechaEnviado();

@@ -6,6 +6,10 @@
 
 using namespace std;
 
+UI* UI::instance = NULL;
+
+UI::UI() { }
+
 UI* UI::getInstance() {
     if(UI::instance == NULL)
         UI::instance = new UI();
@@ -13,7 +17,7 @@ UI* UI::getInstance() {
     return UI::instance;
 }
 
-unsigned seleccionarOpcionMenuPrincipal() {
+unsigned UI::seleccionarOpcionMenuPrincipal() {
     cout << "Seleccione una de las siguientes opciones: \n ";
     cout << "0. Salir \n 1. Abrir GuasapFING  \n 2. Cerrar GuasapFING \n 3. Agregar contactos  \n 4. Alta grupo  \n 5. Enviar mensajes  \n ";
     cout << "6. Ver mensajes  \n 7. Archivar conversaciones   \n 8. Modificar usuario  \n 9. Eliminar mensajes   \n 10. Suscripción para recibir los cambios en la información personal de un contacto\n;";
@@ -86,6 +90,6 @@ void UI::cambiarFecha() {
 
 }
 
-void opcionNoValida() {
+void UI::opcionNoValida() {
     cout << "Opcion no valida." <<endl;
 }

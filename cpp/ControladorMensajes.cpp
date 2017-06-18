@@ -1,5 +1,7 @@
 #include "../include/ControladorMensajes.h"
 
+ControladorMensajes* ControladorMensajes::instancia = NULL;
+
 ControladorMensajes::ControladorMensajes() {
 }
 

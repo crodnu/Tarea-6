@@ -1,6 +1,8 @@
 #include "../include/Mensaje.h"
 
-Mensaje::Mensaje() { // Placeholder
+IdMensaje Mensaje::codigoActual = 0;
+
+Mensaje::Mensaje() {
     Mensaje::codigoActual++;
     this->codigo = Mensaje::codigoActual;
     this->visto = false;
