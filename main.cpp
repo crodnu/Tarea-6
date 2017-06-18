@@ -24,6 +24,7 @@
 #define MODIFICAR_USUARIO       8
 #define ELIMINAR_MENSAJES       9
 #define SUSCRIBIRSE             10
+#define CAMBIAR_FECHA_ACTUAL    11
 
 using namespace std;
 
@@ -98,6 +99,11 @@ bool menu(){
 
         case SUSCRIBIRSE: {
             userInterface->suscribirse();
+            break;
+        }
+
+        case CAMBIAR_FECHA_ACTUAL: {
+            userInterface->cambiarFecha();
             break;
         }
 
