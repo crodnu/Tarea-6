@@ -67,3 +67,16 @@ void ControladorUsuarios::archivarConversacion(IdConversacion identificadorConv)
     //Usuario* iniciado = this->usuarioIniciado;
     //iniciado->archivarConversacion(identificadorConv);
 }
+
+void ControladorUsuarios::actualizarNombreUsuario(string nombre){
+    Usuario * iniciado = this->usuarioIniciado;
+    iniciado->actualizarNombre(nombre);
+}
+void ControladorUsuarios::actualizarImagenUsuario(string urlImagen){
+    Usuario * iniciado = this->usuarioIniciado;
+    iniciado->actualizarImagen(urlImagen);
+}
+void ControladorUsuarios::actualizarDescripcionUsuario(string descripcion){
+    Usuario * iniciado = this->usuarioIniciado;
+    iniciado->actualizarDescripcion(descripcion);
+}

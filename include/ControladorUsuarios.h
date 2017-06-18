@@ -33,6 +33,9 @@ public:
     enumIniciarSesion iniciarSesion(TelefonoUsuario cel);
     std::list<DataContacto> listarContactos();
     void archivarConversacion(int identificadorConv);
+    void actualizarNombreUsuario(string nombre);
+    void actualizarImagenUsuario(string urlImagen);
+    void actualizarDescripcionUsuario(string descripcion);
 };
 
 #endif  /* CONTROLADORUSUARIOS_H */
