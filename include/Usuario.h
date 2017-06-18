@@ -32,6 +32,9 @@ public:
     std::list<DataNotificacion> getNotificaciones();
     std::list<DataConversacion*> getSetDataConversacionesArchivadas();
     std::list<DataConversacion*> getSetDataConversacionesActivas();
+    void actualizarNombre(string nombre);
+    void actualizarImagen(string urlImagen);
+    void actualizarDescripcion(string descripcion);
 private:
     TelefonoUsuario telefono;
     std::string nombre;

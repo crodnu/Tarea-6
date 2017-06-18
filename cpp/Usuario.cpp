@@ -80,5 +80,22 @@ list<DataNotificacion> Usuario::getNotificaciones() {
 }
 
 void Usuario::notificarSuscriptores(Notificacion notificacion) {
+}
 
+void Usuario::actualizarNombre(string nombre){
+    Notificacion nueva = new Notificacion("El usuario " + this->nombre +" a actualizado su nombre a " + nombre);
+    this->notificarSuscriptores(nueva);
+    this->nombre = nombre;
+}
+
+void Usuario::actualizarImagen(string urlImagen){
+    Notificacion nueva = new Notificacion("El usuario " + this->nombre +" a actualizado su imagen de perfil");
+    this->notificarSuscriptores(nueva);
+    this->urlImagen = urlImagen;
+}
+
+void Usuario::actualizarDescripcion(string descripcion){
+    Notificacion nueva = new Notificacion("El usuario " + this->nombre +" a actualizado descripcion");
+    this->notificarSuscriptores(nueva);
+    this->descripcion = descripcion;
 }
