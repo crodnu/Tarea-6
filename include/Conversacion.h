@@ -20,11 +20,13 @@ public:
     std::map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user);
     void enviar(Mensaje* mensaje);
     IdConversacion getId();
+    void addParticipante(Usuario* participante);
 
 private:
     IdConversacion id;
     static IdConversacion idActual;
     std::map<IdMensaje, Mensaje*> mensajes;
+    std::map<TelefonoUsuario, Usuario*> participantes;
 };
 
 #endif	/* CONVERSACION_H */

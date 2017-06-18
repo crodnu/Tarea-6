@@ -37,6 +37,11 @@ IdMensaje Mensaje::getId() {
     return this->codigo;
 }
 
+void Mensaje::addReceptor(Usuario* receptor) {
+    if(this->emisor != receptor)
+        this->receptores[receptor->getTelefono()] = receptor;
+}
+
 void Mensaje::setLeidoPorUsuarioActual() {
     Usuario* usuarioActual = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
     if(this->leidoPor.count(usuarioActual->getTelefono()) == 0) {

@@ -23,6 +23,7 @@ public:
     std::list<DataReceptor> getDataReceptor();
     Fecha getFechaEnviado();
     IdMensaje getId();
+    void addReceptor(Usuario* receptor);
 
 protected:
     void setLeidoPorUsuarioActual();
