@@ -76,8 +76,8 @@ void ControladorMensajes::seleccionarConversacionArchivada(IdConversacion identi
   this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
 }
 
-list<DataReceptor> obtenerInformacionAdicional(IdMensaje identificador){
+list<DataReceptor> ControladorMensajes::obtenerInformacionAdicional(IdMensaje identificador){
   list<DataReceptor> retorno;
-  Conversacion * conv = this->conversacionSeleccionada();
+  Conversacion* conv = this->conversacionSeleccionada;
   return conv->getMensaje(identificador)->getDataReceptor();
 }

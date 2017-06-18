@@ -3,7 +3,6 @@
 
 #include <map>
 #include <string>
-#include <set>
 #include <list>
 
 #include "Conversacion.h"
@@ -43,7 +42,7 @@ public:
     std::list<DataMensaje*> obtenerMensajesDeConversacion();
     void seleccionarConversacionActiva(IdConversacion identificador);
     void seleccionarConversacionArchivada(IdConversacion identificador);
-    set<DataReceptor> obtenerInformacionAdicional(int identificador);
+    std::list<DataReceptor> obtenerInformacionAdicional(int identificador);
 };
 
 #endif	/* CONTROLADORMENSAJES_H */

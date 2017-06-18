@@ -32,9 +32,9 @@ public:
     std::list<DataNotificacion> getNotificaciones();
     std::list<DataConversacion*> getSetDataConversacionesArchivadas();
     std::list<DataConversacion*> getSetDataConversacionesActivas();
-    void actualizarNombre(string nombre);
-    void actualizarImagen(string urlImagen);
-    void actualizarDescripcion(string descripcion);
+    void actualizarNombre(std::string nombre);
+    void actualizarImagen(std::string urlImagen);
+    void actualizarDescripcion(std::string descripcion);
     void actualizarFechaUltimaConexion();
 
 private:
@@ -46,12 +46,14 @@ private:
     Fecha ultimaConexion;
     std::map<TelefonoUsuario, Usuario*> contactos;
     std::map<TelefonoUsuario, Usuario*> suscriptores;
-    std::list<Notificacion*> notificacionesRecibidas;
+    std::list<DataNotificacion> notificacionesRecibidas;
     std::map<IdConversacion, Conversacion*> conversacionesIntegradas;
     std::map<IdConversacion, Conversacion*> conversacionesArchivadas;
-    void notificarSuscriptores(Notificacion notificacion);
+    void notificarSuscriptores(DataNotificacion notificacion);
     std::map<NombreGrupo, Grupo*> gruposIntegrados;
     std::map<NombreGrupo, Grupo*> gruposAdministrados;
+
+    DataNotificacion crearDataNotificacion(std::string tipo);
 };
 
 #endif	/* USUARIO_H */

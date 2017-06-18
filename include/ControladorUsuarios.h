@@ -26,6 +26,7 @@ private:
 public:
     static ControladorUsuarios* getControladorUsuarios();
     void agregarContacto(TelefonoUsuario cel);
+    void cerrarSesion();
     Usuario* getUsuario(TelefonoUsuario cel);
     Usuario* getUsuarioSesionActual();
     DataContacto getDatos(TelefonoUsuario cel);

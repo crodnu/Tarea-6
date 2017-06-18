@@ -18,6 +18,10 @@ void ControladorUsuarios::agregarContacto(TelefonoUsuario cel){
         iniciado->agregarContacto(contacto);
 }
 
+void ControladorUsuarios::cerrarSesion() {
+    this->usuarioIniciado = NULL;
+}
+
 Usuario* ControladorUsuarios::getUsuario(TelefonoUsuario cel){
     return this->usuariosDelSistema[cel];
 }

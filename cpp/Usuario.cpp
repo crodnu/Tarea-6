@@ -48,7 +48,7 @@ list<DataConversacion*> Usuario::getSetDataConversacionesArchivadas(){
         Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
-    return conversacion;
+    return conversaciones;
 }
 
 list<DataConversacion*> Usuario::getSetDataConversacionesActivas(){
@@ -59,7 +59,7 @@ list<DataConversacion*> Usuario::getSetDataConversacionesActivas(){
         Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
-    return conversacion;
+    return conversaciones;
 }
 
 void Usuario::suscribirse(Usuario* user) {
@@ -67,7 +67,7 @@ void Usuario::suscribirse(Usuario* user) {
 }
 
 list<DataNotificacion> Usuario::getNotificaciones() {
-    list<DataNotificacion> result;
+    /*
 
     for(list<Notificacion*>::iterator it = this->notificacionesRecibidas.begin();
         it != this->notificacionesRecibidas.end(); it++) {
@@ -76,30 +76,41 @@ list<DataNotificacion> Usuario::getNotificaciones() {
     }
 
     this->notificacionesRecibidas.clear();
+    */
+
+    list<DataNotificacion> result = this->notificacionesRecibidas;
+    this->notificacionesRecibidas.clear();
     return result;
 }
 
-void Usuario::notificarSuscriptores(Notificacion notificacion) {
+void Usuario::notificarSuscriptores(DataNotificacion notificacion) {
+
+}
+
+DataNotificacion Usuario::crearDataNotificacion(string tipo) {
+    DataContacto userData = this->getDataContacto();
+    Fecha hoy = ControladorFecha::getInstance()->getFechaActual();
+    return DataNotificacion(userData, tipo, hoy);
 }
 
 void Usuario::actualizarNombre(string nombre){
-    Notificacion nueva = new Notificacion("El usuario " + this->nombre +" a actualizado su nombre a " + nombre);
+    DataNotificacion nueva = this->crearDataNotificacion("Nombre");
     this->notificarSuscriptores(nueva);
     this->nombre = nombre;
 }
 
 void Usuario::actualizarImagen(string urlImagen){
-    Notificacion nueva = new Notificacion("El usuario " + this->nombre +" a actualizado su imagen de perfil");
+    DataNotificacion nueva = this->crearDataNotificacion("Avatar");
     this->notificarSuscriptores(nueva);
-    this->urlImagen = urlImagen;
+    this->urlAvatar = urlImagen;
 }
 
 void Usuario::actualizarDescripcion(string descripcion){
-    Notificacion nueva = new Notificacion("El usuario " + this->nombre +" a actualizado descripcion");
+    DataNotificacion nueva = this->crearDataNotificacion("Descripcion");
     this->notificarSuscriptores(nueva);
     this->descripcion = descripcion;
 }
 
 void Usuario::actualizarFechaUltimaConexion() {
-    this->ultimaConexion = ControladorFecha->getInstance()->getFechaActual();
+    this->ultimaConexion = ControladorFecha::getInstance()->getFechaActual();
 }
