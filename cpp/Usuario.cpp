@@ -84,6 +84,11 @@ list<DataNotificacion> Usuario::getNotificaciones() {
 }
 
 void Usuario::notificarSuscriptores(DataNotificacion notificacion) {
+  for(map<TelefonoUsuario, Usuario*>::iterator it = this->suscriptores.begin();
+        it != this->suscriptores.end(); it++) {
+        Usuario * suscriptor = it->second;
+        suscriptor->notificacionesRecibidas.push_front(notificacion);
+    }
 
 }
 
