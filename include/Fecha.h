@@ -1,6 +1,8 @@
 #ifndef FECHA_H
 #define	FECHA_H
 
+#include <string>
+
 #define DIA_POR_DEFECTO 1
 #define MES_POR_DEFECTO 1
 #define ANIO_POR_DEFECTO 2000

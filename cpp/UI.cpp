@@ -2,7 +2,11 @@
 #include <iostream>
 #include <string>
 
+#include "../include/ControladorFactory.h"
+#include "../include/Fecha.h"
 #include "../include/UI.h"
+
+#include "../include/ICambiarFecha.h"
 
 using namespace std;
 
@@ -87,7 +91,23 @@ void UI::suscribirse() {
 }
 
 void UI::cambiarFecha() {
+    ICambiarFecha* iCambiarFecha = ControladorFactory::getICambiarFecha();
 
+    Fecha fechaActual = iCambiarFecha->getFechaActual();
+    cout << "La fecha actual es: " << fechaActual.getDia() << "/" <<
+        fechaActual.getMes()<< "/" << fechaActual.getAnio() << endl;
+
+    unsigned dia, mes, anio;
+    cout << "Inserte el dia nuevo." << endl;
+    cin >> dia;
+    cout << "Inserte el mes nuevo." << endl;
+    cin >> mes;
+    cout << "Inserte el anio nuevo." << endl;
+    cin >> anio;
+
+    fechaActual = Fecha(dia, mes, anio);
+    iCambiarFecha->setFechaActual(fechaActual);
+    cout << "Fecha cambiada correctamente!" << endl;
 }
 
 void UI::opcionNoValida() {

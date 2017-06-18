@@ -2,12 +2,13 @@
 #define CONTROLADORFECHA_H
 
 #include "Fecha.h"
+#include "ICambiarFecha.h"
 
-class ControladorFecha {
+class ControladorFecha: public ICambiarFecha {
 public:
     static ControladorFecha* getInstance();
-    Fecha getFechaActual();
-    void setFechaActual(Fecha fecha);
+    virtual Fecha getFechaActual();
+    virtual void setFechaActual(Fecha fecha);
 
 private:
     ControladorFecha();
