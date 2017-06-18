@@ -54,6 +54,7 @@ enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
 
     else {
         this->usuarioIniciado = entrante;
+        entrante->actualizarFechaUltimaConexion();
         return SESION_INICIADA_CORRECTAMENTE;
     }
 }

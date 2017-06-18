@@ -35,6 +35,8 @@ public:
     void actualizarNombre(string nombre);
     void actualizarImagen(string urlImagen);
     void actualizarDescripcion(string descripcion);
+    void actualizarFechaUltimaConexion();
+
 private:
     TelefonoUsuario telefono;
     std::string nombre;

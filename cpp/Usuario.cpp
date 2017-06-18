@@ -99,3 +99,7 @@ void Usuario::actualizarDescripcion(string descripcion){
     this->notificarSuscriptores(nueva);
     this->descripcion = descripcion;
 }
+
+void Usuario::actualizarFechaUltimaConexion() {
+    this->ultimaConexion = ControladorFecha->getInstance()->getFechaActual();
+}
