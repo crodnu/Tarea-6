@@ -3,6 +3,7 @@
 
 #include <map>
 #include <list>
+#include <utility>
 
 #include "ControladorFecha.h"
 #include "ControladorUsuarios.h"
@@ -23,6 +24,9 @@ public:
     Fecha getFechaEnviado();
     IdMensaje getId();
 
+protected:
+    void setLeidoPorUsuarioActual();
+
 private:
     IdMensaje codigo;
     static IdMensaje codigoActual;
@@ -30,7 +34,7 @@ private:
     Fecha fechaDeEnviado;
     Usuario* emisor;
     std::map<TelefonoUsuario, Usuario*> receptores;
-    std::map<TelefonoUsuario, Usuario*> leidoPor;
+    std::map<TelefonoUsuario, std::pair<Usuario*, Fecha> > leidoPor;
 };
 
 #endif	/* MENSAJE_H */

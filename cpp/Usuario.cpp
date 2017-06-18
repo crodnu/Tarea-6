@@ -36,7 +36,7 @@ void Usuario::agregarContacto(Usuario* contacto) {
 
 list<DataConversacion*> Usuario::getSetDataConversacion() {
     list<DataConversacion*> conversaciones = this->getSetDataConversacionesActivas();
-    conversaciones.splice(conversaciones.begin(), this->getSetDataConversacionesArchivadas());
+    //conversaciones.splice(conversaciones.begin(), this->getSetDataConversacionesArchivadas());
     return conversaciones;
 }
 
