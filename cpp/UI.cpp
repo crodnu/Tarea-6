@@ -6,7 +6,17 @@
 #include "../include/Fecha.h"
 #include "../include/UI.h"
 
+#include "../include/IAbrirGuassapFing.h"
+#include "../include/IAgregarContactos.h"
+#include "../include/IAltaGrupo.h"
+#include "../include/IArchivarConversaciones.h"
 #include "../include/ICambiarFecha.h"
+#include "../include/ICerrarGuassapFing.h"
+#include "../include/IEliminarMensajes.h"
+#include "../include/IEnviarMensaje.h"
+#include "../include/IModificarUsuario.h"
+#include "../include/ISuscribirse.h"
+#include "../include/IVerMensajes.h"
 
 using namespace std;
 
