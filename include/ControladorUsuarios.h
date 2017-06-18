@@ -16,20 +16,20 @@
 #include "IAbrirGuassapFing.h"
 #include "IAgregarContactos.h"
 #include "IAltaGrupo.h"
-#include "IArchivarConversaciones.h"
-#include "ICambiarFecha.h"
 #include "ICerrarGuassapFing.h"
-#include "IEliminarMensajes.h"
-#include "IEnviarMensaje.h"
 #include "IModificarUsuario.h"
 #include "ISuscribirse.h"
-#include "IVerMensajes.h"
 
 using namespace std;
 
 class Usuario;
 
-class ControladorUsuarios: public IAbrirGuassapFing, public ICerrarGuassapFing, public IAgregarContactos {
+class ControladorUsuarios:  public IAbrirGuassapFing,
+                            public ICerrarGuassapFing,
+                            public IAgregarContactos,
+                            public IModificarUsuario,
+                            public ISuscribirse,
+                            public IAltaGrupo {
 private:
     static ControladorUsuarios* instancia;
     Usuario* usuarioIniciado;
@@ -51,6 +51,7 @@ public:
     virtual void actualizarImagenUsuario(string urlImagen);
     virtual void actualizarDescripcionUsuario(string descripcion);
     virtual std::list<DataNotificacion> getNotificaciones();
+    virtual void suscribirse(TelefonoUsuario telefono);
 };
 
 #endif  /* CONTROLADORUSUARIOS_H */

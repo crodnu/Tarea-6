@@ -8,6 +8,7 @@
 #include "DataConversacion.h"
 
 class IEnviarMensaje {
+public:
     virtual void seleccionarConversacionActiva(int identificador) = 0;
     virtual void seleccionarConversacionArchivada(int identificador) = 0;
     virtual std::list<DataConversacion*> darConversaciones() = 0;

@@ -15,7 +15,17 @@
 
 class ControladorFactory {
 public:
+    static IAbrirGuassapFing* getIAbrirGuassapFing();
+    static IAgregarContactos* getIAgregarContactos();
+    static IAltaGrupo* getIAltaGrupo();
+    static IArchivarConversaciones* getIArchivarConversaciones();
     static ICambiarFecha* getICambiarFecha();
+    static ICerrarGuassapFing* getICerrarGuassapFing();
+    static IEliminarMensajes* getIEliminarMensajes();
+    static IEnviarMensaje* getIEnviarMensaje();
+    static IModificarUsuario* getIModificarUsuario();
+    static ISuscribirse* getISuscribirse();
+    static IVerMensajes* getIVerMensajes();
 };
 
 #endif // CONTROLADORFACTORY_H

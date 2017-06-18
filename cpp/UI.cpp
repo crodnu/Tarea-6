@@ -42,6 +42,7 @@ unsigned UI::seleccionarOpcionMenuPrincipal() {
 }
 
 void UI::abrirGuassapFing() {
+    IAbrirGuassapFing* iAbrirGuassapFing = ControladorFactory::getIAbrirGuassapFing();
     string tel;
 
     cout << "Ingrese TEL\n";
@@ -52,10 +53,13 @@ void UI::abrirGuassapFing() {
 }
 
 void UI::cerrarGuassapFing() {
-
+    ICerrarGuassapFing* iCerrarGuassapFing = ControladorFactory::getICerrarGuassapFing();
+    iCerrarGuassapFing->cerrarSesion();
+    cout << "Sesion cerrada correctamente!" << endl;
 }
 
 void UI::agregarContactos() {
+    IAgregarContactos* iAgregarContactos = ControladorFactory::getIAgregarContactos();
     string tel;
 
     cout << "Ingrese tel del socio\n";
@@ -66,10 +70,11 @@ void UI::agregarContactos() {
 }
 
 void UI::altaGrupo() {
-
+    IAltaGrupo* iAltaGrupo = ControladorFactory::getIAltaGrupo();
 }
 
 void UI::enviarMensaje() {
+    IEnviarMensaje* iEnviarMensaje = ControladorFactory::getIEnviarMensaje();
     string msj;
 
     cout << "Ingrese el mensaje." << endl;
@@ -79,10 +84,11 @@ void UI::enviarMensaje() {
 }
 
 void UI::verMensajes() {
-
+    IVerMensajes* iVerMensajes = ControladorFactory::getIVerMensajes();
 }
 
 void UI::archivarConversaciones() {
+    IArchivarConversaciones* iArchivarConversaciones = ControladorFactory::getIArchivarConversaciones();
     int id;
     cout << "Ingrese el id." << endl;
     cin >> id;
@@ -90,15 +96,51 @@ void UI::archivarConversaciones() {
 }
 
 void UI::modificarUsuario() {
+    IModificarUsuario* iModificarUsuario = ControladorFactory::getIModificarUsuario();
+    int opcion = 0;
+    cout << "Que campo desea modificar?" << endl
+        << "\t1) Nombre" << endl
+        << "\t2) Descripcion" << endl
+        << "\t3) Avatar (url)" << endl;
+    cin >> opcion;
 
+    switch(opcion) {
+    case 1: {
+        string nombreNuevo;
+        cout << "Inserte un nombre nuevo." << endl;
+        cin >> nombreNuevo;
+        iModificarUsuario->actualizarNombreUsuario(nombreNuevo);
+        cout << "Nombre actualizado correctamente!" << endl;
+    }
+
+    case 2: {
+        string descripcionNueva;
+        cout << "Inserte una descripcion nueva." << endl;
+        cin >> descripcionNueva;
+        iModificarUsuario->actualizarDescripcionUsuario(descripcionNueva);
+        cout << "Descripcion actualizada correctamente!" << endl;
+    }
+
+    case 3: {
+        string avatarNuevo;
+        cout << "Inserte una url con un avatar nuevo." << endl;
+        cin >> avatarNuevo;
+        iModificarUsuario->actualizarImagenUsuario(avatarNuevo);
+        cout << "Avatar actualizado correctamente!" << endl;
+    }
+
+    default: {
+        cout << "Opcion no valida!" << endl;
+    }
+    }
 }
 
 void UI::eliminarMensajes() {
-
+    IEliminarMensajes* iEliminarMensajes = ControladorFactory::getIEliminarMensajes();
 }
 
 void UI::suscribirse() {
-
+    ISuscribirse* iSuscribirse = ControladorFactory::getISuscribirse();
 }
 
 void UI::cambiarFecha() {

@@ -18,21 +18,17 @@
 #include "typedefs.h"
 
 // Interfaces
-#include "IAbrirGuassapFing.h"
-#include "IAgregarContactos.h"
-#include "IAltaGrupo.h"
 #include "IArchivarConversaciones.h"
-#include "ICambiarFecha.h"
-#include "ICerrarGuassapFing.h"
 #include "IEliminarMensajes.h"
 #include "IEnviarMensaje.h"
-#include "IModificarUsuario.h"
-#include "ISuscribirse.h"
 #include "IVerMensajes.h"
 
 using namespace std;
 
-class ControladorMensajes: public IEliminarMensaje, public IArchivarConversaciones, public IEnviarMensaje {
+class ControladorMensajes:  public IEliminarMensajes,
+                            public IArchivarConversaciones,
+                            public IEnviarMensaje,
+                            public IVerMensajes {
 private:
     static ControladorMensajes* instancia;
     Conversacion* conversacionSeleccionada;
@@ -55,7 +51,7 @@ public:
     virtual std::list<DataMensaje*> obtenerMensajesDeConversacion();
     virtual void seleccionarConversacionActiva(IdConversacion identificador);
     virtual void seleccionarConversacionArchivada(IdConversacion identificador);
-    virtual std::list<DataReceptor> obtenerInformacionAdicional(int identificador);
+    virtual std::list<DataReceptor> obtenerInformacionAdicional(IdMensaje identificador);
     virtual void eliminarMensaje(IdMensaje id);
     virtual void archivarConversacion(IdConversacion id);
 };

@@ -5,7 +5,7 @@
 
 #include "DataConversacion.h"
 
-class IEliminarMensaje {
+class IEliminarMensajes {
 public:
     virtual std::list<DataConversacion*> darConversaciones() = 0;
     virtual std::list<DataConversacion*> darConversacionesArchivadas() = 0;

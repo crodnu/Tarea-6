@@ -6,6 +6,7 @@
 #include "DataConversacion.h"
 
 class IArchivarConversaciones {
+public:
     virtual std::list<DataConversacion*> darConversacionesActivas() = 0;
     virtual void archivarConversacion(int id) = 0;
 };
