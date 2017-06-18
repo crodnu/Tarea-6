@@ -6,6 +6,7 @@
 #include <list>
 
 #include "DataContacto.h"
+#include "DataNotificacion.h"
 #include "enumIniciarSesion.h"
 #include "Mensaje.h"
 #include "typedefs.h"
@@ -37,6 +38,7 @@ public:
     void actualizarNombreUsuario(string nombre);
     void actualizarImagenUsuario(string urlImagen);
     void actualizarDescripcionUsuario(string descripcion);
+    std::list<DataNotificacion> getNotificaciones();
 };
 
 #endif  /* CONTROLADORUSUARIOS_H */

@@ -85,3 +85,7 @@ void ControladorUsuarios::actualizarDescripcionUsuario(string descripcion){
     Usuario * iniciado = this->usuarioIniciado;
     iniciado->actualizarDescripcion(descripcion);
 }
+
+list<DataNotificacion> ControladorUsuarios::getNotificaciones() {
+    return this->usuarioIniciado->getNotificaciones();
+}

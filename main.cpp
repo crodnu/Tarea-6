@@ -7,21 +7,23 @@
 #include <stdexcept>
 #include <string>
 
+#include "UI.h"
+
 // Limites del sistema
 
 
 // Opciones del menu
-#define SALIR 0
-#define ABRIR_GUASAPFING  1
-#define Cerrar_GuasapFING  2
-#define  Agregar_contactos  3
-#define  Alta_grupo  4
-#define  Enviar_mensajes  5
-#define  Ver_mensajes   6
-#define  Archivar_conversaciones  7
-#define  Modificar_usuario   8
-#define  Eliminar_mensajes    9
-#define  Suscripcion   10
+#define SALIR                   0
+#define ABRIR_GUASAPFING        1
+#define CERRAR_GUASSAPFING      2
+#define AGREGAR_CONTACTOS       3
+#define ALTA_GRUPO              4
+#define ENVIAR_MENSAJE          5
+#define VER_MENSAJES            6
+#define ARCHIVAR_CONVERSACIONES 7
+#define MODIFICAR_USUARIO       8
+#define ELIMINAR_MENSAJES       9
+#define SUSCRIBIRSE             10
 
 using namespace std;
 
@@ -41,11 +43,8 @@ int main(){
 }
 
 bool menu(){
-    cout << "Seleccione una de las siguientes opciones: \n ";
-    cout << "0. Salir \n 1. Abrir GuasapFING  \n 2. Cerrar GuasapFING \n 3. Agregar contactos  \n 4. Alta grupo  \n 5. Enviar mensajes  \n ";
-    cout << "6. Ver mensajes  \n 7. Archivar conversaciones   \n 8. Modificar usuario  \n 9. Eliminar mensajes   \n 10. Suscripción para recibir los cambios en la información personal de un contacto\n;";
-    unsigned opcionSeleccionada;
-    cin >> opcionSeleccionada;
+    UI* userInterface = UI::getInstance();
+    unsigned opcionSeleccionada = userInterface->seleccionarOpcionMenuPrincipal();
 
     switch (opcionSeleccionada){
         case SALIR: {
@@ -53,95 +52,57 @@ bool menu(){
         }
 
         case ABRIR_GUASAPFING : {
-
-            string tel;
-
-            cout << "Ingrese TEL\n";
-            cin >> tel;
-            iniciarSesion(tel);
-            darseDeAlta(cel,url,descripcion)
-            cout << "Sesion iniciada." << endl;
+            userInterface->abrirGuassapFing();
             break;
         }
 
-        case CERRAR_GuasapFING: {
-
-
-
-        }
-
-        case Agregar_contactos: {
-
-            string tel;
-
-            cout << "Ingrese tel del socio\n";
-            cin >> tel;
-
-            agregarContacto(tel);
-            cout << "Contacto agregado." << endl;
+        case CERRAR_GUASSAPFING: {
+            userInterface->cerrarGuassapFing();
             break;
         }
 
-        case Alta_grupo: {
-         // Lo hace el usuario
-
-            altaGrupo();
-
-
+        case AGREGAR_CONTACTOS: {
+            userInterface->agregarContactos();
             break;
         }
 
-        case Enviar_mensajes: {
-
-            string msj;
-
-            cout << "Ingrese el mensaje." << endl;
-            cin >> msj;
-            enviarMensaje(msj);
-                cout << "Mensaje enviado." << endl;
+        case ALTA_GRUPO: {
+            userInterface->altaGrupo();
             break;
         }
 
-        case Ver_mensajes: {
-
-            verMensajes();
-
+        case ENVIAR_MENSAJE: {
+            userInterface->enviarMensaje();
             break;
         }
 
-        case Archivar_conversaciones: {
-
-            int id;
-            cout << "Ingrese el id." << endl;
-            cin >> id;
-            archivarConversacion(id);
-
+        case VER_MENSAJES: {
+            userInterface->verMensajes();
             break;
         }
 
-        case Modificar_usuario: {
-
-            modificarUsuario();
-
+        case ARCHIVAR_CONVERSACIONES: {
+            userInterface->archivarConversaciones();
             break;
         }
 
-        case Eliminar_mensajes: {
-
-            eliminarMensajes();
-
+        case MODIFICAR_USUARIO: {
+            userInterface->modificarUsuario();
             break;
         }
 
-        case Suscripcion: {
+        case ELIMINAR_MENSAJES: {
+            userInterface->eliminarMensajes();
+            break;
+        }
 
-            suscribirse();
-
+        case SUSCRIBIRSE: {
+            userInterface->suscribirse();
             break;
         }
 
         default: {
-            cout << "Opcion no valida." <<endl;
+            userInterface->opcionNoValida();
         }
     }
 
