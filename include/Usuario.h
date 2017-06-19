@@ -35,6 +35,8 @@ public:
     void actualizarImagen(std::string urlImagen);
     void actualizarDescripcion(std::string descripcion);
     void actualizarFechaUltimaConexion();
+    void agregarConversacionActiva(Conversacion* conv);
+    void archivarConversacion(IdConversacion id);
 
 private:
     TelefonoUsuario telefono;
@@ -52,7 +54,6 @@ private:
     std::map<NombreGrupo, Grupo*> gruposIntegradosConversacionesActivas;
     std::map<NombreGrupo, Grupo*> gruposIntegradosConversacionesArchivadas;
     std::map<NombreGrupo, Grupo*> gruposAdministrados;
-
     DataNotificacion crearDataNotificacion(std::string tipo);
 };
 

@@ -14,3 +14,11 @@ Grupo::Grupo(NombreGrupo nombre, string urlImagen, Fecha fechaDeCreacion): fecha
 Conversacion * Grupo::getConversacion(){
   return this->conversacion;
 }
+
+DataConversacionGrupo* Grupo::getDataConversacion(bool archivada) {
+    return this->conversacion->getDataConversacionGrupo(archivada, this->nombre);
+}
+
+IdConversacion Grupo::getIdConversacion() {
+    return this->conversacion->getId();
+}

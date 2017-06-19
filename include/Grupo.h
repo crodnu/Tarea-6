@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Conversacion.h"
+#include "DataConversacionGrupo.h"
 #include "Fecha.h"
 #include "typedefs.h"
 #include "Usuario.h"
@@ -16,6 +17,8 @@ class Grupo {
 public:
     Grupo(NombreGrupo nombre, std::string urlImagen, Fecha fechaDeCreacion);
     Conversacion * getConversacion();
+    DataConversacionGrupo* getDataConversacion(bool archivada);
+    IdConversacion getIdConversacion();
 
 private:
     NombreGrupo nombre;

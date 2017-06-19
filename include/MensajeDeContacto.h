@@ -10,6 +10,7 @@ class MensajeDeContacto: public Mensaje {
 public:
     MensajeDeContacto(Usuario* contacto);
     virtual DataMensaje* getDataMensaje();
+    virtual ~MensajeDeContacto();
 
 private:
     Usuario* contacto;

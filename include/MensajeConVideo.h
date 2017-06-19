@@ -10,6 +10,7 @@ class MensajeConVideo: public Mensaje {
 public:
     MensajeConVideo(std::string urlVideo, unsigned duracion);
     virtual DataMensaje* getDataMensaje();
+    virtual ~MensajeConVideo();
 
 private:
     std::string urlVideo;

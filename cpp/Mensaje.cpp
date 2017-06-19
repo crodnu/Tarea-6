@@ -2,6 +2,8 @@
 
 IdMensaje Mensaje::codigoActual = 0;
 
+Mensaje::~Mensaje() {}
+
 Mensaje::Mensaje() {
     Mensaje::codigoActual++;
     this->codigo = Mensaje::codigoActual;
@@ -17,6 +19,10 @@ bool Mensaje::esReceptor(Usuario* user) {
     }
 
     return false;
+}
+
+bool Mensaje::esEmisor(Usuario* user) {
+    return user == this->emisor;
 }
 
 std::list<DataReceptor> Mensaje::getDataReceptor() {
@@ -42,6 +48,9 @@ IdMensaje Mensaje::getId() {
 void Mensaje::addReceptor(Usuario* receptor) {
     if(this->emisor != receptor)
         this->receptores[receptor->getTelefono()] = receptor;
+}
+
+void Mensaje::quitarReceptor(Usuario* receptor) {
 }
 
 void Mensaje::setLeidoPorUsuarioActual() {

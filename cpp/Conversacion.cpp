@@ -6,8 +6,6 @@ IdConversacion Conversacion::idActual = 0;
 Conversacion::Conversacion() {
     Conversacion::idActual++;
     this->id = Conversacion::idActual;
-    Usuario* usuarioActual = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
-    this->participantes[usuarioActual->getTelefono()] = usuarioActual;
 }
 
 map<IdMensaje, Mensaje*> Conversacion::getSetMensajes() {
@@ -21,8 +19,32 @@ Mensaje* Conversacion::getMensaje(IdMensaje identificador) {
     return this->mensajes[identificador];
 }
 
-DataConversacion* Conversacion::getDataConversacion() {
+DataConversacionSimple* Conversacion::getDataConversacionSimple(bool archivada) {
+    Usuario* user = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
+    for(std::map<TelefonoUsuario, Usuario*>::iterator it = this->participantes.begin();
+        it != this->participantes.end(); it++) {
+        Usuario* otro = it->second;
+        if(otro != user) {
+            list<DataMensaje*> mensajes;
+            for(map<IdMensaje, Mensaje*>::iterator it = this->mensajes.begin();
+                it != this->mensajes.end(); it++) {
+                Mensaje* msj = it->second;
+                mensajes.push_front(msj->getDataMensaje());
+            }
+            return new DataConversacionSimple(this->id, archivada, mensajes, otro->getDataContacto());
+        }
+    }
+    return NULL;
+}
 
+DataConversacionGrupo* Conversacion::getDataConversacionGrupo(bool archivada, std::string nombre) {
+    list<DataMensaje*> mensajes;
+    for(map<IdMensaje, Mensaje*>::iterator it = this->mensajes.begin();
+        it != this->mensajes.end(); it++) {
+        Mensaje* msj = it->second;
+        mensajes.push_front(msj->getDataMensaje());
+    }
+    return new DataConversacionGrupo(this->id, archivada, mensajes, nombre);
 }
 
 map<IdMensaje, Mensaje*> Conversacion::obtenerMensajes(Usuario* user) {
@@ -53,4 +75,9 @@ IdConversacion Conversacion::getId(){
 
 void Conversacion::addParticipante(Usuario* participante) {
     this->participantes[participante->getTelefono()] = participante;
+}
+
+void Conversacion::borrarMensaje(Mensaje* msj) {
+    this->mensajes.erase(msj->getId());
+    delete msj;
 }

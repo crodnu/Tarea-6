@@ -2,6 +2,8 @@
 
 using namespace std;
 
+MensajeConImagen::~MensajeConImagen() {}
+
 MensajeConImagen::MensajeConImagen(string formato, string texto,
                             string urlImagen, unsigned tamanio) {
     this->formato = formato;

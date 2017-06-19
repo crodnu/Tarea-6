@@ -2,6 +2,8 @@
 
 using namespace std;
 
+MensajeSimple::~MensajeSimple() {}
+
 MensajeSimple::MensajeSimple(string texto) {
     this->texto = texto;
 }

@@ -73,8 +73,8 @@ list<DataContacto> ControladorUsuarios::listarContactos(){
 }
 
 void ControladorUsuarios::archivarConversacion(IdConversacion identificadorConv){
-    //Usuario* iniciado = this->usuarioIniciado;
-    //iniciado->archivarConversacion(identificadorConv);
+    Usuario* iniciado = this->usuarioIniciado;
+    iniciado->archivarConversacion(identificadorConv);
 }
 
 void ControladorUsuarios::actualizarNombreUsuario(string nombre){

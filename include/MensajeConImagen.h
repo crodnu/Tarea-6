@@ -11,6 +11,7 @@ public:
     MensajeConImagen(std::string formato, std::string
         texto, std::string urlImagen, unsigned tamanio);
     virtual DataMensaje* getDataMensaje();
+    virtual ~MensajeConImagen();
 
 private:
     std::string formato;

@@ -2,8 +2,10 @@
 #define	CONVERSACION_H
 
 #include <map>
+#include <string>
 
-#include "DataConversacion.h"
+#include "DataConversacionSimple.h"
+#include "DataConversacionGrupo.h"
 #include "Mensaje.h"
 #include "typedefs.h"
 #include "Usuario.h"
@@ -16,11 +18,13 @@ public:
     Conversacion();
     std::map<IdMensaje, Mensaje*> getSetMensajes();
     Mensaje* getMensaje(IdMensaje identificador);
-    DataConversacion* getDataConversacion();
+    DataConversacionSimple* getDataConversacionSimple(bool archivada);
+    DataConversacionGrupo* getDataConversacionGrupo(bool archivada, std::string nombre);
     std::map<IdMensaje, Mensaje*> obtenerMensajes(Usuario* user);
     void enviar(Mensaje* mensaje);
     IdConversacion getId();
     void addParticipante(Usuario* participante);
+    void borrarMensaje(Mensaje* msj);
 
 private:
     IdConversacion id;

@@ -36,7 +36,8 @@ void Usuario::agregarContacto(Usuario* contacto) {
 
 list<DataConversacion*> Usuario::getSetDataConversacion() {
     list<DataConversacion*> conversaciones = this->getSetDataConversacionesActivas();
-    //conversaciones.splice(conversaciones.begin(), this->getSetDataConversacionesArchivadas());
+    list<DataConversacion*> conversaciones2 = this->getSetDataConversacionesArchivadas();
+    conversaciones.splice(conversaciones.begin(), conversaciones2);
     return conversaciones;
 }
 
@@ -46,13 +47,12 @@ list<DataConversacion*> Usuario::getSetDataConversacionesArchivadas(){
     for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesArchivadas.begin();
             it != this->conversacionesArchivadas.end(); it++) {
         Conversacion* conversacion = it->second;
-        conversaciones.push_front(conversacion->getDataConversacion());
+        conversaciones.push_front(conversacion->getDataConversacionSimple(true));
     }
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesArchivadas.begin();
             it != this->gruposIntegradosConversacionesArchivadas.end(); it++) {
-      Grupo * actual = it->second;
-        Conversacion* conversacion = actual->getConversacion();
-        conversaciones.push_front(conversacion->getDataConversacion());
+        Grupo * actual = it->second;
+        conversaciones.push_front(actual->getDataConversacion(true));
     }
     return conversaciones;
 }
@@ -63,13 +63,12 @@ list<DataConversacion*> Usuario::getSetDataConversacionesActivas(){
     for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesIntegradas.begin();
             it != this->conversacionesIntegradas.end(); it++) {
         Conversacion* conversacion = it->second;
-        conversaciones.push_front(conversacion->getDataConversacion());
+        conversaciones.push_front(conversacion->getDataConversacionSimple(false));
     }
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
             it != this->gruposIntegradosConversacionesActivas.end(); it++) {
-      Grupo * actual = it->second;
-        Conversacion* conversacion = actual->getConversacion();
-        conversaciones.push_front(conversacion->getDataConversacion());
+        Grupo * actual = it->second;
+        conversaciones.push_front(actual->getDataConversacion(false));
     }
     return conversaciones;
 }
@@ -119,4 +118,29 @@ void Usuario::actualizarDescripcion(string descripcion){
 
 void Usuario::actualizarFechaUltimaConexion() {
     this->ultimaConexion = ControladorFecha::getInstance()->getFechaActual();
+}
+
+void Usuario::agregarConversacionActiva(Conversacion* conv) {
+    this->conversacionesIntegradas[conv->getId()] = conv;
+    conv->addParticipante(this);
+}
+
+void Usuario::archivarConversacion(IdConversacion id) {
+    if(this->conversacionesIntegradas[id]) {
+        this->conversacionesArchivadas[id] = this->conversacionesIntegradas[id];
+        this->conversacionesIntegradas.erase(id);
+    }
+
+    else {
+        for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
+            it != this->gruposIntegradosConversacionesActivas.end(); it++) {
+            Grupo* grupo = it->second;
+            NombreGrupo nombre = it->first;
+            if(grupo->getIdConversacion() == id) {
+                this->gruposIntegradosConversacionesArchivadas[nombre] = grupo;
+                this->gruposIntegradosConversacionesActivas.erase(nombre);
+                return;
+            }
+        }
+    }
 }

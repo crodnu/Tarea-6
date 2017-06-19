@@ -1,5 +1,7 @@
 #include "../include/MensajeDeContacto.h"
 
+MensajeDeContacto::~MensajeDeContacto() {}
+
 MensajeDeContacto::MensajeDeContacto(Usuario* contacto): contacto(contacto){ }
 
 DataMensaje* MensajeDeContacto::getDataMensaje() {

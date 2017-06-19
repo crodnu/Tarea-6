@@ -23,6 +23,8 @@ ControladorMensajes* ControladorMensajes::getControladorMensajes(){
 void ControladorMensajes::crearConversacionSimple(TelefonoUsuario telefonoContacto){
   Conversacion * nuevaConversacion = new Conversacion();
   this->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
+  ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual()->agregarConversacionActiva(nuevaConversacion);
+  ControladorUsuarios::getControladorUsuarios()->getUsuario(telefonoContacto)->agregarConversacionActiva(nuevaConversacion);
 }
 
 list<DataConversacion*> ControladorMensajes::darConversaciones(){
@@ -66,8 +68,13 @@ list<DataContacto> ControladorMensajes::listarContactos(){
 }
 
 list<DataMensaje*> ControladorMensajes::obtenerMensajesDeConversacion(){
-  DataConversacion* seleccionada = this->conversacionSeleccionada->getDataConversacion();
-  return seleccionada->getMensajes();
+  map<IdMensaje, Mensaje*> mensajes = this->conversacionSeleccionada->getSetMensajes();
+  list<DataMensaje*> dataMensajes;
+  for(map<IdMensaje, Mensaje*>::iterator it = mensajes.begin(); it != mensajes.end(); it++) {
+    Mensaje* msj = it->second;
+    dataMensajes.push_front(msj->getDataMensaje());
+  }
+  return dataMensajes;
 }
 
 void ControladorMensajes::seleccionarConversacionActiva(IdConversacion identificador){
@@ -85,7 +92,14 @@ list<DataReceptor> ControladorMensajes::obtenerInformacionAdicional(IdMensaje id
 }
 
 void ControladorMensajes::eliminarMensaje(IdMensaje id) {
-
+    Mensaje* msj = this->conversacionSeleccionada->getMensaje(id);
+    Usuario* user = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
+    if(msj->esReceptor(user)) {
+        msj->quitarReceptor(user);
+    }
+    else if(msj->esEmisor(user)) {
+        this->conversacionSeleccionada->borrarMensaje(msj);
+    }
 }
 
 void ControladorMensajes::archivarConversacion(IdConversacion id) {

@@ -2,6 +2,8 @@
 
 using namespace std;
 
+MensajeConVideo::~MensajeConVideo() {}
+
 MensajeConVideo::MensajeConVideo(std::string urlVideo, unsigned duracion) {
     this->urlVideo = urlVideo;
     this->duracion = duracion;

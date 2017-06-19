@@ -20,10 +20,13 @@ public:
     Mensaje();
     virtual DataMensaje* getDataMensaje() = 0;
     bool esReceptor(Usuario* user);
+    bool esEmisor(Usuario* user);
     std::list<DataReceptor> getDataReceptor();
     Fecha getFechaEnviado();
     IdMensaje getId();
     void addReceptor(Usuario* receptor);
+    void quitarReceptor(Usuario* receptor);
+    virtual ~Mensaje();
 
 protected:
     void setLeidoPorUsuarioActual();
