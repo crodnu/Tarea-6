@@ -13,8 +13,8 @@ public:
     Fecha getFechaRecibido();
 
 private:
-    Fecha fechaRecibido;
     DataContacto contacto;
+    Fecha fechaRecibido;
 };
 
 #endif	/* DATARECEPTOR_H */
