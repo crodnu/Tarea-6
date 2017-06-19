@@ -15,6 +15,7 @@ class Usuario;
 class Grupo {
 public:
     Grupo(NombreGrupo nombre, std::string urlImagen, Fecha fechaDeCreacion);
+    Conversacion * getConversacion();
 
 private:
     NombreGrupo nombre;

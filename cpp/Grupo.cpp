@@ -11,3 +11,6 @@ Grupo::Grupo(NombreGrupo nombre, string urlImagen, Fecha fechaDeCreacion): fecha
     this->integrantes[fundador->getTelefono()] = fundador;
     this->conversacion = new Conversacion();
 }
+Conversacion * Grupo::getConversacion(){
+  return this->conversacion;
+}

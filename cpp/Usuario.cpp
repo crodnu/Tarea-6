@@ -48,6 +48,12 @@ list<DataConversacion*> Usuario::getSetDataConversacionesArchivadas(){
         Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacion());
     }
+    for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesArchivadas.begin();
+            it != this->gruposIntegradosConversacionesArchivadas.end(); it++) {
+      Grupo * actual = it->second;
+        Conversacion* conversacion = actual->getConversacion();
+        conversaciones.push_front(conversacion->getDataConversacion());
+    }
     return conversaciones;
 }
 
@@ -57,6 +63,12 @@ list<DataConversacion*> Usuario::getSetDataConversacionesActivas(){
     for(map<IdConversacion, Conversacion*>::iterator it = this->conversacionesIntegradas.begin();
             it != this->conversacionesIntegradas.end(); it++) {
         Conversacion* conversacion = it->second;
+        conversaciones.push_front(conversacion->getDataConversacion());
+    }
+    for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
+            it != this->gruposIntegradosConversacionesActivas.end(); it++) {
+      Grupo * actual = it->second;
+        Conversacion* conversacion = actual->getConversacion();
         conversaciones.push_front(conversacion->getDataConversacion());
     }
     return conversaciones;

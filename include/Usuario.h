@@ -49,7 +49,8 @@ private:
     std::map<IdConversacion, Conversacion*> conversacionesIntegradas;
     std::map<IdConversacion, Conversacion*> conversacionesArchivadas;
     void notificarSuscriptores(DataNotificacion notificacion);
-    std::map<NombreGrupo, Grupo*> gruposIntegrados;
+    std::map<NombreGrupo, Grupo*> gruposIntegradosConversacionesActivas;
+    std::map<NombreGrupo, Grupo*> gruposIntegradosConversacionesArchivadas;
     std::map<NombreGrupo, Grupo*> gruposAdministrados;
 
     DataNotificacion crearDataNotificacion(std::string tipo);
