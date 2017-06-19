@@ -6,7 +6,7 @@
 
 class DataConversacionSimple: public DataConversacion {
 public:
-    DataConversacionSimple(bool archivada, std::list<DataMensaje*> mensajes, DataContacto contacto);
+    DataConversacionSimple(IdConversacion id, bool archivada, std::list<DataMensaje*> mensajes, DataContacto contacto);
 
     DataContacto getContacto();
 

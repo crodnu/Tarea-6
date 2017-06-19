@@ -92,3 +92,7 @@ void ControladorUsuarios::actualizarDescripcionUsuario(string descripcion){
 list<DataNotificacion> ControladorUsuarios::getNotificaciones() {
     return this->usuarioIniciado->getNotificaciones();
 }
+
+void ControladorUsuarios::suscribirse(TelefonoUsuario telefono) {
+    this->usuarioIniciado->suscribirse(this->usuariosDelSistema[telefono]);
+}

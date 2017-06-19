@@ -12,7 +12,6 @@
 #include "DataNotificacion.h"
 #include "Fecha.h"
 #include "Grupo.h"
-#include "Notificacion.h"
 #include "typedefs.h"
 
 class Conversacion;

@@ -7,7 +7,7 @@
 
 class DataConversacionGrupo: public DataConversacion {
 public:
-    DataConversacionGrupo(bool archivada, std::list<DataMensaje*> mensajes, std::string nombreGrupo);
+    DataConversacionGrupo(IdConversacion id, bool archivada, std::list<DataMensaje*> mensajes, std::string nombreGrupo);
 
     std::string getNombreGrupo();
 
