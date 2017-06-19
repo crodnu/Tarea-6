@@ -1,8 +1,15 @@
 #include <cstddef>
 #include <iostream>
+#include <list>
 #include <string>
 
+#include "../include/DataContacto.h"
+#include "../include/DataConversacion.h"
+#include "../include/DataMensaje.h"
+#include "../include/DataNotificacion.h"
+#include "../include/DataReceptor.h"
 #include "../include/ControladorFactory.h"
+#include "../include/enumIniciarSesion.h"
 #include "../include/Fecha.h"
 #include "../include/UI.h"
 
@@ -32,24 +39,77 @@ UI* UI::getInstance() {
     return UI::instance;
 }
 
+bool yesOrNo() {
+    string opcion;
+    cin >> opcion;
+    if(opcion == "y") return true;
+    if(opcion == "n") return false;
+    return false; // raise?
+}
+
+string getString() {
+    string result;
+    cin >> result;
+    return result;
+}
+
 unsigned UI::seleccionarOpcionMenuPrincipal() {
-    cout << "Seleccione una de las siguientes opciones: \n ";
-    cout << "0. Salir \n 1. Abrir GuasapFING  \n 2. Cerrar GuasapFING \n 3. Agregar contactos  \n 4. Alta grupo  \n 5. Enviar mensajes  \n ";
-    cout << "6. Ver mensajes  \n 7. Archivar conversaciones   \n 8. Modificar usuario  \n 9. Eliminar mensajes   \n 10. Suscripción para recibir los cambios en la información personal de un contacto\n;";
+    cout << "Seleccione una de las siguientes opciones:" << endl;
+    cout << "\t0. Salir \n \t1. Abrir GuasapFING  \n \t2. Cerrar GuasapFING \n \t3. Agregar contactos  \n \t4. Alta grupo  \n \t5. Enviar mensajes  \n ";
+    cout << "\t6. Ver mensajes  \n \t7. Archivar conversaciones   \n \t8. Modificar usuario  \n \t9. Eliminar mensajes   \n \t10. Suscripción para recibir los cambios en la información personal de un contacto\n"
+        << "\t11 Cambiar la fecha del sistema" << endl;
     unsigned opcionSeleccionada;
     cin >> opcionSeleccionada;
+    cout << endl;
     return opcionSeleccionada;
 }
 
 void UI::abrirGuassapFing() {
     IAbrirGuassapFing* iAbrirGuassapFing = ControladorFactory::getIAbrirGuassapFing();
-    string tel;
+    while(true) {
+        cout << "Ingrese su telefono o FIN para salir." << endl;
+        string tel = getString();
+        if(tel == "FIN") return;
+        enumIniciarSesion resultado = iAbrirGuassapFing->iniciarSesion(tel);
 
-    cout << "Ingrese TEL\n";
-    cin >> tel;
-    //iniciarSesion(tel);
-    //darseDeAlta(cel,url,descripcion)
-    cout << "Sesion iniciada." << endl;
+        if(resultado == SESION_YA_INICIADA_OTRO_NUMERO) {
+            cout << "Sesion ya iniciada con un numero distinto." << endl
+                << "Desea cerrar la sesion?(y/n)" << endl;
+            if(yesOrNo()) iAbrirGuassapFing->cerrarSesion();
+            cout << "Sesion cerrada correctamente!" << endl;
+        }
+
+        if(resultado == NUMERO_NO_EXISTE) {
+            cout << "El numero seleccionado no existe. Desea darlo de alta?(y/n)" << endl;
+            if(yesOrNo()) {
+                cout << "Ingrese su nombre." << endl;
+                string nombre = getString();
+                cout << "Ingrese su descripcion personal." << endl;
+                string descripcion = getString();
+                cout << "Ingrese la url de su avatar." << endl;
+                string avatar = getString();
+                iAbrirGuassapFing->darseDeAlta(nombre, tel, avatar, descripcion);
+                cout << "Usuario dado de alta correctamente!" << endl;
+                return;
+            }
+        }
+
+        if(resultado == SESION_YA_INICIADA_MISMO_NUMERO) {
+            cout << "Sesion ya iniciada con el numero ingresado. Saliendo." << endl;
+            return;
+        }
+
+        if(resultado == SESION_INICIADA_CORRECTAMENTE) {
+            list<DataNotificacion> notificaciones = iAbrirGuassapFing->getNotificaciones();
+            cout << "Sesion abierta correctamente. Notificaciones desde su ultima visita:" << endl;
+            for(list<DataNotificacion>::iterator it = notificaciones.begin(); it != notificaciones.end(); it++) {
+                DataNotificacion notificacion = *it;
+                cout << notificacion.getContacto().getNombre() << " modifico su " << notificacion.getTipo() <<
+                    " el dia " << notificacion.getFecha().getDia() << "/" << notificacion.getFecha().getMes() <<
+                    "/" << notificacion.getFecha().getAnio() << endl;
+            }
+        }
+    }
 }
 
 void UI::cerrarGuassapFing() {
@@ -60,13 +120,33 @@ void UI::cerrarGuassapFing() {
 
 void UI::agregarContactos() {
     IAgregarContactos* iAgregarContactos = ControladorFactory::getIAgregarContactos();
-    string tel;
+    cout << "Sus contactos actuales son:" << endl;
 
-    cout << "Ingrese tel del socio\n";
-    cin >> tel;
+    list<DataContacto> contactosActuales = iAgregarContactos->listarContactos();
+    for(list<DataContacto>::iterator it = contactosActuales.begin();
+        it != contactosActuales.end(); it++) {
+        DataContacto contacto = *it;
+        cout << "\t+" << contacto.getNombre() << ": " << contacto.getDescripcion() << endl;
+    }
 
-    //agregarContacto(tel);
-    cout << "Contacto agregado." << endl;
+    cout << endl;
+
+    string tel = "PLACEHOLDER_TEXT";
+    while(true) {
+        cout << "Ingrese telefonp del contacto, o FIN para salir." << endl;
+        if(tel == "FIN") break; // Oh no Eduardo, nos vas a matar a TODOS! D:>
+        DataContacto nuevo = iAgregarContactos->getDatos(tel);
+        cout << "Informacion del contacto:" << endl
+            << "\tNombre: " << nuevo.getNombre() << endl
+            << "\tDescripcion: " << nuevo.getDescripcion() << endl
+            << "\tNombre: " << nuevo.getUrlImagen() << " <- Imagine que eso es una imagen :)"<< endl
+            << "Desea agregarlo?(y/n)" << endl;
+        string opcion;
+        cin >> opcion;
+        if(opcion == "y") iAgregarContactos->agregarContacto(tel);
+    }
+
+    cout << "Contactos agregados exitosamente!." << endl;
 }
 
 void UI::altaGrupo() {
@@ -89,10 +169,24 @@ void UI::verMensajes() {
 
 void UI::archivarConversaciones() {
     IArchivarConversaciones* iArchivarConversaciones = ControladorFactory::getIArchivarConversaciones();
-    int id;
-    cout << "Ingrese el id." << endl;
-    cin >> id;
-    //archivarConversacion(id);
+
+    cout << "Sus converaciones activas son:" << endl;
+    list<DataConversacion*> conversaciones = iArchivarConversaciones->darConversacionesActivas();
+    for(list<DataConversacion*>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++) {
+        DataConversacion* conversacion = *it;
+        cout << conversacion->getId() << endl; //idfk
+        delete conversacion;
+    }
+
+    while(true) {
+        int id;
+        cout << "Ingrese el id o 0 para salir." << endl;
+        cin >> id;
+        if(id == 0) break;
+        iArchivarConversaciones->archivarConversacion(id);
+    }
+
+    cout << "Conversaciones seleccionadas archivadas correctamente." << endl;
 }
 
 void UI::modificarUsuario() {
