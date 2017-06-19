@@ -18,7 +18,7 @@ public:
     virtual void enviarMensajeContacto(std::string numeroContacto) = 0;
     virtual void enviarMensajeImagen(std::string urlImagen, std::string formato, std::string texto, int tamanio) = 0;
     virtual void enviarMensajeSimple(std::string texto) = 0;
-    virtual void enviarMensajeVideo(std::string urmVideo, int duracion) = 0;
+    virtual void enviarMensajeVideo(std::string urlVideo, int duracion) = 0;
 };
 
 #endif // IENVIARMENSAJE_H_INCLUDED

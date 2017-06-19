@@ -40,23 +40,24 @@ DataContacto ControladorUsuarios::getDatos(TelefonoUsuario cel){
 
 void ControladorUsuarios::darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion){
     Usuario* uno = new Usuario(cel, nombre, descripcion, urlImagen);
+    this->usuarioIniciado = uno;
     this->usuariosDelSistema[cel] = uno;
 }
 
 enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
-    Usuario* entrante = usuariosDelSistema[cel];
+    Usuario* entrante = this->usuariosDelSistema[cel];
     Usuario* enSesion = this->getUsuarioSesionActual();
 
-    if(entrante == NULL) {
-        return NUMERO_NO_EXISTE;
-    }
-
-    else if(entrante == enSesion && entrante != NULL) {
+    if(entrante == enSesion && enSesion != NULL) {
         return SESION_YA_INICIADA_MISMO_NUMERO;
     }
 
-    else if(entrante != enSesion && entrante != NULL && enSesion != NULL) {
+    if(entrante != enSesion && enSesion != NULL) {
         return SESION_YA_INICIADA_OTRO_NUMERO;
+    }
+
+    if(entrante == NULL) {
+        return NUMERO_NO_EXISTE;
     }
 
     else {
