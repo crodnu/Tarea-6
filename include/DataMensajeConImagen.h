@@ -7,7 +7,7 @@
 
 class DataMensajeConImagen: public DataMensaje {
 public:
-    DataMensajeConImagen(Fecha fechaDeEnviado, std::string formato, std::string
+    DataMensajeConImagen(IdMensaje id, Fecha fechaDeEnviado, std::string formato, std::string
         texto, std::string urlImagen, unsigned tamanio);
 
     std::string getFormato();

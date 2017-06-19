@@ -6,7 +6,7 @@
 
 class DataMensajeDeContacto: public DataMensaje {
 public:
-    DataMensajeDeContacto(Fecha fechaDeEnviado, DataContacto contacto);
+    DataMensajeDeContacto(IdMensaje id, Fecha fechaDeEnviado, DataContacto contacto);
 
     DataContacto getContacto();
 

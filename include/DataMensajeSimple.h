@@ -7,7 +7,7 @@
 
 class DataMensajeSimple: public DataMensaje {
 public:
-    DataMensajeSimple(Fecha fechaDeEnviado, std::string texto);
+    DataMensajeSimple(IdMensaje id, Fecha fechaDeEnviado, std::string texto);
 
     std::string getTexto();
 

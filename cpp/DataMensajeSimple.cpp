@@ -2,8 +2,8 @@
 
 using namespace std;
 
-DataMensajeSimple::DataMensajeSimple(Fecha fechaDeEnviado, string texto):
-    DataMensaje(fechaDeEnviado) {
+DataMensajeSimple::DataMensajeSimple(IdMensaje id, Fecha fechaDeEnviado, string texto):
+    DataMensaje(id, fechaDeEnviado) {
     this->texto = texto;
 }
 

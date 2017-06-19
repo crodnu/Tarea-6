@@ -2,15 +2,18 @@
 #define	DATAMENSAJE_H
 
 #include "Fecha.h"
+#include "typedefs.h"
 
 class DataMensaje {
 public:
-    DataMensaje(Fecha fechaDeEnviado);
+    DataMensaje(IdMensaje id, Fecha fechaDeEnviado);
 
     Fecha getFechaDeEnviado();
+    IdMensaje getId();
 
 private:
     Fecha fechaDeEnviado;
+    IdMensaje id;
 };
 
 #endif	/* DATAMENSAJE_H */

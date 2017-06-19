@@ -9,5 +9,5 @@ MensajeConVideo::MensajeConVideo(std::string urlVideo, unsigned duracion) {
 
 DataMensaje* MensajeConVideo::getDataMensaje() {
     this->setLeidoPorUsuarioActual();
-    return new DataMensajeConVideo(this->getFechaEnviado(), this->urlVideo, this->duracion);
+    return new DataMensajeConVideo(this->getId(), this->getFechaEnviado(), this->urlVideo, this->duracion);
 }

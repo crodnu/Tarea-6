@@ -8,5 +8,5 @@ MensajeSimple::MensajeSimple(string texto) {
 
 DataMensaje* MensajeSimple::getDataMensaje() {
     this->setLeidoPorUsuarioActual();
-    return new DataMensajeSimple(this->getFechaEnviado(), this->texto);
+    return new DataMensajeSimple(this->getId(), this->getFechaEnviado(), this->texto);
 }

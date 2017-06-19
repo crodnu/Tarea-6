@@ -2,8 +2,8 @@
 
 using namespace std;
 
-DataMensajeConVideo::DataMensajeConVideo(Fecha fechaDeEnviado, string urlVideo, unsigned duracion):
-    DataMensaje(fechaDeEnviado) {
+DataMensajeConVideo::DataMensajeConVideo(IdMensaje id, Fecha fechaDeEnviado, string urlVideo, unsigned duracion):
+    DataMensaje(id, fechaDeEnviado) {
     this->duracion = duracion;
     this->urlVideo = urlVideo;
 }

@@ -7,7 +7,7 @@
 
 class DataMensajeConVideo: public DataMensaje {
 public:
-    DataMensajeConVideo(Fecha fechaDeEnviado, std::string urlVideo, unsigned duracion);
+    DataMensajeConVideo(IdMensaje id, Fecha fechaDeEnviado, std::string urlVideo, unsigned duracion);
 
     std::string getUrlVideo();
     unsigned getDuracion();

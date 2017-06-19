@@ -2,9 +2,9 @@
 
 using namespace std;
 
-DataMensajeConImagen::DataMensajeConImagen(Fecha fechaDeEnviado, string formato,
+DataMensajeConImagen::DataMensajeConImagen(IdMensaje id, Fecha fechaDeEnviado, string formato,
     string texto, string urlImagen, unsigned tamanio):
-    DataMensaje(fechaDeEnviado) {
+    DataMensaje(id, fechaDeEnviado) {
     this->formato = formato;
     this->tamanio = tamanio;
     this ->texto = texto;

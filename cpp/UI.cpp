@@ -272,13 +272,69 @@ void UI::enviarMensaje() {
 
 void UI::verMensajes() {
     IVerMensajes* iVerMensajes = ControladorFactory::getIVerMensajes();
+    list<DataConversacion*> conversaciones = iVerMensajes->darConversaciones();
+
+    if(conversaciones.size() == 0) {
+        cout << "No participa en ninguna conversacion." << endl;
+        return;
+    }
+
+    cout << "Sus converaciones son:" << endl;
+    listarConversaciones(conversaciones);
+
+    cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
+    string opcion = getString();
+    if(opcion == "A") {
+        int id;
+        cout << "Ingrese el id de la conversacion." << endl;
+        cin >> id;
+        iVerMensajes->seleccionarConversacionActiva(id);
+    }
+    else if(opcion == "R") {
+        conversaciones = iVerMensajes->darConversacionesArchivadas();
+        cout << "Sus conversaciones archivadas son:" << endl;
+        listarConversaciones(conversaciones);
+        int id;
+        cout << "Ingrese el id de la conversacion." << endl;
+        cin >> id;
+        iVerMensajes->seleccionarConversacionArchivada(id);
+    }
+    else {
+        cout << "Opcion no valida!" << endl;
+        return;
+    }
+
+    cout << "Los mensajes en esta conversacion son:" << endl;
+    list<DataMensaje*> mensajes = iVerMensajes->obtenerMensajesDeConversacion();
+    for(list<DataMensaje*>::iterator it = mensajes.begin(); it != mensajes.end(); it++) {
+        DataMensaje* mensaje = *it;
+        cout << mensaje->getId();
+        delete mensaje;
+    }
+
+    while(true) {
+        cout << "ingrese el ID de un mensaje para obtener mas informacion, o 0 para salir." << endl;
+        int id;
+        cin >> id;
+        if(id == 0) return;
+        list<DataReceptor> receptores = iVerMensajes->obtenerInformacionAdicional(id);
+        cout << "Los receptores de este mensaje son:" << endl;
+        for(list<DataReceptor>::iterator it = receptores.begin(); it != receptores.end(); it++) {
+            DataReceptor receptor = *it;
+            Fecha f = receptor.getFechaRecibido();
+            cout << "\t*" << receptor.getContacto().getNombre() << " vio el mensaje el dia: "
+                << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
+        }
+
+        cout << endl;
+    }
 }
 
 void UI::archivarConversaciones() {
     IArchivarConversaciones* iArchivarConversaciones = ControladorFactory::getIArchivarConversaciones();
 
     list<DataConversacion*> conversaciones = iArchivarConversaciones->darConversacionesActivas();
-    if(conversaciones.size == 0) {
+    if(conversaciones.size() == 0) {
         cout << "No participa en ninguna conversacion." << endl;
         return;
     }
@@ -341,12 +397,12 @@ void UI::eliminarMensajes() {
     IEliminarMensajes* iEliminarMensajes = ControladorFactory::getIEliminarMensajes();
     list<DataConversacion*> conversaciones = iEliminarMensajes->darConversaciones();
 
-    if(conversaciones.size == 0) {
+    if(conversaciones.size() == 0) {
         cout << "No participa en ninguna conversacion." << endl;
         return;
     }
 
-    cout << "Sus converaciones activas son:" << endl;
+    cout << "Sus converaciones son:" << endl;
     listarConversaciones(conversaciones);
 
     cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
@@ -355,14 +411,27 @@ void UI::eliminarMensajes() {
         int id;
         cout << "Ingrese el id de la conversacion." << endl;
         cin >> id;
+        iEliminarMensajes->seleccionarConversacionActiva(id);
     }
     else if(opcion == "R") {
+        conversaciones = iEliminarMensajes->darConversacionesArchivadas();
+        cout << "Sus conversaciones archivadas son:" << endl;
+        listarConversaciones(conversaciones);
         int id;
         cout << "Ingrese el id de la conversacion." << endl;
         cin >> id;
-
+        iEliminarMensajes->seleccionarConversacionArchivada(id);
     }
-    else cout << "Opcion no valida!" << endl;
+    else {
+        cout << "Opcion no valida!" << endl;
+        return;
+    }
+
+    int idMensaje;
+    cout << "Ingrese el id del mensaje que desea eliminar." << endl
+        << "(Nota: puede ver el id de los mensajes al ver los mensajes.)" << endl;
+    cin >> idMensaje;
+    iEliminarMensajes->eliminarMensaje(idMensaje);
 }
 
 void UI::suscribirse() {

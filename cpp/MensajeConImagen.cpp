@@ -12,6 +12,6 @@ MensajeConImagen::MensajeConImagen(string formato, string texto,
 
 DataMensaje* MensajeConImagen::getDataMensaje() {
     this->setLeidoPorUsuarioActual();
-    return new DataMensajeConImagen(this->getFechaEnviado(),
+    return new DataMensajeConImagen(this->getId(), this->getFechaEnviado(),
         this->formato, this->texto, this->urlImagen, this->tamanio);
 }

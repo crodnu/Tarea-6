@@ -4,5 +4,5 @@ MensajeDeContacto::MensajeDeContacto(Usuario* contacto): contacto(contacto){ }
 
 DataMensaje* MensajeDeContacto::getDataMensaje() {
     this->setLeidoPorUsuarioActual();
-    return new DataMensajeDeContacto(this->getFechaEnviado(), this->contacto->getDataContacto());
+    return new DataMensajeDeContacto(this->getId(), this->getFechaEnviado(), this->contacto->getDataContacto());
 }
