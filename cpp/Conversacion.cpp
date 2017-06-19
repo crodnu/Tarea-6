@@ -25,6 +25,7 @@ DataConversacionSimple* Conversacion::getDataConversacionSimple(bool archivada) 
     Usuario* user = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
     for(std::map<TelefonoUsuario, Usuario*>::iterator it = this->participantes.begin();
         it != this->participantes.end(); it++) {
+
         Usuario* otro = it->second;
         if(otro != user) {
             list<DataMensaje*> mensajes;

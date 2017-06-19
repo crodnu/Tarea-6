@@ -71,6 +71,7 @@ list<DataConversacion*> Usuario::getSetDataConversacionesActivas(){
         Conversacion* conversacion = it->second;
         conversaciones.push_front(conversacion->getDataConversacionSimple(false));
     }
+
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
             it != this->gruposIntegradosConversacionesActivas.end(); it++) {
         Grupo * actual = it->second;
@@ -169,7 +170,6 @@ Conversacion* Usuario::getConversacion(IdConversacion identificador) {
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
         it != this->gruposIntegradosConversacionesActivas.end(); it++) {
         Grupo* grupo = it->second;
-        NombreGrupo nombre = it->first;
         if(grupo->getIdConversacion() == identificador) {
             return grupo->getConversacion();
         }
@@ -177,7 +177,6 @@ Conversacion* Usuario::getConversacion(IdConversacion identificador) {
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesArchivadas.begin();
         it != this->gruposIntegradosConversacionesArchivadas.end(); it++) {
         Grupo* grupo = it->second;
-        NombreGrupo nombre = it->first;
         if(grupo->getIdConversacion() == identificador) {
             return grupo->getConversacion();
         }
