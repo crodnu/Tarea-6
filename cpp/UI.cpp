@@ -175,7 +175,7 @@ void UI::enviarMensaje() {
     listarConversaciones(conversaciones);
 
     cout << endl;
-    cout << "Seleccione una opcion:" << endl;
+    cout << "Seleccione una opcion:" << endl
         << "\t1) Seleccionar una conversacion activa" << endl
         << "\t2) Seleccionar una conversacion archivada" << endl
         << "\t3) Crear una conversacion simple con un contacto" << endl;
@@ -217,7 +217,7 @@ void UI::enviarMensaje() {
     }
 
     cout << endl;
-    cout << "Seleccione una opcion:" << endl;
+    cout << "Seleccione una opcion:" << endl
         << "\t1) Enviar un mensaje simple" << endl
         << "\t2) Enviar un mensaje multimedia con imagen" << endl
         << "\t3) Enviar un mensaje multimedia con video" << endl
