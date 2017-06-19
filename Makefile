@@ -17,8 +17,8 @@ HS   = $(MODULOS:%=$(HDIR)/%.h)
 CPPS = $(MODULOS:%=$(CPPDIR)/%.cpp)
 OS   = $(MODULOS:%=$(ODIR)/%.o)
 
-PRINCIPAL=principal
-EJECUTABLE=Principal
+PRINCIPAL=main
+EJECUTABLE=Main
 
 # compilador
 CC = g++
@@ -62,9 +62,9 @@ $(ODIR)/$(PRINCIPAL).o: $(PRINCIPAL).cpp
 
 #Copie el principio uno de los archivos de P3.
 
-ejec: principal.cpp Makefile
+ejec: mail.cpp Makefile
 	make
-	$(CC) $(CCFLAGS) $(OS) principal.cpp -o Principal
+	$(CC) $(CCFLAGS) $(OS) main.cpp -o Principal
 
 # borra binarios
 clean_bin:
