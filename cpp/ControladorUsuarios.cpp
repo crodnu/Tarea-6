@@ -1,6 +1,8 @@
 #include "../include/ControladorUsuarios.h"
 #include "../include/ControladorUsuarios.h"
 
+#include <iostream>
+
 ControladorUsuarios* ControladorUsuarios::instancia = NULL;
 
 ControladorUsuarios::ControladorUsuarios() {
@@ -34,8 +36,8 @@ Usuario* ControladorUsuarios::getUsuarioSesionActual(){
 }
 
 DataContacto ControladorUsuarios::getDatos(TelefonoUsuario cel){
-    Usuario* iniciado = this->usuarioIniciado;
-    return iniciado->getDataContacto();
+    Usuario* user = this->usuariosDelSistema[cel];
+    return user->getDataContacto();
 }
 
 void ControladorUsuarios::darseDeAlta(string nombre, TelefonoUsuario cel, string urlImagen, string descripcion){

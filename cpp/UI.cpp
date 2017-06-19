@@ -148,7 +148,7 @@ void UI::agregarContactos() {
     listarDataContactos(contactosActuales);
 
     while(true) {
-        cout << "Ingrese telefonp del contacto, o FIN para salir." << endl;
+        cout << "Ingrese telefono del contacto, o FIN para salir." << endl;
         string tel = getString();
         if(tel == "FIN") break; // Oh no Eduardo, nos vas a matar a TODOS! D:>
         DataContacto nuevo = iAgregarContactos->getDatos(tel);
@@ -492,11 +492,7 @@ void UI::suscribirse() {
     cout << "Sus contactos actuales son:" << endl;
 
     list<DataContacto> contactosActuales = iSuscribirse->listarContactos();
-    for(list<DataContacto>::iterator it = contactosActuales.begin();
-        it != contactosActuales.end(); it++) {
-        DataContacto contacto = *it;
-        cout << "\t+" << contacto.getNombre() << ": " << contacto.getDescripcion() << endl;
-    }
+    listarDataContactos(contactosActuales);
 
     cout << endl;
 

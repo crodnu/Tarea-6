@@ -1,4 +1,7 @@
 #include "../include/ControladorMensajes.h"
+#include "../include/ControladorUsuarios.h"
+
+#include <iostream>
 
 ControladorMensajes* ControladorMensajes::instancia = NULL;
 
@@ -10,7 +13,8 @@ void ControladorMensajes::enviarMensaje(Mensaje * mensaje){
 }
 
 void ControladorMensajes::seleccionarConversacion(IdConversacion identificador){
-  this->conversacionSeleccionada = ControladorMensajes::instancia->conversacionesDelSistema[identificador];
+  this->conversacionSeleccionada = ControladorUsuarios::getControladorUsuarios()
+    ->getUsuarioSesionActual()->getConversacion(identificador);
 }
 
 ControladorMensajes* ControladorMensajes::getControladorMensajes(){
@@ -25,6 +29,7 @@ void ControladorMensajes::crearConversacionSimple(TelefonoUsuario telefonoContac
   this->conversacionesDelSistema[nuevaConversacion->getId()] = nuevaConversacion;
   ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual()->agregarConversacionActiva(nuevaConversacion);
   ControladorUsuarios::getControladorUsuarios()->getUsuario(telefonoContacto)->agregarConversacionActiva(nuevaConversacion);
+  this->conversacionSeleccionada = nuevaConversacion;
 }
 
 list<DataConversacion*> ControladorMensajes::darConversaciones(){
@@ -78,11 +83,13 @@ list<DataMensaje*> ControladorMensajes::obtenerMensajesDeConversacion(){
 }
 
 void ControladorMensajes::seleccionarConversacionActiva(IdConversacion identificador){
-  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
+  this->conversacionSeleccionada = ControladorUsuarios::getControladorUsuarios()
+    ->getUsuarioSesionActual()->getConversacion(identificador);
 }
 
 void ControladorMensajes::seleccionarConversacionArchivada(IdConversacion identificador){
-  this->conversacionSeleccionada = this->conversacionesDelSistema[identificador];
+  this->conversacionSeleccionada = ControladorUsuarios::getControladorUsuarios()
+    ->getUsuarioSesionActual()->getConversacion(identificador);
 }
 
 list<DataReceptor> ControladorMensajes::obtenerInformacionAdicional(IdMensaje identificador){
@@ -103,5 +110,5 @@ void ControladorMensajes::eliminarMensaje(IdMensaje id) {
 }
 
 void ControladorMensajes::archivarConversacion(IdConversacion id) {
-
+    ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual()->archivarConversacion(id);
 }

@@ -1,5 +1,7 @@
 #include "../include/Usuario.h"
 
+#include <iostream>
+
 using namespace std;
 
 Usuario::Usuario(TelefonoUsuario telefono, string nombre, string descripcion, string urlAvatar) {
@@ -158,4 +160,27 @@ void Usuario::administrar(Grupo* grupo) {
 void Usuario::integrar(Grupo* grupo) {
     this->gruposIntegradosConversacionesActivas[grupo->getNombre()] = grupo;
     grupo->hacerIntegrante(this);
+}
+
+Conversacion* Usuario::getConversacion(IdConversacion identificador) {
+    if(this->conversacionesIntegradas[identificador]) return this->conversacionesIntegradas[identificador];
+    if(this->conversacionesArchivadas[identificador]) return this->conversacionesArchivadas[identificador];
+
+    for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
+        it != this->gruposIntegradosConversacionesActivas.end(); it++) {
+        Grupo* grupo = it->second;
+        NombreGrupo nombre = it->first;
+        if(grupo->getIdConversacion() == identificador) {
+            return grupo->getConversacion();
+        }
+    }
+    for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesArchivadas.begin();
+        it != this->gruposIntegradosConversacionesArchivadas.end(); it++) {
+        Grupo* grupo = it->second;
+        NombreGrupo nombre = it->first;
+        if(grupo->getIdConversacion() == identificador) {
+            return grupo->getConversacion();
+        }
+    }
+    return NULL;
 }

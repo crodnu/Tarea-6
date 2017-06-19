@@ -1,6 +1,8 @@
 #include "../include/ControladorUsuarios.h"
 #include "../include/Conversacion.h"
 
+#include <iostream>
+
 IdConversacion Conversacion::idActual = 0;
 
 Conversacion::Conversacion() {
@@ -63,8 +65,9 @@ map<IdMensaje, Mensaje*> Conversacion::obtenerMensajes(Usuario* user) {
 
 void Conversacion::enviar(Mensaje* mensaje) {
     for(std::map<TelefonoUsuario, Usuario*>::iterator it = this->participantes.begin();
-        it != this->participantes.end(); it++)
+        it != this->participantes.end(); it++) {
         mensaje->addReceptor(it->second);
+    }
 
     this->mensajes[mensaje->getId()] = mensaje;
 }

@@ -13,6 +13,7 @@ DataContacto::DataContacto(const DataContacto& orig) {
     this->nombre = orig.nombre;
     this->descripcion = orig.descripcion;
     this->urlImagen = orig.urlImagen;
+    this->telefono = orig.telefono;
 }
 
 string DataContacto::getNombre() {

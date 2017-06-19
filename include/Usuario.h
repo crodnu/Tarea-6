@@ -40,6 +40,7 @@ public:
     std::map<TelefonoUsuario, Usuario*> getMapContactos();
     void administrar(Grupo* grupo);
     void integrar(Grupo* grupo);
+    Conversacion* getConversacion(IdConversacion identificador);
 
 private:
     TelefonoUsuario telefono;

@@ -1,112 +1,173 @@
 1
 090123654
 y
-Juan Pérez
-Amo usar Guasap
+Juan_Pérez
+Amo_usar_Guasap
 home/img/perfil/juan.png
 2
 1
 090765432
 y
-María Fernández
-Me encanta P4
+María_Fernández
+Me_encanta_P4
 home/img/perfil/maria.png
 2
 1
 090246810
 y
-Pablo Iglesias
-Me gustan los animales
+Pablo_Iglesias
+Me_gustan_los_animales
 home/img/perfil/pablo.png
 2
 1
 090666777
 y
-Sara Ruiz
-¡Estoy feliz!
+Sara_Ruiz
+¡Estoy_feliz!
 home/img/perfil/sara.png
 2
 1
 090123654
 3
-090 76 54 32
+090765432
 y
-090 24 68 10
+090246810
 y
-090 66 67 77
+090666777
 y
 FIN
 2
 1
-090 76 54 32
+090765432
 3
-090 12 36 54
+090123654
 y
-090 24 68 10
+090246810
 y
 FIN
 2
 1
-090 24 68 10
+090246810
 3
-090 12 36 54
+090123654
 y
-090 76 54 32
+090765432
 y
-090 66 67 77
+090666777
 y
 FIN
 2
 1
-090 66 67 77
+090666777
 3
-090 12 36 54
+090123654
 y
-090 24 68 10
+090246810
 y
 FIN
 2
 1
-090 12 36 54
-1
-
-090 76 54 32
+090123654
+10
+090765432
 FIN
 2
 1
-090 76 54 32
-1
-
-090 12 36 54
+090765432
+10
+090123654
 FIN
 2
 1
-090 24 68 10
-1
-
-090 12 36 54
+090246810
+10
+090123654
 FIN
 2
 11
 22
 5
 2017
-//grupo
+1
+090123654
+4
+1
+090765432
+1
+090246810
+1
+090666777
+3
+Amigos
+home/img/amigos.png
+2
+1
+090666777
+5
+1
+1
+1
+¡Miren_que_bueno_este_video!
 11
 22
 5
 2018
-//grupo
+5
+1
+1
+3
+home/img/perfil/video.png
+5
+2
+1
+090123654
+5
+1
+1
+1
+¡Muy gracioso!
+2
+1
+090246810
+5
+1
+1
+1
+¡Excelente!
+2
 11
 23
 5
 2018
 1
-090 76 54 32
+090765432
 5
 3
-090 12 36 54
+090123654
 1
-Hola, me pasas el contacto de Sara que no lo tengo
+Hola,_me_pasas_el_contacto_de_Sara_que_no_lo_tengo
 2
-//conversaciones
+1
+090123654
+1
+5
+1
+2
+4
+090666777
+2
+1
+090765432
+5
+1
+1
+Gracias
+2
+1
+090666777
+5
+3
+090246810
+1
+Hola_Pablo,_cómo_estas?
+2
