@@ -34,6 +34,8 @@ private:
     static ControladorUsuarios* instancia;
     Usuario* usuarioIniciado;
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
+    std::map<TelefonoUsuario, Usuario*> usuariosPorAgregar;
+    std::map<TelefonoUsuario, Usuario*> usuariosAgregados;
     ControladorUsuarios();
 
 public:
@@ -52,6 +54,12 @@ public:
     virtual void actualizarDescripcionUsuario(string descripcion);
     virtual std::list<DataNotificacion> getNotificaciones();
     virtual void suscribirse(TelefonoUsuario telefono);
+    virtual void resetSets();
+    virtual std::list<DataContacto> listarParticipantes();
+    virtual std::list<DataContacto> listarContactosRestantes();
+    virtual void agregarPaticipante(TelefonoUsuario cel);
+    virtual void removerParticipante(TelefonoUsuario cel);
+    virtual void crearGrupo(std::string nombre, std::string urlImagen);
 };
 
 #endif  /* CONTROLADORUSUARIOS_H */

@@ -75,7 +75,7 @@ unsigned UI::seleccionarOpcionMenuPrincipal() {
     cout << "Seleccione una de las siguientes opciones:" << endl;
     cout << "\t0. Salir \n \t1. Abrir GuasapFING  \n \t2. Cerrar GuasapFING \n \t3. Agregar contactos  \n \t4. Alta grupo  \n \t5. Enviar mensajes  \n ";
     cout << "\t6. Ver mensajes  \n \t7. Archivar conversaciones   \n \t8. Modificar usuario  \n \t9. Eliminar mensajes   \n \t10. Suscripción para recibir los cambios en la información personal de un contacto\n"
-        << "\t11 Cambiar la fecha del sistema" << endl;
+        << "\t11. Cambiar la fecha del sistema" << endl;
     unsigned opcionSeleccionada;
     cin >> opcionSeleccionada;
     cout << endl;
@@ -167,6 +167,59 @@ void UI::agregarContactos() {
 
 void UI::altaGrupo() {
     IAltaGrupo* iAltaGrupo = ControladorFactory::getIAltaGrupo();
+    iAltaGrupo->resetSets();
+    list<DataContacto> contactos;
+    cout << "Iniciando creacion de grupo." << endl;
+
+    bool fin = false;
+    while(!fin) {
+        cout << "Contactos agregados:" << endl;
+        contactos = iAltaGrupo->listarParticipantes();
+        listarDataContactos(contactos);
+        cout << "Contactos no agregados:" << endl;
+        contactos = iAltaGrupo->listarContactosRestantes();
+        listarDataContactos(contactos);
+        cout << "Seleccione una opcion:" << endl
+            << "\t1) Agregar un contacto" << endl
+            << "\t2) Remover un contacto" << endl
+            << "\t3) Finalizar seleccion de participantes" << endl;
+        int opcion;
+        cin >> opcion;
+        switch(opcion) {
+            case 1: {
+                cout << "Ingrese el telefono del contacto a agregar." << endl;
+                string telefono = getString();
+                iAltaGrupo->agregarPaticipante(telefono);
+                break;
+            }
+            case 2: {
+                cout << "Ingrese el telefono del contacto a remover." << endl;
+                string telefono = getString();
+                iAltaGrupo->removerParticipante(telefono);
+                break;
+            }
+            case 3: {
+                fin = true;
+                break;
+            }
+            default: {
+                cout << "Opcion no valida!" << endl;
+                return;
+            }
+        }
+    }
+
+    if(iAltaGrupo->listarParticipantes().size() == 0) {
+        cout << "Se debe selccionar al menos un contacto." << endl;
+        return;
+    }
+
+    cout << "Ingrese el nombre del grupo." << endl;
+    string nombre = getString();
+    cout << "Ingrese la url con la imagen para el grupo." << endl;
+    string url = getString();
+    iAltaGrupo->crearGrupo(nombre, url);
+    cout << "Grupo creado correctamente!" << endl;
 }
 
 void UI::enviarMensaje() {

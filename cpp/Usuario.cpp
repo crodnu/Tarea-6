@@ -15,6 +15,10 @@ TelefonoUsuario Usuario::getTelefono() {
     return this->telefono;
 }
 
+map<TelefonoUsuario, Usuario*> Usuario::getMapContactos() {
+    return this->contactos;
+}
+
 list<DataContacto> Usuario::getContactos() {
     list<DataContacto> contactosList;
 
@@ -143,4 +147,15 @@ void Usuario::archivarConversacion(IdConversacion id) {
             }
         }
     }
+}
+
+void Usuario::administrar(Grupo* grupo) {
+    this->gruposAdministrados[grupo->getNombre()] = grupo;
+    this->gruposIntegradosConversacionesActivas[grupo->getNombre()] = grupo;
+    grupo->hacerAdministrador(this);
+}
+
+void Usuario::integrar(Grupo* grupo) {
+    this->gruposIntegradosConversacionesActivas[grupo->getNombre()] = grupo;
+    grupo->hacerIntegrante(this);
 }

@@ -22,3 +22,17 @@ DataConversacionGrupo* Grupo::getDataConversacion(bool archivada) {
 IdConversacion Grupo::getIdConversacion() {
     return this->conversacion->getId();
 }
+
+NombreGrupo Grupo::getNombre() {
+    return this->nombre;
+}
+
+void Grupo::hacerAdministrador(Usuario* user) {
+    this->administradores[user->getTelefono()] = user;
+    this->hacerIntegrante(user);
+}
+
+void Grupo::hacerIntegrante(Usuario* user) {
+    this->integrantes[user->getTelefono()] = user;
+    this->conversacion->addParticipante(user);
+}

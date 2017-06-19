@@ -1,33 +1,33 @@
 1
-090 12 36 54
+090123654
 y
 Juan Pérez
 Amo usar Guasap
 home/img/perfil/juan.png
 2
 1
-090 76 54 32
+090765432
 y
 María Fernández
 Me encanta P4
 home/img/perfil/maria.png
 2
 1
-090 24 68 10
+090246810
 y
 Pablo Iglesias
 Me gustan los animales
 home/img/perfil/pablo.png
 2
 1
-090 66 67 77
+090666777
 y
 Sara Ruiz
 ¡Estoy feliz!
 home/img/perfil/sara.png
 2
 1
-090 12 36 54
+090123654
 3
 090 76 54 32
 y
@@ -68,19 +68,22 @@ FIN
 2
 1
 090 12 36 54
-10
+1
+
 090 76 54 32
 FIN
 2
 1
 090 76 54 32
-10
+1
+
 090 12 36 54
 FIN
 2
 1
 090 24 68 10
-10
+1
+
 090 12 36 54
 FIN
 2

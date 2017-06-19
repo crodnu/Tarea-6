@@ -19,6 +19,9 @@ public:
     Conversacion * getConversacion();
     DataConversacionGrupo* getDataConversacion(bool archivada);
     IdConversacion getIdConversacion();
+    NombreGrupo getNombre();
+    void hacerAdministrador(Usuario* user);
+    void hacerIntegrante(Usuario* user);
 
 private:
     NombreGrupo nombre;

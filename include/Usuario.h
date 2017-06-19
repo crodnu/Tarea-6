@@ -37,6 +37,9 @@ public:
     void actualizarFechaUltimaConexion();
     void agregarConversacionActiva(Conversacion* conv);
     void archivarConversacion(IdConversacion id);
+    std::map<TelefonoUsuario, Usuario*> getMapContactos();
+    void administrar(Grupo* grupo);
+    void integrar(Grupo* grupo);
 
 private:
     TelefonoUsuario telefono;
