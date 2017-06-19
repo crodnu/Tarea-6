@@ -277,8 +277,13 @@ void UI::verMensajes() {
 void UI::archivarConversaciones() {
     IArchivarConversaciones* iArchivarConversaciones = ControladorFactory::getIArchivarConversaciones();
 
-    cout << "Sus converaciones activas son:" << endl;
     list<DataConversacion*> conversaciones = iArchivarConversaciones->darConversacionesActivas();
+    if(conversaciones.size == 0) {
+        cout << "No participa en ninguna conversacion." << endl;
+        return;
+    }
+
+    cout << "Sus converaciones activas son:" << endl;
     listarConversaciones(conversaciones);
 
     while(true) {
@@ -334,6 +339,30 @@ void UI::modificarUsuario() {
 
 void UI::eliminarMensajes() {
     IEliminarMensajes* iEliminarMensajes = ControladorFactory::getIEliminarMensajes();
+    list<DataConversacion*> conversaciones = iEliminarMensajes->darConversaciones();
+
+    if(conversaciones.size == 0) {
+        cout << "No participa en ninguna conversacion." << endl;
+        return;
+    }
+
+    cout << "Sus converaciones activas son:" << endl;
+    listarConversaciones(conversaciones);
+
+    cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
+    string opcion = getString();
+    if(opcion == "A") {
+        int id;
+        cout << "Ingrese el id de la conversacion." << endl;
+        cin >> id;
+    }
+    else if(opcion == "R") {
+        int id;
+        cout << "Ingrese el id de la conversacion." << endl;
+        cin >> id;
+
+    }
+    else cout << "Opcion no valida!" << endl;
 }
 
 void UI::suscribirse() {
