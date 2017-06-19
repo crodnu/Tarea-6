@@ -53,6 +53,24 @@ string getString() {
     return result;
 }
 
+void listarConversaciones(list<DataConversacion*> conversaciones) {
+    for(list<DataConversacion*>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++) {
+        DataConversacion* conversacion = *it;
+        cout << conversacion->getId() << endl; //idfk
+        delete conversacion;
+    }
+
+    cout << endl;
+}
+
+void listarDataContactos(list<DataContacto> contactos) {
+    for(list<DataContacto>::iterator it = contactos.begin(); it != contactos.end(); it++) {
+        DataContacto contacto = *it;
+        cout << "\t+" << contacto.getNombre() << ": " << contacto.getDescripcion() << endl;
+    }
+    cout << endl;
+}
+
 unsigned UI::seleccionarOpcionMenuPrincipal() {
     cout << "Seleccione una de las siguientes opciones:" << endl;
     cout << "\t0. Salir \n \t1. Abrir GuasapFING  \n \t2. Cerrar GuasapFING \n \t3. Agregar contactos  \n \t4. Alta grupo  \n \t5. Enviar mensajes  \n ";
@@ -75,8 +93,10 @@ void UI::abrirGuassapFing() {
         if(resultado == SESION_YA_INICIADA_OTRO_NUMERO) {
             cout << "Sesion ya iniciada con un numero distinto." << endl
                 << "Desea cerrar la sesion?(y/n)" << endl;
-            if(yesOrNo()) iAbrirGuassapFing->cerrarSesion();
-            cout << "Sesion cerrada correctamente!" << endl;
+            if(yesOrNo()) {
+                iAbrirGuassapFing->cerrarSesion();
+                cout << "Sesion cerrada correctamente!" << endl;
+            }
         }
 
         if(resultado == NUMERO_NO_EXISTE) {
@@ -108,6 +128,8 @@ void UI::abrirGuassapFing() {
                     " el dia " << notificacion.getFecha().getDia() << "/" << notificacion.getFecha().getMes() <<
                     "/" << notificacion.getFecha().getAnio() << endl;
             }
+            cout << endl;
+            return;
         }
     }
 }
@@ -123,13 +145,7 @@ void UI::agregarContactos() {
     cout << "Sus contactos actuales son:" << endl;
 
     list<DataContacto> contactosActuales = iAgregarContactos->listarContactos();
-    for(list<DataContacto>::iterator it = contactosActuales.begin();
-        it != contactosActuales.end(); it++) {
-        DataContacto contacto = *it;
-        cout << "\t+" << contacto.getNombre() << ": " << contacto.getDescripcion() << endl;
-    }
-
-    cout << endl;
+    listarDataContactos(contactosActuales);
 
     string tel = "PLACEHOLDER_TEXT";
     while(true) {
@@ -155,12 +171,103 @@ void UI::altaGrupo() {
 
 void UI::enviarMensaje() {
     IEnviarMensaje* iEnviarMensaje = ControladorFactory::getIEnviarMensaje();
-    string msj;
+    list<DataConversacion*> conversaciones = iEnviarMensaje->darConversaciones();
+    listarConversaciones(conversaciones);
 
-    cout << "Ingrese el mensaje." << endl;
-    cin >> msj;
-    //enviarMensaje(msj);
-    cout << "Mensaje enviado." << endl;
+    cout << endl;
+    cout << "Seleccione una opcion:"
+        << "\t1) Seleccionar una conversacion activa" << endl
+        << "\t2) Seleccionar una conversacion archivada" << endl
+        << "\t3) Seleccionar una conversacion activa" << endl;
+    int opcion;
+    cin >> opcion;
+
+    switch(opcion) {
+        case 1: {
+            cout << "Ingrese el id de la conversacion activa." << endl;
+            int id;
+            cin >> id;
+            iEnviarMensaje->seleccionarConversacionActiva(id);
+            break;
+        }
+        case 2: {
+            conversaciones = iEnviarMensaje->darConversacionesArchivadas();
+            cout << "Sus conversaciones archivadas son:" << endl;
+            listarConversaciones(conversaciones);
+            cout << "Ingrese el id de la conversacion archivada." << endl;
+            int id;
+            cin >> id;
+            iEnviarMensaje->seleccionarConversacionArchivada(id);
+            break;
+        }
+        case 3: {
+            list<DataContacto> contactos = iEnviarMensaje->listarContactos();
+            cout << "Sus contactos actuales son:" << endl;
+            listarDataContactos(contactos);
+            cout << "Ingrese el telefono del usuario con el que desea crear la conversacion." << endl;
+            string telefono = getString();
+            iEnviarMensaje->crearConversacionSimple(telefono);
+            cout << "Conversacion creada correctamente!" << endl;
+            break;
+        }
+        default: {
+            cout << "Opcion no valida!" << endl;
+            return;
+        }
+    }
+
+    cout << endl;
+    cout << "Seleccione una opcion:"
+        << "\t1) Enviar un mensaje simple" << endl
+        << "\t2) Enviar un mensaje multimedia con imagen" << endl
+        << "\t3) Enviar un mensaje multimedia con video" << endl
+        << "\t3) Enviar un con un numero de contacto" << endl;
+    cin >> opcion;
+
+    switch(opcion) {
+        case 1: {
+            cout << "Ingrese el texto del mensaje." << endl;
+            string texto = getString();
+            iEnviarMensaje->enviarMensajeSimple(texto);
+            break;
+        }
+        case 2: {
+            cout << "Ingrese el texto del mensaje." << endl;
+            string texto = getString();
+            cout << "Ingrese la url con la imagen." << endl;
+            string url = getString();
+            cout << "Ingrese el formato de la imagen." << endl;
+            string formato = getString();
+            cout << "Ingrese el tamanio de la imagen." << endl;
+            int tamanio;
+            cin >> tamanio;
+            iEnviarMensaje->enviarMensajeImagen(url, formato, texto, tamanio);
+            break;
+        }
+        case 3: {
+            cout << "Ingrese la url con el video." << endl;
+            string url = getString();
+            cout << "Ingrese la duracion del video." << endl;
+            int duracion;
+            cin >> duracion;
+            iEnviarMensaje->enviarMensajeVideo(url, duracion);
+            break;
+        }
+        case 4: {
+            list<DataContacto> contactos = iEnviarMensaje->listarContactos();
+            cout << "Sus contactos actuales son:" << endl;
+            listarDataContactos(contactos);
+            cout << "Ingrese el telefono del que quiere compartir." << endl;
+            string telefono = getString();
+            iEnviarMensaje->enviarMensajeContacto(telefono);
+            break;
+        }
+        default: {
+            cout << "Opcion no valida!" << endl;
+        }
+    }
+
+    cout << "Mensaje enviado correctamente!" << endl;
 }
 
 void UI::verMensajes() {
@@ -172,11 +279,7 @@ void UI::archivarConversaciones() {
 
     cout << "Sus converaciones activas son:" << endl;
     list<DataConversacion*> conversaciones = iArchivarConversaciones->darConversacionesActivas();
-    for(list<DataConversacion*>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++) {
-        DataConversacion* conversacion = *it;
-        cout << conversacion->getId() << endl; //idfk
-        delete conversacion;
-    }
+    listarConversaciones(conversaciones);
 
     while(true) {
         int id;
@@ -235,6 +338,26 @@ void UI::eliminarMensajes() {
 
 void UI::suscribirse() {
     ISuscribirse* iSuscribirse = ControladorFactory::getISuscribirse();
+    cout << "Sus contactos actuales son:" << endl;
+
+    list<DataContacto> contactosActuales = iSuscribirse->listarContactos();
+    for(list<DataContacto>::iterator it = contactosActuales.begin();
+        it != contactosActuales.end(); it++) {
+        DataContacto contacto = *it;
+        cout << "\t+" << contacto.getNombre() << ": " << contacto.getDescripcion() << endl;
+    }
+
+    cout << endl;
+
+    while(true) {
+        cout << "Inserte un telefono al que suscribirse o FIN para salir." << endl;
+        string telefono = getString();
+        if(telefono == "FIN") break;
+        iSuscribirse->suscribirse(telefono);
+        cout << "Suscripcion completada." << endl;
+    }
+
+    cout << "Los usuarios seleccionados ahora le enviaran notificaciones!" << endl;
 }
 
 void UI::cambiarFecha() {
