@@ -1,0 +1,108 @@
+1
+090 12 36 54
+y
+Juan Pérez
+Amo usar Guasap
+home/img/perfil/juan.png
+2
+1
+090 76 54 32
+y
+María Fernández
+Me encanta P4
+home/img/perfil/maria.png
+2
+1
+090 24 68 10
+y
+Pablo Iglesias
+Me gustan los animales
+home/img/perfil/pablo.png
+2
+1
+090 66 67 77
+y
+Sara Ruiz
+¡Estoy feliz!
+home/img/perfil/sara.png
+2
+1
+090 12 36 54
+3
+090 76 54 32
+y
+090 24 68 10
+y
+090 66 67 77
+y
+FIN
+2
+1
+090 76 54 32
+3
+090 12 36 54
+y
+090 24 68 10
+y
+FIN
+2
+1
+090 24 68 10
+3
+090 12 36 54
+y
+090 76 54 32
+y
+090 66 67 77
+y
+FIN
+2
+1
+090 66 67 77
+3
+090 12 36 54
+y
+090 24 68 10
+y
+FIN
+2
+1
+090 12 36 54
+10
+090 76 54 32
+FIN
+2
+1
+090 76 54 32
+10
+090 12 36 54
+FIN
+2
+1
+090 24 68 10
+10
+090 12 36 54
+FIN
+2
+11
+22
+5
+2017
+//grupo
+11
+22
+5
+2018
+//grupo
+11
+23
+5
+2018
+1
+090 76 54 32
+5
+3
+090 12 36 54
+1
+Hola, me pasas el contacto de Sara que no lo tengo
+2

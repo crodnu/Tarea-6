@@ -27,7 +27,7 @@ list<DataContacto> Usuario::getContactos() {
 }
 
 DataContacto Usuario::getDataContacto() {
-    return DataContacto(this->nombre, this->descripcion, this->urlAvatar);
+    return DataContacto(this->telefono, this->nombre, this->descripcion, this->urlAvatar);
 }
 
 void Usuario::agregarContacto(Usuario* contacto) {
@@ -79,17 +79,6 @@ void Usuario::suscribirse(Usuario* user) {
 }
 
 list<DataNotificacion> Usuario::getNotificaciones() {
-    /*
-
-    for(list<Notificacion*>::iterator it = this->notificacionesRecibidas.begin();
-        it != this->notificacionesRecibidas.end(); it++) {
-        result.push_front((*it)->getDataNotificacion());
-        delete *it;
-    }
-
-    this->notificacionesRecibidas.clear();
-    */
-
     list<DataNotificacion> result = this->notificacionesRecibidas;
     this->notificacionesRecibidas.clear();
     return result;

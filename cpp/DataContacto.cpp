@@ -2,10 +2,11 @@
 
 using namespace std;
 
-DataContacto::DataContacto(string nombre, string descripcion, string urlImagen) {
+DataContacto::DataContacto(TelefonoUsuario telefono, string nombre, string descripcion, string urlImagen) {
     this->nombre = nombre;
     this->descripcion = descripcion;
     this->urlImagen = urlImagen;
+    this->telefono = telefono;
 }
 
 DataContacto::DataContacto(const DataContacto& orig) {
@@ -24,4 +25,8 @@ string DataContacto::getDescripcion() {
 
 string DataContacto::getUrlImagen() {
     return this->urlImagen;
+}
+
+TelefonoUsuario DataContacto::getTelefono() {
+    return this->telefono;
 }

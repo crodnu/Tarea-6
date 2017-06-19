@@ -66,7 +66,7 @@ void listarConversaciones(list<DataConversacion*> conversaciones) {
 void listarDataContactos(list<DataContacto> contactos) {
     for(list<DataContacto>::iterator it = contactos.begin(); it != contactos.end(); it++) {
         DataContacto contacto = *it;
-        cout << "\t+" << contacto.getNombre() << ": " << contacto.getDescripcion() << endl;
+        cout << "\t+" << contacto.getNombre() << "(" << contacto.getTelefono() << "): " << contacto.getDescripcion() << endl;
     }
     cout << endl;
 }
@@ -147,9 +147,9 @@ void UI::agregarContactos() {
     list<DataContacto> contactosActuales = iAgregarContactos->listarContactos();
     listarDataContactos(contactosActuales);
 
-    string tel = "PLACEHOLDER_TEXT";
     while(true) {
         cout << "Ingrese telefonp del contacto, o FIN para salir." << endl;
+        string tel = getString();
         if(tel == "FIN") break; // Oh no Eduardo, nos vas a matar a TODOS! D:>
         DataContacto nuevo = iAgregarContactos->getDatos(tel);
         cout << "Informacion del contacto:" << endl
@@ -175,10 +175,10 @@ void UI::enviarMensaje() {
     listarConversaciones(conversaciones);
 
     cout << endl;
-    cout << "Seleccione una opcion:"
+    cout << "Seleccione una opcion:" << endl;
         << "\t1) Seleccionar una conversacion activa" << endl
         << "\t2) Seleccionar una conversacion archivada" << endl
-        << "\t3) Seleccionar una conversacion activa" << endl;
+        << "\t3) Crear una conversacion simple con un contacto" << endl;
     int opcion;
     cin >> opcion;
 
@@ -217,7 +217,7 @@ void UI::enviarMensaje() {
     }
 
     cout << endl;
-    cout << "Seleccione una opcion:"
+    cout << "Seleccione una opcion:" << endl;
         << "\t1) Enviar un mensaje simple" << endl
         << "\t2) Enviar un mensaje multimedia con imagen" << endl
         << "\t3) Enviar un mensaje multimedia con video" << endl
