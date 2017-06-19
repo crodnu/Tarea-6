@@ -96,7 +96,6 @@ void Usuario::notificarSuscriptores(DataNotificacion notificacion) {
         Usuario * suscriptor = it->second;
         suscriptor->notificacionesRecibidas.push_front(notificacion);
     }
-
 }
 
 DataNotificacion Usuario::crearDataNotificacion(string tipo) {
@@ -164,8 +163,8 @@ void Usuario::integrar(Grupo* grupo) {
 }
 
 Conversacion* Usuario::getConversacion(IdConversacion identificador) {
-    if(this->conversacionesIntegradas[identificador]) return this->conversacionesIntegradas[identificador];
-    if(this->conversacionesArchivadas[identificador]) return this->conversacionesArchivadas[identificador];
+    if(this->conversacionesIntegradas.count(identificador) == 1) return this->conversacionesIntegradas[identificador];
+    if(this->conversacionesArchivadas.count(identificador) == 1) return this->conversacionesArchivadas[identificador];
 
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
         it != this->gruposIntegradosConversacionesActivas.end(); it++) {

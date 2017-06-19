@@ -125,7 +125,7 @@ home/img/perfil/video.png
 1
 1
 1
-¡Muy gracioso!
+¡Muy_gracioso!
 2
 1
 090246810
@@ -144,12 +144,12 @@ home/img/perfil/video.png
 5
 3
 090123654
+
 1
 Hola,_me_pasas_el_contacto_de_Sara_que_no_lo_tengo
 2
 1
 090123654
-1
 5
 1
 2
@@ -159,6 +159,7 @@ Hola,_me_pasas_el_contacto_de_Sara_que_no_lo_tengo
 1
 090765432
 5
+1
 1
 1
 Gracias

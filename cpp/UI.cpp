@@ -361,9 +361,10 @@ void UI::verMensajes() {
     list<DataMensaje*> mensajes = iVerMensajes->obtenerMensajesDeConversacion();
     for(list<DataMensaje*>::iterator it = mensajes.begin(); it != mensajes.end(); it++) {
         DataMensaje* mensaje = *it;
-        cout << mensaje->getId();
+        cout << mensaje->getId() << ": " << mensaje->getFechaDeEnviado().getDia() << "/" << mensaje->getFechaDeEnviado().getMes() << "/" << mensaje->getFechaDeEnviado().getAnio() << endl;
         delete mensaje;
     }
+    cout << endl;
 
     while(true) {
         cout << "ingrese el ID de un mensaje para obtener mas informacion, o 0 para salir." << endl;
