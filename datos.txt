@@ -1,29 +1,29 @@
 1
 090123654
 y
-Juan_Pérez
-Amo_usar_Guasap
+Juan Pérez
+Amo usar Guasap
 home/img/perfil/juan.png
 2
 1
 090765432
 y
-María_Fernández
-Me_encanta_P4
+María Fernández
+Me encanta P4
 home/img/perfil/maria.png
 2
 1
 090246810
 y
-Pablo_Iglesias
-Me_gustan_los_animales
+Pablo Iglesias
+Me gustan los animales
 home/img/perfil/pablo.png
 2
 1
 090666777
 y
-Sara_Ruiz
-¡Estoy_feliz!
+Sara Ruiz
+¡Estoy feliz!
 home/img/perfil/sara.png
 2
 1
@@ -107,7 +107,7 @@ home/img/amigos.png
 1
 1
 1
-¡Miren_que_bueno_este_video!
+¡Miren que bueno este video!
 11
 22
 5
@@ -125,7 +125,7 @@ home/img/perfil/video.png
 1
 1
 1
-¡Muy_gracioso!
+¡Muy gracioso!
 2
 1
 090246810
@@ -146,7 +146,7 @@ home/img/perfil/video.png
 090123654
 
 1
-Hola,_me_pasas_el_contacto_de_Sara_que_no_lo_tengo
+Hola, me pasas el contacto de Sara que no lo tengo
 2
 1
 090123654
@@ -170,5 +170,5 @@ Gracias
 3
 090246810
 1
-Hola_Pablo,_cómo_estas?
+Hola Pablo, cómo estas?
 2

@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <iostream>
 #include <list>
+#include <sstream>
 #include <string>
 
 #include "../include/DataContacto.h"
@@ -39,18 +40,33 @@ UI* UI::getInstance() {
     return UI::instance;
 }
 
+string getString() {
+    string result;
+    getline(cin, result);
+    return result;
+}
+
+unsigned getUnsigned() {
+    unsigned result;
+    string resultStr = getString();
+    istringstream buffer(resultStr);
+    buffer >> result;
+    return result;
+}
+
+int getInt() {
+    int result;
+    string resultStr = getString();
+    istringstream buffer(resultStr);
+    buffer >> result;
+    return result;
+}
+
 bool yesOrNo() {
-    string opcion;
-    cin >> opcion;
+    string opcion = getString();
     if(opcion == "y") return true;
     if(opcion == "n") return false;
     return false; // raise?
-}
-
-string getString() {
-    string result;
-    cin >> result;
-    return result;
 }
 
 void listarConversaciones(list<DataConversacion*> conversaciones, bool listarArchivadas) {
@@ -79,8 +95,7 @@ unsigned UI::seleccionarOpcionMenuPrincipal() {
     cout << "\t0. Salir \n \t1. Abrir GuasapFING  \n \t2. Cerrar GuasapFING \n \t3. Agregar contactos  \n \t4. Alta grupo  \n \t5. Enviar mensajes  \n ";
     cout << "\t6. Ver mensajes  \n \t7. Archivar conversaciones   \n \t8. Modificar usuario  \n \t9. Eliminar mensajes   \n \t10. Suscripción para recibir los cambios en la información personal de un contacto\n"
         << "\t11. Cambiar la fecha del sistema" << endl;
-    unsigned opcionSeleccionada;
-    cin >> opcionSeleccionada;
+    unsigned opcionSeleccionada = getUnsigned();
     cout << endl;
     return opcionSeleccionada;
 }
@@ -160,8 +175,7 @@ void UI::agregarContactos() {
             << "\tDescripcion: " << nuevo.getDescripcion() << endl
             << "\tNombre: " << nuevo.getUrlImagen() << " <- Imagine que eso es una imagen :)"<< endl
             << "Desea agregarlo?(y/n)" << endl;
-        string opcion;
-        cin >> opcion;
+        string opcion = getString();
         if(opcion == "y") iAgregarContactos->agregarContacto(tel);
     }
 
@@ -186,8 +200,7 @@ void UI::altaGrupo() {
             << "\t1) Agregar un contacto" << endl
             << "\t2) Remover un contacto" << endl
             << "\t3) Finalizar seleccion de participantes" << endl;
-        int opcion;
-        cin >> opcion;
+        int opcion = getInt();
         switch(opcion) {
             case 1: {
                 cout << "Ingrese el telefono del contacto a agregar." << endl;
@@ -242,14 +255,12 @@ void UI::enviarMensaje() {
         << "\t1) Seleccionar una conversacion activa" << endl
         << "\t2) Seleccionar una conversacion archivada" << endl
         << "\t3) Crear una conversacion simple con un contacto" << endl;
-    int opcion;
-    cin >> opcion;
+    int opcion = getInt();
 
     switch(opcion) {
         case 1: {
             cout << "Ingrese el id de la conversacion activa." << endl;
-            int id;
-            cin >> id;
+            int id = getInt();
             iEnviarMensaje->seleccionarConversacionActiva(id);
             break;
         }
@@ -258,8 +269,7 @@ void UI::enviarMensaje() {
             cout << "Sus conversaciones archivadas son:" << endl;
             listarConversaciones(conversaciones, true);
             cout << "Ingrese el id de la conversacion archivada." << endl;
-            int id;
-            cin >> id;
+            int id = getInt();
             iEnviarMensaje->seleccionarConversacionArchivada(id);
             break;
         }
@@ -285,7 +295,7 @@ void UI::enviarMensaje() {
         << "\t2) Enviar un mensaje multimedia con imagen" << endl
         << "\t3) Enviar un mensaje multimedia con video" << endl
         << "\t3) Enviar un con un numero de contacto" << endl;
-    cin >> opcion;
+    opcion = getInt();
 
     switch(opcion) {
         case 1: {
@@ -302,8 +312,7 @@ void UI::enviarMensaje() {
             cout << "Ingrese el formato de la imagen." << endl;
             string formato = getString();
             cout << "Ingrese el tamanio de la imagen." << endl;
-            int tamanio;
-            cin >> tamanio;
+            int tamanio = getInt();
             iEnviarMensaje->enviarMensajeImagen(url, formato, texto, tamanio);
             break;
         }
@@ -311,8 +320,7 @@ void UI::enviarMensaje() {
             cout << "Ingrese la url con el video." << endl;
             string url = getString();
             cout << "Ingrese la duracion del video." << endl;
-            int duracion;
-            cin >> duracion;
+            int duracion = getInt();
             iEnviarMensaje->enviarMensajeVideo(url, duracion);
             break;
         }
@@ -348,18 +356,16 @@ void UI::verMensajes() {
     cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
     string opcion = getString();
     if(opcion == "A") {
-        int id;
         cout << "Ingrese el id de la conversacion." << endl;
-        cin >> id;
+        int id = getInt();
         iVerMensajes->seleccionarConversacionActiva(id);
     }
     else if(opcion == "R") {
         conversaciones = iVerMensajes->darConversacionesArchivadas();
         cout << "Sus conversaciones archivadas son:" << endl;
         listarConversaciones(conversaciones, true);
-        int id;
         cout << "Ingrese el id de la conversacion." << endl;
-        cin >> id;
+        int id = getInt();
         iVerMensajes->seleccionarConversacionArchivada(id);
     }
     else {
@@ -379,8 +385,7 @@ void UI::verMensajes() {
 
     while(true) {
         cout << "ingrese el ID de un mensaje para obtener mas informacion, o 0 para salir." << endl;
-        int id;
-        cin >> id;
+        int id = getInt();
         if(id == 0) return;
         list<DataReceptor> receptores = iVerMensajes->obtenerInformacionAdicional(id);
         cout << "Los receptores de este mensaje son:" << endl;
@@ -409,9 +414,8 @@ void UI::archivarConversaciones() {
     listarConversaciones(conversaciones, true); // Solo deberian haber conversaciones activas.
 
     while(true) {
-        int id;
         cout << "Ingrese el id o 0 para salir." << endl;
-        cin >> id;
+        int id = getInt();
         if(id == 0) break;
         iArchivarConversaciones->archivarConversacion(id);
     }
@@ -421,36 +425,32 @@ void UI::archivarConversaciones() {
 
 void UI::modificarUsuario() {
     IModificarUsuario* iModificarUsuario = ControladorFactory::getIModificarUsuario();
-    int opcion = 0;
     cout << "Que campo desea modificar?" << endl
         << "\t1) Nombre" << endl
         << "\t2) Descripcion" << endl
         << "\t3) Avatar (url)" << endl;
-    cin >> opcion;
+    int opcion = getInt();
 
     switch(opcion) {
     case 1: {
-        string nombreNuevo;
         cout << "Inserte un nombre nuevo." << endl;
-        cin >> nombreNuevo;
+        string nombreNuevo = getString();
         iModificarUsuario->actualizarNombreUsuario(nombreNuevo);
         cout << "Nombre actualizado correctamente!" << endl;
         break;
     }
 
     case 2: {
-        string descripcionNueva;
         cout << "Inserte una descripcion nueva." << endl;
-        cin >> descripcionNueva;
+        string descripcionNueva = getString();
         iModificarUsuario->actualizarDescripcionUsuario(descripcionNueva);
         cout << "Descripcion actualizada correctamente!" << endl;
         break;
     }
 
     case 3: {
-        string avatarNuevo;
         cout << "Inserte una url con un avatar nuevo." << endl;
-        cin >> avatarNuevo;
+        string avatarNuevo = getString();
         iModificarUsuario->actualizarImagenUsuario(avatarNuevo);
         cout << "Avatar actualizado correctamente!" << endl;
         break;
@@ -477,18 +477,16 @@ void UI::eliminarMensajes() {
     cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
     string opcion = getString();
     if(opcion == "A") {
-        int id;
         cout << "Ingrese el id de la conversacion." << endl;
-        cin >> id;
+        int id = getInt();
         iEliminarMensajes->seleccionarConversacionActiva(id);
     }
     else if(opcion == "R") {
         conversaciones = iEliminarMensajes->darConversacionesArchivadas();
         cout << "Sus conversaciones archivadas son:" << endl;
         listarConversaciones(conversaciones, true);
-        int id;
         cout << "Ingrese el id de la conversacion." << endl;
-        cin >> id;
+        int id = getInt();
         iEliminarMensajes->seleccionarConversacionArchivada(id);
     }
     else {
@@ -496,10 +494,9 @@ void UI::eliminarMensajes() {
         return;
     }
 
-    int idMensaje;
     cout << "Ingrese el id del mensaje que desea eliminar." << endl
         << "(Nota: puede ver el id de los mensajes al ver los mensajes.)" << endl;
-    cin >> idMensaje;
+    int idMensaje = getInt();
     iEliminarMensajes->eliminarMensaje(idMensaje);
 }
 
@@ -530,13 +527,12 @@ void UI::cambiarFecha() {
     fechaActual.print();
     cout << endl;
 
-    unsigned dia, mes, anio;
     cout << "Inserte el dia nuevo." << endl;
-    cin >> dia;
+    unsigned dia = getUnsigned();
     cout << "Inserte el mes nuevo." << endl;
-    cin >> mes;
+    unsigned mes = getUnsigned();
     cout << "Inserte el anio nuevo." << endl;
-    cin >> anio;
+    unsigned anio = getUnsigned();
 
     fechaActual = Fecha(dia, mes, anio);
     iCambiarFecha->setFechaActual(fechaActual);

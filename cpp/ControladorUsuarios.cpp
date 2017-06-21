@@ -53,7 +53,9 @@ void ControladorUsuarios::darseDeAlta(string nombre, TelefonoUsuario cel, string
 }
 
 enumIniciarSesion ControladorUsuarios::iniciarSesion(TelefonoUsuario cel){
-    Usuario* entrante = this->usuariosDelSistema[cel];
+    Usuario* entrante = NULL;
+    if(this->usuariosDelSistema.count(cel) == 1) entrante = this->usuariosDelSistema[cel];
+
     Usuario* enSesion = this->getUsuarioSesionActual();
 
     if(entrante == enSesion && enSesion != NULL) {
