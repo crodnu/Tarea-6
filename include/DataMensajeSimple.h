@@ -10,6 +10,7 @@ public:
     DataMensajeSimple(IdMensaje id, Fecha fechaDeEnviado, std::string texto);
 
     std::string getTexto();
+    virtual void print();
 
 private:
     std::string texto;

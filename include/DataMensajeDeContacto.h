@@ -9,6 +9,7 @@ public:
     DataMensajeDeContacto(IdMensaje id, Fecha fechaDeEnviado, DataContacto contacto);
 
     DataContacto getContacto();
+    virtual void print();
 
 private:
     DataContacto contacto;

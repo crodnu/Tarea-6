@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/Fecha.h"
 
 using namespace std;
@@ -24,4 +26,8 @@ unsigned Fecha::getMes() {
 
 unsigned Fecha::getAnio() {
     return anio;
+}
+
+void Fecha::print() {
+    cout << this->dia << "/" << this->mes << "/" << this->anio;
 }

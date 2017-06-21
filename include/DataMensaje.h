@@ -10,6 +10,7 @@ public:
 
     Fecha getFechaDeEnviado();
     IdMensaje getId();
+    virtual void print();
 
 private:
     Fecha fechaDeEnviado;

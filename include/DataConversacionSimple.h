@@ -9,6 +9,7 @@ public:
     DataConversacionSimple(IdConversacion id, bool archivada, std::list<DataMensaje*> mensajes, DataContacto contacto);
 
     DataContacto getContacto();
+    virtual void print();
 
 private:
     DataContacto contacto;

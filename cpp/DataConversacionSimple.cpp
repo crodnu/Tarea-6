@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/DataConversacionSimple.h"
 
 using namespace std;
@@ -8,4 +10,9 @@ DataConversacionSimple::DataConversacionSimple(IdConversacion id, bool archivada
 
 DataContacto DataConversacionSimple::getContacto() {
     return this->contacto;
+}
+
+void DataConversacionSimple::print() {
+    DataConversacion::print();
+    cout << "Nombre del grupo: " << this->contacto.getNombre() << endl;
 }

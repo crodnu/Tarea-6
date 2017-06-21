@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/DataConversacionGrupo.h"
 
 using namespace std;
@@ -9,4 +11,9 @@ DataConversacionGrupo::DataConversacionGrupo(IdConversacion id, bool archivada, 
 
 string DataConversacionGrupo::getNombreGrupo() {
     return this->nombreGrupo;
+}
+
+void DataConversacionGrupo::print() {
+    DataConversacion::print();
+    cout << "Nombre del grupo: " << this->nombreGrupo << endl;
 }

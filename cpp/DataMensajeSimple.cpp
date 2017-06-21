@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/DataMensajeSimple.h"
 
 using namespace std;
@@ -9,4 +11,9 @@ DataMensajeSimple::DataMensajeSimple(IdMensaje id, Fecha fechaDeEnviado, string 
 
 string DataMensajeSimple::getTexto() {
     return this->texto;
+}
+
+void DataMensajeSimple::print() {
+    DataMensaje::print();
+    cout << "Texto: " << this->texto << endl;
 }

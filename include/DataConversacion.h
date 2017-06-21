@@ -12,9 +12,9 @@ public:
 
     bool getArchivada();
 
-    // Ta bien esto?
     std::list<DataMensaje*> getMensajes();
     IdConversacion getId();
+    virtual void print();
 
 private:
     bool archivada;

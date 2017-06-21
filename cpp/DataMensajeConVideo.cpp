@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/DataMensajeConVideo.h"
 
 using namespace std;
@@ -14,4 +16,10 @@ string DataMensajeConVideo::getUrlVideo() {
 
 unsigned DataMensajeConVideo::getDuracion() {
     return this->duracion;
+}
+
+void DataMensajeConVideo::print() {
+    DataMensaje::print();
+    cout << "Video: " << this->urlVideo << endl
+        << "Duracion: " << this->duracion << endl;
 }

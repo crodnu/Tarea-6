@@ -53,14 +53,17 @@ string getString() {
     return result;
 }
 
-void listarConversaciones(list<DataConversacion*> conversaciones) {
+void listarConversaciones(list<DataConversacion*> conversaciones, bool listarArchivadas) {
+    unsigned conversacionesArchivadas = 0;
     for(list<DataConversacion*>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++) {
         DataConversacion* conversacion = *it;
-        cout << conversacion->getId() << endl; //idfk
+        if(conversacion->getArchivada() == false or listarArchivadas) conversacion->print();
+        else conversacionesArchivadas++;
         delete conversacion;
     }
 
     cout << endl;
+    if(!listarArchivadas) cout << "Numero de conversaciones archivadas: " << conversacionesArchivadas << endl << endl;
 }
 
 void listarDataContactos(list<DataContacto> contactos) {
@@ -124,9 +127,9 @@ void UI::abrirGuassapFing() {
             cout << "Sesion abierta correctamente. Notificaciones desde su ultima visita:" << endl;
             for(list<DataNotificacion>::iterator it = notificaciones.begin(); it != notificaciones.end(); it++) {
                 DataNotificacion notificacion = *it;
-                cout << notificacion.getContacto().getNombre() << " modifico su " << notificacion.getTipo() <<
-                    " el dia " << notificacion.getFecha().getDia() << "/" << notificacion.getFecha().getMes() <<
-                    "/" << notificacion.getFecha().getAnio() << endl;
+                cout << notificacion.getContacto().getNombre() << " modifico su " << notificacion.getTipo() << " el dia ";
+                notificacion.getFecha().print();
+                cout << endl;
             }
             cout << endl;
             return;
@@ -225,7 +228,14 @@ void UI::altaGrupo() {
 void UI::enviarMensaje() {
     IEnviarMensaje* iEnviarMensaje = ControladorFactory::getIEnviarMensaje();
     list<DataConversacion*> conversaciones = iEnviarMensaje->darConversaciones();
-    listarConversaciones(conversaciones);
+
+    if(conversaciones.size() == 0) {
+        cout << "No participa en ninguna conversacion." << endl;
+        return;
+    }
+
+    cout << "Sus converaciones son:" << endl;
+    listarConversaciones(conversaciones, false);
 
     cout << endl;
     cout << "Seleccione una opcion:" << endl
@@ -246,7 +256,7 @@ void UI::enviarMensaje() {
         case 2: {
             conversaciones = iEnviarMensaje->darConversacionesArchivadas();
             cout << "Sus conversaciones archivadas son:" << endl;
-            listarConversaciones(conversaciones);
+            listarConversaciones(conversaciones, true);
             cout << "Ingrese el id de la conversacion archivada." << endl;
             int id;
             cin >> id;
@@ -333,7 +343,7 @@ void UI::verMensajes() {
     }
 
     cout << "Sus converaciones son:" << endl;
-    listarConversaciones(conversaciones);
+    listarConversaciones(conversaciones, false);
 
     cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
     string opcion = getString();
@@ -346,7 +356,7 @@ void UI::verMensajes() {
     else if(opcion == "R") {
         conversaciones = iVerMensajes->darConversacionesArchivadas();
         cout << "Sus conversaciones archivadas son:" << endl;
-        listarConversaciones(conversaciones);
+        listarConversaciones(conversaciones, true);
         int id;
         cout << "Ingrese el id de la conversacion." << endl;
         cin >> id;
@@ -361,7 +371,8 @@ void UI::verMensajes() {
     list<DataMensaje*> mensajes = iVerMensajes->obtenerMensajesDeConversacion();
     for(list<DataMensaje*>::iterator it = mensajes.begin(); it != mensajes.end(); it++) {
         DataMensaje* mensaje = *it;
-        cout << mensaje->getId() << ": " << mensaje->getFechaDeEnviado().getDia() << "/" << mensaje->getFechaDeEnviado().getMes() << "/" << mensaje->getFechaDeEnviado().getAnio() << endl;
+        mensaje->print();
+        cout << endl;
         delete mensaje;
     }
     cout << endl;
@@ -375,9 +386,10 @@ void UI::verMensajes() {
         cout << "Los receptores de este mensaje son:" << endl;
         for(list<DataReceptor>::iterator it = receptores.begin(); it != receptores.end(); it++) {
             DataReceptor receptor = *it;
-            Fecha f = receptor.getFechaRecibido();
-            cout << "\t*" << receptor.getContacto().getNombre() << " vio el mensaje el dia: "
-                << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
+            Fecha fecha = receptor.getFechaRecibido();
+            cout << "\t*" << receptor.getContacto().getNombre() << " vio el mensaje el dia: ";
+            fecha.print();
+            cout << endl;
         }
 
         cout << endl;
@@ -394,7 +406,7 @@ void UI::archivarConversaciones() {
     }
 
     cout << "Sus converaciones activas son:" << endl;
-    listarConversaciones(conversaciones);
+    listarConversaciones(conversaciones, true); // Solo deberian haber conversaciones activas.
 
     while(true) {
         int id;
@@ -423,6 +435,7 @@ void UI::modificarUsuario() {
         cin >> nombreNuevo;
         iModificarUsuario->actualizarNombreUsuario(nombreNuevo);
         cout << "Nombre actualizado correctamente!" << endl;
+        break;
     }
 
     case 2: {
@@ -431,6 +444,7 @@ void UI::modificarUsuario() {
         cin >> descripcionNueva;
         iModificarUsuario->actualizarDescripcionUsuario(descripcionNueva);
         cout << "Descripcion actualizada correctamente!" << endl;
+        break;
     }
 
     case 3: {
@@ -439,6 +453,7 @@ void UI::modificarUsuario() {
         cin >> avatarNuevo;
         iModificarUsuario->actualizarImagenUsuario(avatarNuevo);
         cout << "Avatar actualizado correctamente!" << endl;
+        break;
     }
 
     default: {
@@ -457,7 +472,7 @@ void UI::eliminarMensajes() {
     }
 
     cout << "Sus converaciones son:" << endl;
-    listarConversaciones(conversaciones);
+    listarConversaciones(conversaciones, false);
 
     cout << "Desea seleccionar una conversacion activa (A) or archivada (R)?" << endl;
     string opcion = getString();
@@ -470,7 +485,7 @@ void UI::eliminarMensajes() {
     else if(opcion == "R") {
         conversaciones = iEliminarMensajes->darConversacionesArchivadas();
         cout << "Sus conversaciones archivadas son:" << endl;
-        listarConversaciones(conversaciones);
+        listarConversaciones(conversaciones, true);
         int id;
         cout << "Ingrese el id de la conversacion." << endl;
         cin >> id;
@@ -512,8 +527,8 @@ void UI::cambiarFecha() {
     ICambiarFecha* iCambiarFecha = ControladorFactory::getICambiarFecha();
 
     Fecha fechaActual = iCambiarFecha->getFechaActual();
-    cout << "La fecha actual es: " << fechaActual.getDia() << "/" <<
-        fechaActual.getMes()<< "/" << fechaActual.getAnio() << endl;
+    fechaActual.print();
+    cout << endl;
 
     unsigned dia, mes, anio;
     cout << "Inserte el dia nuevo." << endl;

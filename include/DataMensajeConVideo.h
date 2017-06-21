@@ -11,6 +11,7 @@ public:
 
     std::string getUrlVideo();
     unsigned getDuracion();
+    virtual void print();
 
 private:
     std::string urlVideo;

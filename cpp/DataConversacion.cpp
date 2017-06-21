@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/DataConversacion.h"
 
 using namespace std;
@@ -18,4 +20,8 @@ IdConversacion DataConversacion::getId() {
 
 list<DataMensaje*> DataConversacion::getMensajes() {
     return this->mensajes;
+}
+
+void DataConversacion::print() {
+    cout << "ID: " << this->id << endl;
 }

@@ -10,6 +10,7 @@ public:
     DataConversacionGrupo(IdConversacion id, bool archivada, std::list<DataMensaje*> mensajes, std::string nombreGrupo);
 
     std::string getNombreGrupo();
+    virtual void print();
 
 private:
     std::string nombreGrupo;

@@ -105,19 +105,19 @@ DataNotificacion Usuario::crearDataNotificacion(string tipo) {
 }
 
 void Usuario::actualizarNombre(string nombre){
-    DataNotificacion nueva = this->crearDataNotificacion("Nombre");
+    DataNotificacion nueva = this->crearDataNotificacion("nombre");
     this->notificarSuscriptores(nueva);
     this->nombre = nombre;
 }
 
 void Usuario::actualizarImagen(string urlImagen){
-    DataNotificacion nueva = this->crearDataNotificacion("Avatar");
+    DataNotificacion nueva = this->crearDataNotificacion("avatar");
     this->notificarSuscriptores(nueva);
     this->urlAvatar = urlImagen;
 }
 
 void Usuario::actualizarDescripcion(string descripcion){
-    DataNotificacion nueva = this->crearDataNotificacion("Descripcion");
+    DataNotificacion nueva = this->crearDataNotificacion("descripcion");
     this->notificarSuscriptores(nueva);
     this->descripcion = descripcion;
 }
@@ -132,7 +132,7 @@ void Usuario::agregarConversacionActiva(Conversacion* conv) {
 }
 
 void Usuario::archivarConversacion(IdConversacion id) {
-    if(this->conversacionesIntegradas[id]) {
+    if(this->conversacionesIntegradas.count(id) == 1) {
         this->conversacionesArchivadas[id] = this->conversacionesIntegradas[id];
         this->conversacionesIntegradas.erase(id);
     }

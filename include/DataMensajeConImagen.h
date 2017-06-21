@@ -14,6 +14,7 @@ public:
     std::string getTexto();
     std::string getUrlImagen();
     unsigned getTamanio();
+    virtual void print();
 
 private:
     std::string formato;

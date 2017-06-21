@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../include/DataMensajeConImagen.h"
 
 using namespace std;
@@ -25,4 +27,13 @@ string DataMensajeConImagen::getUrlImagen() {
 
 unsigned DataMensajeConImagen::getTamanio() {
     return this->tamanio;
+}
+
+void DataMensajeConImagen::print() {
+    DataMensaje::print();
+    cout << "Imagen: " << this->urlImagen << endl
+        << "Formato: " << this->formato << endl
+        << "Tamanio: " << this->tamanio << endl;
+    if(this->texto != "")
+        cout << "Texto: " << this->texto << endl;
 }

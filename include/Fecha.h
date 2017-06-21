@@ -15,6 +15,7 @@ class Fecha {
         unsigned getDia();
         unsigned getMes();
         unsigned getAnio();
+        void print();
 
     private:
         unsigned dia;
