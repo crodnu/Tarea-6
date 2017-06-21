@@ -51,20 +51,14 @@ make:
 	$(CC) $(CCFLAGS) -c -o ./$(ODIR)/DataMensajeConVideo.o ./$(CPPDIR)/DataMensajeConVideo.cpp
 	$(CC) $(CCFLAGS) -c -o ./$(ODIR)/ControladorFecha.o ./$(CPPDIR)/ControladorFecha.cpp
 	make principal
+	$(CC) $(CCFLAGS) $(OS) main.cpp -o Main
+
 
 principal:
 	$(CC) $(CCFLAGS) -c -o ./$(ODIR)/main.o main.cpp
 
 $(ODIR)/$(PRINCIPAL).o: $(PRINCIPAL).cpp
 	$(CC) $(CCFLAGS) -c $< -o $@
-
-
-
-#Copie el principio uno de los archivos de P3.
-
-ejec: mail.cpp Makefile
-	make
-	$(CC) $(CCFLAGS) $(OS) main.cpp -o Principal
 
 # borra binarios
 clean_bin:
