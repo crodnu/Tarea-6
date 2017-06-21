@@ -75,9 +75,11 @@ list<DataContacto> ControladorMensajes::listarContactos(){
 list<DataMensaje*> ControladorMensajes::obtenerMensajesDeConversacion(){
   map<IdMensaje, Mensaje*> mensajes = this->conversacionSeleccionada->getSetMensajes();
   list<DataMensaje*> dataMensajes;
+  Usuario* usr = ControladorUsuarios::getControladorUsuarios()->getUsuarioSesionActual();
   for(map<IdMensaje, Mensaje*>::iterator it = mensajes.begin(); it != mensajes.end(); it++) {
     Mensaje* msj = it->second;
-    dataMensajes.push_front(msj->getDataMensaje());
+    if(msj->esEmisor(usr) || msj->esReceptor(usr))
+        dataMensajes.push_front(msj->getDataMensaje());
   }
   return dataMensajes;
 }
