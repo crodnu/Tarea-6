@@ -85,3 +85,7 @@ void Conversacion::borrarMensaje(Mensaje* msj) {
     this->mensajes.erase(msj->getId());
     delete msj;
 }
+
+bool Conversacion::tieneMensaje(IdMensaje id) {
+    return this->mensajes.count(id) == 1;
+}

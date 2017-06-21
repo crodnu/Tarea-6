@@ -1,13 +1,14 @@
 #ifndef CONTROLADORUSUARIOS_H
 #define CONTROLADORUSUARIOS_H
-#include <string>
 
-#include <map>
 #include <list>
+#include <map>
+#include <string>
 
 #include "DataContacto.h"
 #include "DataNotificacion.h"
 #include "enumIniciarSesion.h"
+#include "Grupo.h"
 #include "Mensaje.h"
 #include "typedefs.h"
 #include "Usuario.h"
@@ -36,6 +37,7 @@ private:
     std::map<TelefonoUsuario, Usuario*> usuariosDelSistema;
     std::map<TelefonoUsuario, Usuario*> usuariosPorAgregar;
     std::map<TelefonoUsuario, Usuario*> usuariosAgregados;
+    std::map<NombreGrupo, Grupo*> gruposDelSistema;
     ControladorUsuarios();
 
 public:
@@ -59,7 +61,7 @@ public:
     virtual std::list<DataContacto> listarContactosRestantes();
     virtual void agregarPaticipante(TelefonoUsuario cel);
     virtual void removerParticipante(TelefonoUsuario cel);
-    virtual void crearGrupo(std::string nombre, std::string urlImagen);
+    virtual void crearGrupo(NombreGrupo nombre, std::string urlImagen);
 };
 
 #endif  /* CONTROLADORUSUARIOS_H */

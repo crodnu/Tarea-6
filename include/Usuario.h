@@ -41,6 +41,9 @@ public:
     void administrar(Grupo* grupo);
     void integrar(Grupo* grupo);
     Conversacion* getConversacion(IdConversacion identificador);
+    bool tieneContactoConTelefono(TelefonoUsuario telefono);
+    bool tieneConversacionActiva(IdConversacion id);
+    bool tieneConversacionArchivada(IdConversacion id);
 
 private:
     TelefonoUsuario telefono;

@@ -37,7 +37,7 @@ int main(){
             salir = menu();
         }
         catch (exception& e) {
-            cout << "ERROR: " << e.what() << endl;
+            cout << "ERROR: " << e.what() << endl << endl;
         }
     } while(!salir);
     return 1;

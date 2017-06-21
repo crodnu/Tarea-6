@@ -173,6 +173,7 @@ Conversacion* Usuario::getConversacion(IdConversacion identificador) {
             return grupo->getConversacion();
         }
     }
+
     for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesArchivadas.begin();
         it != this->gruposIntegradosConversacionesArchivadas.end(); it++) {
         Grupo* grupo = it->second;
@@ -180,5 +181,38 @@ Conversacion* Usuario::getConversacion(IdConversacion identificador) {
             return grupo->getConversacion();
         }
     }
+
     return NULL;
+}
+
+bool Usuario::tieneContactoConTelefono(TelefonoUsuario telefono) {
+    return this->contactos.count(telefono) == 1;
+}
+
+bool Usuario::tieneConversacionActiva(IdConversacion id) {
+    if(this->conversacionesIntegradas.count(id) == 1) return true;
+
+    for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesActivas.begin();
+        it != this->gruposIntegradosConversacionesActivas.end(); it++) {
+        Grupo* grupo = it->second;
+        if(grupo->getIdConversacion() == id) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Usuario::tieneConversacionArchivada(IdConversacion id) {
+    if(this->conversacionesArchivadas.count(id) == 1) return true;
+
+    for(map<NombreGrupo, Grupo*>::iterator it = this->gruposIntegradosConversacionesArchivadas.begin();
+        it != this->gruposIntegradosConversacionesArchivadas.end(); it++) {
+        Grupo* grupo = it->second;
+        if(grupo->getIdConversacion() == id) {
+            return true;
+        }
+    }
+
+    return false;
 }

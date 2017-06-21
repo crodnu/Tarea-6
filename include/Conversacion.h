@@ -25,6 +25,7 @@ public:
     IdConversacion getId();
     void addParticipante(Usuario* participante);
     void borrarMensaje(Mensaje* msj);
+    bool tieneMensaje(IdMensaje id);
 
 private:
     IdConversacion id;
