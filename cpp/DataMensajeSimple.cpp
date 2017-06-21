@@ -4,6 +4,8 @@
 
 using namespace std;
 
+DataMensajeSimple::~DataMensajeSimple() {}
+
 DataMensajeSimple::DataMensajeSimple(IdMensaje id, Fecha fechaDeEnviado, string texto):
     DataMensaje(id, fechaDeEnviado) {
     this->texto = texto;

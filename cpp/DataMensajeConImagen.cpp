@@ -4,6 +4,8 @@
 
 using namespace std;
 
+DataMensajeConImagen::~DataMensajeConImagen() {}
+
 DataMensajeConImagen::DataMensajeConImagen(IdMensaje id, Fecha fechaDeEnviado, string formato,
     string texto, string urlImagen, unsigned tamanio):
     DataMensaje(id, fechaDeEnviado) {

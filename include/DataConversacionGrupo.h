@@ -11,6 +11,7 @@ public:
 
     std::string getNombreGrupo();
     virtual void print();
+    virtual ~DataConversacionGrupo();
 
 private:
     std::string nombreGrupo;

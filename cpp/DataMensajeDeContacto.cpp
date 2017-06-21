@@ -4,6 +4,8 @@
 
 using namespace std;
 
+DataMensajeDeContacto::~DataMensajeDeContacto() {}
+
 DataMensajeDeContacto::DataMensajeDeContacto(IdMensaje id, Fecha fechaDeEnviado,
     DataContacto contacto): DataMensaje(id, fechaDeEnviado), contacto(contacto) { }
 

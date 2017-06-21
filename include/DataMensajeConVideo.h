@@ -12,6 +12,7 @@ public:
     std::string getUrlVideo();
     unsigned getDuracion();
     virtual void print();
+    virtual ~DataMensajeConVideo();
 
 private:
     std::string urlVideo;

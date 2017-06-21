@@ -4,6 +4,8 @@
 
 using namespace std;
 
+DataMensajeConVideo::~DataMensajeConVideo() {}
+
 DataMensajeConVideo::DataMensajeConVideo(IdMensaje id, Fecha fechaDeEnviado, string urlVideo, unsigned duracion):
     DataMensaje(id, fechaDeEnviado) {
     this->duracion = duracion;

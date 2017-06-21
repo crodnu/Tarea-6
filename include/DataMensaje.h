@@ -11,6 +11,7 @@ public:
     Fecha getFechaDeEnviado();
     IdMensaje getId();
     virtual void print();
+    virtual ~DataMensaje();
 
 private:
     Fecha fechaDeEnviado;

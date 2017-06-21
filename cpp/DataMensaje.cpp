@@ -4,6 +4,8 @@
 
 using namespace std;
 
+DataMensaje::~DataMensaje() {}
+
 DataMensaje::DataMensaje(IdMensaje id, Fecha fechaDeEnviado): fechaDeEnviado(fechaDeEnviado) {
     this->id = id;
 }

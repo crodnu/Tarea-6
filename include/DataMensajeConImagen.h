@@ -15,6 +15,7 @@ public:
     std::string getUrlImagen();
     unsigned getTamanio();
     virtual void print();
+    virtual ~DataMensajeConImagen();
 
 private:
     std::string formato;

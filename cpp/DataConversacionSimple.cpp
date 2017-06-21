@@ -4,6 +4,8 @@
 
 using namespace std;
 
+DataConversacionSimple::~DataConversacionSimple() {}
+
 DataConversacionSimple::DataConversacionSimple(IdConversacion id, bool archivada,
     list<DataMensaje*> mensajes, DataContacto contacto):
     DataConversacion(id, archivada, mensajes), contacto(contacto) { }

@@ -15,6 +15,7 @@ public:
     std::list<DataMensaje*> getMensajes();
     IdConversacion getId();
     virtual void print();
+    virtual ~DataConversacion();
 
 private:
     bool archivada;

@@ -11,6 +11,7 @@ public:
 
     std::string getTexto();
     virtual void print();
+    virtual ~DataMensajeSimple();
 
 private:
     std::string texto;

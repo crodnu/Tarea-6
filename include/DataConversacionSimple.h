@@ -10,6 +10,7 @@ public:
 
     DataContacto getContacto();
     virtual void print();
+    virtual ~DataConversacionSimple();
 
 private:
     DataContacto contacto;
