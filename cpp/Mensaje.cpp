@@ -51,6 +51,7 @@ void Mensaje::addReceptor(Usuario* receptor) {
 }
 
 void Mensaje::quitarReceptor(Usuario* receptor) {
+    this->receptores.erase(receptor->getTelefono());
 }
 
 void Mensaje::setLeidoPorUsuarioActual() {

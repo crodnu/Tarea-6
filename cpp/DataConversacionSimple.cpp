@@ -16,5 +16,5 @@ DataContacto DataConversacionSimple::getContacto() {
 
 void DataConversacionSimple::print() {
     DataConversacion::print();
-    cout << "Nombre del grupo: " << this->contacto.getNombre() << endl;
+    cout << "Contacto: " << this->contacto.getNombre() << endl;
 }

@@ -73,7 +73,12 @@ void listarConversaciones(list<DataConversacion*> conversaciones, bool listarArc
     unsigned conversacionesArchivadas = 0;
     for(list<DataConversacion*>::iterator it = conversaciones.begin(); it != conversaciones.end(); it++) {
         DataConversacion* conversacion = *it;
-        if(conversacion->getArchivada() == false or listarArchivadas) conversacion->print();
+
+        if(conversacion->getArchivada() == false or listarArchivadas) {
+            conversacion->print();
+            cout << endl;
+        }
+
         else conversacionesArchivadas++;
         delete conversacion;
     }
